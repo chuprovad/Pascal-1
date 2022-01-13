@@ -15,4 +15,4 @@ const initialState = {
 }
 
 
-export const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk)))
+export const store = createStore(/* rootReducer, */ initialState, composeWithDevTools(applyMiddleware(thunk)))
