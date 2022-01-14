@@ -1,7 +1,7 @@
-import {initState} from "../initState/initState";
+import initialState from "../initState";
 import {ADD_RESTS_FROM_SERVER, SEARCH_OPTION, SELECT_OPTION} from "../types/rest.types";
 
-const restReducer = (state = initState, action) => {
+const restReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
