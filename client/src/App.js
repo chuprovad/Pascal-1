@@ -12,7 +12,7 @@ function App() {
 
             <Routes>
                 {/* TODO: change routing */}
-                <Route path='/rests' element={<RestsList />}
+                <Route path='/rests' element={<RestsList />}/>
                 <Route path='/' element={<Map/>}/>
                 <Route path='/restaurant/:id' element={<Restaurant />} />
             </Routes>

@@ -1,5 +1,5 @@
 import {initState} from "../initState/initState";
-import {ADD_RESTS_FROM_SERVER, SEARCH_OPTION, SELECT_OPTION} from "../types";
+import {ADD_RESTS_FROM_SERVER, SEARCH_OPTION, SELECT_OPTION} from "../types/rest.types";
 
 const restReducer = (state = initState, action) => {
 
