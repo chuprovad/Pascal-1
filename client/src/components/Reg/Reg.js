@@ -8,10 +8,8 @@ import Inputuser from "../Inputuser/Inputuser"
 
 function Reg() {
 
-
   const [who, setWho] = useState(false)
-  
-  console.log(who);
+
   function clickChange() {
 
     setWho(!who)
@@ -22,15 +20,11 @@ function Reg() {
       <input type="checkbox" onClick={clickChange} />
       <label >Check me out</label>
       <br />
-      <Inputuser who={who}/>
+      <Inputuser who={who} />
       {who === true && (
-        <Admin/>
+        <Admin />
       )
       }
-
-
-
-      
     </div >
   )
 }

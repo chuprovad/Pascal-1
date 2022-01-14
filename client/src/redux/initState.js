@@ -1,8 +1,5 @@
 const initState = {
   userInfo: null,
-  // admin: null,
-  restaurents: null,
-  ////
   
 }
 

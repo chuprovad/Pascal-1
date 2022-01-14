@@ -1,11 +1,18 @@
-import { DELETE_USER, GET_USERINFO } from "../type";
-import { getAdmin } from "./adminAc";
+import { DELETE_USER, GET_ADMIN, GET_USERINFO } from "../type";
+
 
 
 
 
 export const getUserInfo = (user) => ({
   type: GET_USERINFO,
+  payload: user
+
+
+})
+
+export const getAdmin = (user) => ({
+  type: GET_ADMIN,
   payload: user
 
 

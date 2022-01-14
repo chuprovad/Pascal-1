@@ -5,8 +5,6 @@ import { signIn } from "../../redux/ac/userinfoAc"
 
 function SingIn() {
 
-
-
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
@@ -19,7 +17,6 @@ function SingIn() {
   const dispatch = useDispatch()
   let navigate = useNavigate()
 
-
   const submitHandler = (e) => {
     e.preventDefault()
     let payload = Object.entries(inputValue).filter((el) => el[1] ? el[1].trim() : el[1])
@@ -27,9 +24,6 @@ function SingIn() {
       payload = Object.fromEntries(payload)
       dispatch(signIn(payload, navigate))
     }
-    
-    
-
   }
 
   return (

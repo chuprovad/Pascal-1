@@ -5,9 +5,6 @@ import { signUpAdmin } from "../../redux/ac/userinfoAc";
 
 function Admin() {
 
-
-
-
   const [userAdminSignUp, setUserAdminSignUp] = useState({
     name: '',
     email: '',
@@ -19,27 +16,10 @@ function Admin() {
     address: '',
     capacity: '',
   })
-  console.log(userAdminSignUp);
+  
   const changeHandler = (e) => {
     setUserAdminSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
-
-  const [restSignUp, setRestSignUp] = useState({
-    title: '',
-    category: '',
-    cuisine: '',
-    city: '',
-    address: '',
-    uisine: '',
-    capaciti: '',
-  })
-
-
-  const changeHandlerRest = (e) => {
-    setRestSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  console.log(restSignUp);
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
@@ -51,8 +31,6 @@ function Admin() {
       payload = Object.fromEntries(payload)
       dispatch(signUpAdmin(payload, navigate))
     }
-
-
   }
 
   return (
