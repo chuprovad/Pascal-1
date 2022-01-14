@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputText from "../InputText/InputText";
+import InputText from "../UI/InputText/InputText";
 import ButtonCreate from "../UI/ButtonCreate/ButtonCreate";
 
 export default function RestaurantForm({ bookTableHandler }) {

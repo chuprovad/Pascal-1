@@ -10,10 +10,10 @@
 }
 
 .modalContent {
-  padding: 30px;
+  padding: 40px;
   background: rgb(255, 236, 201);
   border-radius: 15px;
-  max-width: 250px;
+  max-width: 400px;
 }
 
 .modal.active {

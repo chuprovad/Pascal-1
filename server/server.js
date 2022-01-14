@@ -30,7 +30,18 @@ const restaurants = [
     city: 'MOSCOW',
     address: 'Some street 2',
     capacity: 200,
-    bookedTables: 20
+    bookedTables: 170,
+    pictures: [
+      {
+        path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
+      },
+      {
+        path: 'https://cdn.pixabay.com/photo/2017/05/12/08/29/coffee-2306471_1280.jpg',
+      },
+      {
+        path: 'https://cdn.pixabay.com/photo/2017/07/15/13/45/french-restaurant-2506490_1280.jpg',
+      },
+    ]
   },
   {
     id: 3,
@@ -40,15 +51,28 @@ const restaurants = [
     city: 'MOSCOW',
     address: 'Some street 3',
     capacity: 300,
-    bookedTables: 30
+    bookedTables: 180,
+    pictures: [
+      {
+        path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
+      },
+      {
+        path: 'https://cdn.pixabay.com/photo/2017/05/12/08/29/coffee-2306471_1280.jpg',
+      },
+      {
+        path: 'https://cdn.pixabay.com/photo/2017/07/15/13/45/french-restaurant-2506490_1280.jpg',
+      },
+    ]
   },
 ];
+
 
 // ------------ручки ресторана начало------------
 app.get("/restaurants/:id", (req, res) => {
   console.log('server ---');
   const id = req.params.id;
 
+  // TODO: получить рейтинг ресторана
   const currentRestaurant = restaurants.find(el => el.id === Number(id))
   console.log(currentRestaurant);
 
@@ -56,9 +80,6 @@ app.get("/restaurants/:id", (req, res) => {
 })
 
 // ----------------ручки ресторана конец------------
-
-
-
 
 app.listen(PORT, () => {
   console.log(`SERVER STARTED ON PORT`, PORT);
