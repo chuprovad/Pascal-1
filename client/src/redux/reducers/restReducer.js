@@ -1,5 +1,5 @@
 import {initState} from "../initState/initState";
-import {ADD_RESTS_FROM_SERVER, SELECT_OPTION} from "../types";
+import {ADD_RESTS_FROM_SERVER, SEARCH_OPTION, SELECT_OPTION} from "../types";
 
 const restReducer = (state = initState, action) => {
 
@@ -13,6 +13,10 @@ const restReducer = (state = initState, action) => {
             console.log(action.payload)
             return state.filter(el => el.location === action.payload)
 
+        }
+
+        case SEARCH_OPTION: {
+            return state.filter(el => el.title === action.payload)
         }
 
 

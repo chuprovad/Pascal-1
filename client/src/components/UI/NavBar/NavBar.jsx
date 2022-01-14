@@ -28,6 +28,8 @@ const NavBar = () => {
 
 
 
+
+
     return (
         <div className="navbar">
             Pascal
