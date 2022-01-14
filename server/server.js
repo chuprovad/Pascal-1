@@ -30,7 +30,7 @@ const restaurants = [
     city: 'MOSCOW',
     address: 'Some street 2',
     capacity: 200,
-    bookedTables: 170,
+    bookedTables: 20,
     pictures: [
       {
         path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
@@ -40,6 +40,12 @@ const restaurants = [
       },
       {
         path: 'https://cdn.pixabay.com/photo/2017/07/15/13/45/french-restaurant-2506490_1280.jpg',
+      },
+      {
+        path: 'https://cdn.pixabay.com/photo/2016/11/29/05/07/breads-1867459_1280.jpg',
+      },
+      {
+        path: 'https://cdn.pixabay.com/photo/2018/07/14/15/27/cafe-3537801_1280.jpg',
       },
     ]
   },

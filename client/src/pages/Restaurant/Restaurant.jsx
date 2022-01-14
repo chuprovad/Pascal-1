@@ -1,16 +1,31 @@
 // import classes from './Restaurant.module.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BookingModal from '../../components/UI/BookingModal/BookingModal';
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
 import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
 import ButtonCreate from '../../components/UI/ButtonCreate/ButtonCreate';
+import { useDispatch, useSelector } from 'react-redux';
+import { THUNK_getRestaurantFromDB } from '../../redux/actions/restaurant.action';
+import PicturesGallery from '../../components/UI/PicturesGallery/PicturesGallery';
 
-const path = 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg';
-const path1 = 'https://cdn.pixabay.com/photo/2017/05/12/08/29/coffee-2306471_1280.jpg';
-const path2 = 'https://cdn.pixabay.com/photo/2017/07/15/13/45/french-restaurant-2506490_1280.jpg';
+//TODO: restaurantID получить из useParams
+const restaurantId = 2;
 
 export default function Restaurant() {
+  const dispatch = useDispatch();
+
+  // Получить данные одного ресторана с бэка при монтировании компонента
+  useEffect(() => {
+    console.log('TEST222');
+    dispatch(THUNK_getRestaurantFromDB(restaurantId));
+  }, [])
+
+  // Получить данные одного ресторана из стейта
+  const restaurantDataFromState = useSelector(state => state.restaurant);
+  console.log(restaurantDataFromState.pictures);
+
+  // Стейт для отображения модалки
   const [modal, setModal] = useState(false);
 
   const bookTableHandler = (event) => {
@@ -20,7 +35,7 @@ export default function Restaurant() {
 
   return (
     <div>
-      <RestaurantCard />
+      <RestaurantCard restaurantDataFromState={restaurantDataFromState}/>
 
       <ButtonCreate type="button" onClick={()=> setModal(true)}>Book a table</ButtonCreate>
       
@@ -30,12 +45,7 @@ export default function Restaurant() {
 
       <hr style={{ margin: '15px 0' }} />
 
-      {/* TODO: создать отдельные компонент для картинок или два Pictures and Picture */}
-      <div>
-        <img src={path} alt="pic" style={{width: 200}}/>
-        <img src={path1} alt="pic" style={{ width: 200 }}/>
-        <img src={path2} alt="pic" style={{ width: 200 }}/>
-      </div>
+      <PicturesGallery restaurantDataFromState={restaurantDataFromState} />
     </div>
   );
 }
