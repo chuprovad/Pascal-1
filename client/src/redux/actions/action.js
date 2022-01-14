@@ -1,8 +1,16 @@
-import {GET_ALL} from "../types";
+import {ADD_RESTS_FROM_SERVER, SELECT_OPTION} from "../types";
 
 export const addManyTodos = (restsFromServer) => {
     return {
-        type: GET_ALL,
+        type: ADD_RESTS_FROM_SERVER,
         payload: restsFromServer
     }
 }
+
+export const optionAction = (city) => {
+    return {
+        type: SELECT_OPTION,
+        payload: city
+    }
+}
+

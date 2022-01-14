@@ -1,2 +1,2 @@
-export const GET_ALL = 'GET_ALL'
-
+export const ADD_RESTS_FROM_SERVER = 'ADD_RESTS_FROM_SERVER'
+export const SELECT_OPTION = 'SELECT_OPTION'

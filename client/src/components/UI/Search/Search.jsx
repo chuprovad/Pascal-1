@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Search = () => {
+const Search = ({onChange, value}) => {
     return (
-        <div>
-            <input type="text" placeholder="Search"/>
-        </div>
+        <>
+            <input type="text"  />
+        </>
     );
 };
 

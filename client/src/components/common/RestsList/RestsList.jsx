@@ -10,12 +10,20 @@ const RestsList = () => {
     const dispatch = useDispatch()
 
 
+    const downloadHandler = async(e) => {
+        e.preventDefault()
+        const response = await axios('https://jsonplaceholder.typicode.com/todos')
+        const restsFromServer = await response.data
+        dispatch(addManyTodos(restsFromServer))
+    }
+
+
 
     return (
         <div>
+            <button onClick={downloadHandler} >Download todos</button>
 
-
-            {rests && rests.map(rest => <h3>rest.name</h3>
+            {rests && rests.map(rest => <OneRest id={rest.id} title={rest.title} category={rest.category} />
                 )}
         </div>
     );
