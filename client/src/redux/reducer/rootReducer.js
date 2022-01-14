@@ -7,7 +7,7 @@ import userinfoReducer from './userInfoReducer'
 const rootReducer = combineReducers({
   ///
   userInfo: userinfoReducer,
-  admin: adminReducer,
+  // admin: adminReducer,
   restaurents: restaurantsReducer
 })
 

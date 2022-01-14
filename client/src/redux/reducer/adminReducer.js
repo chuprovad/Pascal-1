@@ -1,21 +1,22 @@
-import { GET_ADMIN } from "../type"
+// import { GET_ADMIN } from "../type"
 
 
 
 
-const adminReducer = (state = null, action) => {
-  const { type, payload } = action
+// const adminReducer = (state = null, action) => {
+//   const { type, payload } = action
   
-  switch (type) {
+//   switch (type) {
 
-    case GET_ADMIN:
-      return payload
+//     case GET_ADMIN:
+//       return payload
 
+//       // case DELETE_USER:
+//       //   return null
 
+//     default:
+//       return state
+//   }
+// }
 
-    default:
-      return state
-  }
-}
-
-export default adminReducer
+// export default adminReducer

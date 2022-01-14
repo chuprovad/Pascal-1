@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { signUpAdmin } from "../../redux/ac/adminAc";
+import { signUpAdmin } from "../../redux/ac/userinfoAc";
 
 function Admin() {
 
