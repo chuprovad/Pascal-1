@@ -1,5 +1,6 @@
 import { Routes, Route} from 'react-router-dom'
 import './App.css';
+import Map from './components/Map/Map';
 import Restaurant from './pages/Restaurant/Restaurant';
 
 function App() {
@@ -7,8 +8,8 @@ function App() {
     <div>
       <Routes>
         {/* TODO: change routing */}
-        <Route path='/' element={<Restaurant />} /> 
-        {/* <Route path='/restaurant/:id' element={<Restaurant />} /> */}
+        <Route path='/' element={<Map/>}/>
+        <Route path='/restaurant/:id' element={<Restaurant />} />
       </Routes> 
     </div>
   );
