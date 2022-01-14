@@ -1,4 +1,5 @@
 import { GET_USERINFO } from "../type";
+import { getAdmin } from "./adminAc";
 
 
 
@@ -32,16 +33,21 @@ export const signUp = (payload, navigate) => async (dispatch) => {
 export const signIn = (payload, navigate, from) => async (dispatch) => {
   const response = await fetch('http://localhost:3001/api/auth/signin', {
     method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(payload)
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify(payload)
   })
   if (response.status === 200) {
     const user = await response.json()
     console.log(user);
-    dispatch(getUserInfo(user))
+    if (user.isAdmin) {
+      dispatch(getAdmin(user))
+    } else {
+
+      dispatch(getUserInfo(user))
+    }
     // navigate('/cat')
   } else {
     // navigate('http://localhost:3000/auth/signin')
