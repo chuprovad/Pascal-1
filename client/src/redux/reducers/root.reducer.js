@@ -1,9 +1,6 @@
-import {combineReducers} from "redux";
-import restReducer from "./restReducer";
+import { combineReducers } from 'redux';
+import { restaurantReducer } from './restaurant.reducer';
 
-const rootReducer = combineReducers({
-    rests: restReducer
-
-})
-
-export default rootReducer
+export const rootReducer = combineReducers({
+    restaurant: restaurantReducer,
+});
