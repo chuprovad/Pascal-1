@@ -1,4 +1,4 @@
-// import classes from './Restaurant.module.css';
+import classes from './Restaurant.module.css';
 
 import { useEffect, useState } from 'react';
 import BookingModal from '../../components/UI/BookingModal/BookingModal';
@@ -34,18 +34,19 @@ export default function Restaurant() {
   };
 
   return (
-    <div>
-      <RestaurantCard restaurantDataFromState={restaurantDataFromState}/>
+    <div className={classes.container}>
+        <RestaurantCard restaurantDataFromState={restaurantDataFromState}/>
 
-      <ButtonCreate type="button" onClick={()=> setModal(true)}>Book a table</ButtonCreate>
+        <ButtonCreate type="button" onClick={()=> setModal(true)}>Book a table</ButtonCreate>
+        
+        <BookingModal visible={modal} setVisible={setModal}>
+          <RestaurantForm bookTableHandler={bookTableHandler} />
+        </BookingModal>
+
+        {/* <hr style={{ margin: '15px 0' }} /> */}
+        <h2>{restaurantDataFromState?.pictures?.length} Photos</h2>
       
-      <BookingModal visible={modal} setVisible={setModal}>
-        <RestaurantForm bookTableHandler={bookTableHandler} />
-      </BookingModal>
-
-      <hr style={{ margin: '15px 0' }} />
-
-      <PicturesGallery restaurantDataFromState={restaurantDataFromState} />
+        <PicturesGallery restaurantDataFromState={restaurantDataFromState} />
     </div>
   );
 }

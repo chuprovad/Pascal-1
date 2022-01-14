@@ -1,4 +1,5 @@
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
+// import classes from "./RestaurantCard.module.css";
 
 const getProgressBarColor = (percantage) => {
   let bgcolor = '';
