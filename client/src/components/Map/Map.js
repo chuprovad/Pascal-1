@@ -2,21 +2,51 @@ import { useEffect } from "react";
 
 const Map = () => {
 
+
   let ymaps = window.ymaps;
 
   useEffect(() => {
     ymaps.ready(init);
   }, [])
+  
   //подключаем карты
-  async function init(){
-          let map = new ymaps.Map("map", {
-              center: [55.76, 37.64],
-              zoom: 11,
-              controls: ['zoomControl'],
-              behaviors: ['drag', 'scrollZoom']
-          });
-      }
+  function init(){
+    let myMap = new ymaps.Map("map", {
+      center: [55.76, 37.64],
+      zoom: 14,
+      controls: ['zoomControl'],
+      behaviors: ['drag', 'scrollZoom']
+        })
+      // Создадим объекты на основе JSON-описания геометрий.
+      let  objects = ymaps.geoQuery([
+          {
+              type: 'Point',
+              coordinates: [55.76, 37.64]
+          },
+          {
+              type: 'Point',
+              coordinates: [55.75, 37.64]
+          },
+          {
+              type: 'Point',
+              coordinates: [55.75, 37.62]
+          }
+      ]).addToMap(myMap)
 
+      objects.searchInside(myMap)
+        // И затем добавим найденные объекты на карту.
+        .addToMap(myMap);
+    
+    myMap.events.add('boundschange', function () {
+        // После каждого сдвига карты будем смотреть, какие объекты попадают в видимую область.
+        let visibleObjects = objects.searchInside(myMap).addToMap(myMap);
+
+        console.log(visibleObjects)
+        // Оставшиеся объекты будем удалять с карты.
+        objects.remove(visibleObjects).removeFromMap(myMap);
+    });
+    
+  }
 
 
   const buttonHandler = () => {
