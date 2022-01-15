@@ -8,22 +8,25 @@ import ButtonCreate from '../../components/UI/ButtonCreate/ButtonCreate';
 import { useDispatch, useSelector } from 'react-redux';
 import { THUNK_getRestaurantFromDB } from '../../redux/actions/restaurant.action';
 import PicturesGallery from '../../components/UI/PicturesGallery/PicturesGallery';
+import { useParams } from 'react-router-dom';
 
 //TODO: restaurantID получить из useParams
-const restaurantId = 2;
+
 
 export default function Restaurant() {
   const dispatch = useDispatch();
 
+  // Получаем ID ресторана из параметров URL
+  const params = useParams();
+  const restaurantId = params.id;
+
   // Получить данные одного ресторана с бэка при монтировании компонента
   useEffect(() => {
-    console.log('TEST222');
     dispatch(THUNK_getRestaurantFromDB(restaurantId));
   }, [])
 
   // Получить данные одного ресторана из стейта
   const restaurantDataFromState = useSelector(state => state.restaurant);
-  console.log(restaurantDataFromState.pictures);
 
   // Стейт для отображения модалки
   const [modal, setModal] = useState(false);

@@ -14,7 +14,7 @@ function App() {
                 {/* TODO: change routing */}
                 <Route path='/rests' element={<RestsList />}/>
                 <Route path='/' element={<Map/>}/>
-                <Route path='/restaurant/:id' element={<Restaurant />} />
+                <Route path='/restaurants/:id' element={<Restaurant />} />
             </Routes>
         </div>
     );
