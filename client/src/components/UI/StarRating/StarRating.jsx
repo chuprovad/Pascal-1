@@ -1,14 +1,32 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import classes from './StarRating.module.css'
+import { useDispatch } from "react-redux";
+import { THUNK_addRatingToDB } from "../../../redux/actions/restaurant.action";
+import classes from './StarRating.module.css';
+import { useParams } from 'react-router-dom';
 
 export default function StarRating({ restaurantRating }) {
-  const [rating, setRating] = useState();
+  const dispatch = useDispatch();
+  // const [rating, setRating] = useState();
   const [hover, setHover] = useState();
 
-  useEffect(() => {
-    setRating(restaurantRating)
-  }, [restaurantRating])
+  // Получаем ID ресторана из параметров URL
+  const params = useParams();
+  const restaurantId = params.id;
+
+  //TODO: получить рейтинг как среднее арифметическое всех оценок данного ресторана
+
+  // useEffect(() => {
+  //   setRating(restaurantRating)
+  // }, [restaurantRating])
+
+  const setRatingHandler = (settedRating) => {
+    const settedRatingData = {
+      rating: settedRating,
+      restaurantId: restaurantId,
+      // userId: 1
+    }
+    dispatch(THUNK_addRatingToDB(settedRatingData));
+  }
 
   return (
     <div className={classes.stars}>
@@ -19,10 +37,10 @@ export default function StarRating({ restaurantRating }) {
             type="button"
             key={index}
             style={{ backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer' }}
-            className={index <= (hover || rating) ? classes.on : classes.off}
-            onClick={() => setRating(index)}
+            className={index <= (hover || restaurantRating) ? classes.on : classes.off}
+            onClick={() => setRatingHandler(index)}
             onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
+            onMouseLeave={() => setHover(restaurantRating)}
           >
             <span className={classes.star}>&#9733;</span>
           </button>

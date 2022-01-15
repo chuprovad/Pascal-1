@@ -21,7 +21,7 @@ const restaurants = [
     address: 'Some street 1',
     capacity: 100,
     bookedTables: 10,
-    rating: 1,
+    rating: [1, 1],
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const restaurants = [
     address: 'Some street 2',
     capacity: 200,
     bookedTables: 20,
-    rating: 2,
+    rating: [2, 4],
     pictures: [
       {
         path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
@@ -60,7 +60,7 @@ const restaurants = [
     address: 'Some street 3',
     capacity: 300,
     bookedTables: 180,
-    rating: 3,
+    rating: [4, 4, 5],
     pictures: [
       {
         path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
@@ -78,14 +78,25 @@ const restaurants = [
 
 // ------------ручки ресторана начало------------
 app.get("/restaurants/:id", (req, res) => {
-  console.log('server ---');
   const id = req.params.id;
 
-  // TODO: получить рейтинг ресторана
-  const currentRestaurant = restaurants.find(el => el.id === Number(id))
-  console.log(currentRestaurant);
+  const currentRestaurant = restaurants.find(el => el.id === Number(id));
 
-  res.json(currentRestaurant)
+  res.json(currentRestaurant);
+})
+
+app.post("/restaurants/:id/addRating", (req, res) => {
+  console.log('req.params ---> ', req.params);
+  console.log('req.body ===> )', req.body);
+  const id = req.params.id;
+
+  restaurants.find(el => el.id === Number(id)).rating.push(req.body.rating);
+  console.log(restaurants);
+
+  const updatedRatingFromDB = restaurants.find(el => el.id === Number(id)).rating;
+  console.log('updatedRatingFromDB --->', updatedRatingFromDB);
+
+  res.json(updatedRatingFromDB)
 })
 
 // ----------------ручки ресторана конец------------
