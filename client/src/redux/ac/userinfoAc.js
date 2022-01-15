@@ -23,7 +23,7 @@ export const deleteUser = () => ({
 })
 
 export const signUp = (payload, navigate) => async (dispatch) => {
-  const response = await fetch('http://localhost:3001/api/auth/signup', {
+  const response = await fetch('http://localhost:3002/api/auth/signup', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export const signUp = (payload, navigate) => async (dispatch) => {
 
 
 export const signIn = (payload, navigate, from) => async (dispatch) => {
-  const response = await fetch('http://localhost:3001/api/auth/signin', {
+  const response = await fetch('http://localhost:3002/api/auth/signin', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
 
 
 export const signUpAdmin = (payload, navigate) => async (dispatch) => {
-  const response = await fetch('http://localhost:3001/api/admin/signup', {
+  const response = await fetch('http://localhost:3002/api/auth/admin', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ export const signUpAdmin = (payload, navigate) => async (dispatch) => {
 }
 
 export const signOut = () => async (dispatch) => {
-  const response = await fetch('http://localhost:3001/api/auth/signout', {
+  const response = await fetch('http://localhost:3002/api/auth/signout', {
     credentials: 'include'
   })
   if (response.status === 200) {
