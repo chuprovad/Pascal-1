@@ -15,22 +15,24 @@ const restaurants = [
   {
     id: 1,
     title: 'GOOD REST',
-    category: 1,
-    cuisine: 'italian',
+    category: 'Coffee house',
+    cuisine: 'Italian',
     city: 'MOSCOW',
     address: 'Some street 1',
     capacity: 100,
-    bookedTables: 10
+    bookedTables: 10,
+    rating: 1,
   },
   {
     id: 2,
     title: 'BAD REST',
-    category: 2,
-    cuisine: 'japan',
+    category: 'Teppanyaki-style',
+    cuisine: 'Japan',
     city: 'MOSCOW',
     address: 'Some street 2',
     capacity: 200,
     bookedTables: 20,
+    rating: 2,
     pictures: [
       {
         path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
@@ -52,12 +54,13 @@ const restaurants = [
   {
     id: 3,
     title: 'GOOD REST',
-    category: 3,
-    cuisine: 'german',
+    category: 'Pub',
+    cuisine: 'German',
     city: 'MOSCOW',
     address: 'Some street 3',
     capacity: 300,
     bookedTables: 180,
+    rating: 3,
     pictures: [
       {
         path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
