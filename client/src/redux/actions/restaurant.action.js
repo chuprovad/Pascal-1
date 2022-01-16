@@ -9,12 +9,7 @@ export const getRestaurantFromDB = (restaurantData) => {
 }
 
 export const THUNK_getRestaurantFromDB = (restaurantId) => async (dispatch) => {
-<<<<<<< HEAD
-  const response = await axios.get(`http://localhost:3002/restaurants/${restaurantId}`);
-  // console.log(response.data);
-=======
-  const response = await axios.get(`http://localhost:3001/restaurants/${restaurantId}`);
->>>>>>> 71420ebdacd57fe147a8cfabfdf4293fdbd6cba9
+  const response = await axios.get(`http://localhost:3002/api/restaurants/${restaurantId}`);
   const restaurantData = response.data;
   dispatch(getRestaurantFromDB(restaurantData));
 }
@@ -28,7 +23,7 @@ export const addRating = (rating) => {
 
 export const THUNK_addRatingToDB = (payload) => async (dispatch) => {
   const { restaurantId, rating } = payload;
-  const response = await axios.post(`http://localhost:3002/restaurants/${Number(restaurantId)}/addRating`, {
+  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/addRating`, {
     rating: rating,
   })
 

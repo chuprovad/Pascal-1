@@ -6,7 +6,7 @@ import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
 import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
 import ButtonCreate from '../../components/UI/ButtonCreate/ButtonCreate';
 import { useDispatch, useSelector } from 'react-redux';
-import { THUNK_addReservationToDB, THUNK_getRestaurantFromDB } from '../../redux/actions/restaurant.action';
+import { THUNK_getRestaurantFromDB } from '../../redux/actions/restaurant.action';
 import PicturesGallery from '../../components/UI/PicturesGallery/PicturesGallery';
 import { useParams } from 'react-router-dom';
 
