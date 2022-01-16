@@ -3,17 +3,21 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Picture extends Model {
+  class Adress extends Model {
     static associate({Restaurant}) {
       this.belongsTo(Restaurant, {foreignKey: 'restaurantId'})
     }
   };
-  Picture.init({
-    path: DataTypes.TEXT,
+  Adress.init({
+    city: DataTypes.STRING,
+    street: DataTypes.STRING,
+    building: DataTypes.INTEGER,
+    latitude: DataTypes.FLOAT,
+    longitude: DataTypes.FLOAT,
     restaurantId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Picture',
+    modelName: 'Adress',
   });
-  return Picture;
+  return Adress;
 };
