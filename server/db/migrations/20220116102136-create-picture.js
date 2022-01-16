@@ -16,7 +16,7 @@ module.exports = {
         references: {
           model: 'Restaurants',
           key: 'id',
-        },
+        }
       },
       createdAt: {
         allowNull: false,

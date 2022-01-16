@@ -11,21 +11,22 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      category: {
+      categoryId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Categories',
           key: 'id',
-        },
+        }
       },
-      cuisine: {
-        type: Sequelize.STRING
+      cuisineId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Cuisines',
+          key: 'id',
+        }
       },
-      city: {
-        type: Sequelize.STRING
-      },
-      address: {
-        type: Sequelize.STRING
+      avarageCoast: {
+        type: Sequelize.INTEGER
       },
       capacity: {
         type: Sequelize.INTEGER

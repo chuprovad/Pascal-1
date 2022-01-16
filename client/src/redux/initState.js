@@ -1,6 +1,6 @@
 const initialState = () => {
   const state = {
-    // posts: [],
+    userInfo: null,
     restaurant: {},
     rests: [
       {id: 1, title:'Maze Grill', category:'fine dining restaurant', location:'Moscow'},
