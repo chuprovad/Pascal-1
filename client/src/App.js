@@ -16,13 +16,12 @@ function App() {
 
             <Routes>
                 {/* TODO: change routing */}
-                {/*<Route path='/rests' element={<RestsList />}/>*/}
+                {/* <Route path='/rests' element={<RestsList />}/> */}
                 <Route path='/' element={<Map/>}/>
                 <Route path='/restaurants/:id' element={<Restaurant />} />
                 <Route path='/signin' element={<SingIn />} />
                 <Route path='/signup' element={<Reg />} />
                 <Route path='/signout' element={<SignOut />} />
-
             </Routes>
         </div>
     );

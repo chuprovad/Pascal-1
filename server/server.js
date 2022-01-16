@@ -38,22 +38,24 @@ const restaurants = [
   {
     id: 1,
     title: 'GOOD REST',
-    category: 1,
-    cuisine: 'italian',
+    category: 'Coffee house',
+    cuisine: 'Italian',
     city: 'MOSCOW',
     address: 'Some street 1',
     capacity: 100,
-    bookedTables: 10
+    bookedTables: 10,
+    rating: [1, 1],
   },
   {
     id: 2,
     title: 'BAD REST',
-    category: 2,
-    cuisine: 'japan',
+    category: 'Teppanyaki-style',
+    cuisine: 'Japan',
     city: 'MOSCOW',
     address: 'Some street 2',
     capacity: 200,
     bookedTables: 20,
+    rating: [2, 4],
     pictures: [
       {
         path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
@@ -75,12 +77,13 @@ const restaurants = [
   {
     id: 3,
     title: 'GOOD REST',
-    category: 3,
-    cuisine: 'german',
+    category: 'Pub',
+    cuisine: 'German',
     city: 'MOSCOW',
     address: 'Some street 3',
     capacity: 300,
     bookedTables: 180,
+    rating: [4, 4, 5],
     pictures: [
       {
         path: 'https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg',
@@ -108,14 +111,25 @@ app.get('/restaurants', async (req, res) => {
 })
 
 app.get("/restaurants/:id", (req, res) => {
-  console.log('server ---');
   const id = req.params.id;
 
-  // TODO: получить рейтинг ресторана
-  const currentRestaurant = restaurants.find(el => el.id === Number(id))
-  console.log(currentRestaurant);
+  const currentRestaurant = restaurants.find(el => el.id === Number(id));
 
-  res.json(currentRestaurant)
+  res.json(currentRestaurant);
+})
+
+app.post("/restaurants/:id/addRating", (req, res) => {
+  console.log('req.params ---> ', req.params);
+  console.log('req.body ===> )', req.body);
+  const id = req.params.id;
+
+  restaurants.find(el => el.id === Number(id)).rating.push(req.body.rating);
+  console.log(restaurants);
+
+  const updatedRatingFromDB = restaurants.find(el => el.id === Number(id)).rating;
+  console.log('updatedRatingFromDB --->', updatedRatingFromDB);
+
+  res.json(updatedRatingFromDB)
 })
 
 
