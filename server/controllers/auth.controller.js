@@ -69,7 +69,6 @@ const signOut = async (req, res) => {
 
 const signUpAdmin = async (req, res) => {
   const { name, email, password, title, category, cuisine, city, address, capacity } = req.body
-  console.log('lol');
   if (name && email && password) {
     try {
       const newRest = await Restaurant.create({
