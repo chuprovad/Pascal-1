@@ -9,26 +9,32 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       street: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       building: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       latitude: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       longitude: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       restaurantId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Restaurants',
           key: 'id',
-        }
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

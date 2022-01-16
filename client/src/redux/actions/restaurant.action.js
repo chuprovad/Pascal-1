@@ -9,7 +9,7 @@ export const getRestaurantFromDB = (restaurantData) => {
 }
 
 export const THUNK_getRestaurantFromDB = (restaurantId) => async (dispatch) => {
-  const response = await axios.get(`http://localhost:3001/restaurants/${restaurantId}`);
+  const response = await axios.get(`http://localhost:3002/restaurants/${restaurantId}`);
   // console.log(response.data);
   const restaurantData = response.data;
   dispatch(getRestaurantFromDB(restaurantData));
@@ -25,7 +25,7 @@ export const addRating = (rating) => {
 export const THUNK_addRatingToDB = (payload) => async (dispatch) => {
   console.log('payload) ---> ', payload);
   const { restaurantId, rating } = payload;
-  const response = await axios.post(`http://localhost:3001/restaurants/${Number(restaurantId)}/addRating`, {
+  const response = await axios.post(`http://localhost:3002/restaurants/${Number(restaurantId)}/addRating`, {
     rating: rating,
   })
 

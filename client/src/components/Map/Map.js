@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import {useSelector} from 'react-redux'
 
 const Map = () => {
-
+    
+  const rest = useSelector(state => state)
 
   let ymaps = window.ymaps;
 
@@ -9,7 +11,7 @@ const Map = () => {
   //подключаем карты
   function init(){
     let myMap = new ymaps.Map("map", {
-      center: [55.76, 37.64],
+      center: [55.706541,37.5948184],
       zoom: 14,
       controls: ['zoomControl'],
       behaviors: ['drag', 'scrollZoom']
@@ -18,7 +20,7 @@ const Map = () => {
       let  objects = ymaps.geoQuery([
           {
               type: 'Point',
-              coordinates: [55.76, 37.64]
+              coordinates: [55.706541,37.5948184]
           },
           {
               type: 'Point',
