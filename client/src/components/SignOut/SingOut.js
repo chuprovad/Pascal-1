@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
-import { signOut } from "../../redux/ac/userinfoAc"
+import { signOut } from "../../redux/actions/userinfo.action"
 
 function SignOut() {
 

@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 // const {Favorit} = require('./db/models')
@@ -7,7 +7,8 @@ const FileStore = require('session-file-store')(session);
 const authRouter = require('./routes/auth.router')
 const app = express();
 
-const PORT = process.env.PORT ?? 3002;
+// const PORT = process.env.PORT ?? 3002;
+const PORT = 3001;
 
 
 app.use(cors({
