@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addManyTodos} from "../../../redux/actions/action";
 import axios from "axios";
-import OneRest from "../OneResr/OneRest";
+import OneRest from "../OneRest/OneRest";
 
 const RestsList = () => {
 
@@ -23,7 +23,7 @@ const RestsList = () => {
         <div>
             <button onClick={downloadHandler} >Download todos</button>
 
-            {rests && rests.map(rest => <OneRest id={rest.id} title={rest.title} category={rest.category} />
+            {rests && rests.map(rest => <OneRest id={rest.id} title={rest.title} category={rest.category} location={rest.location} />
                 )}
         </div>
     );

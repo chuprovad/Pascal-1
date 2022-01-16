@@ -1,9 +1,23 @@
-import {ADD_RESTS_FROM_SERVER, SEARCH_OPTION, SELECT_OPTION} from "../types/rest.types";
+import {ADD_RESTS_FROM_SERVER, GET_WORDS, SEARCH_OPTION, SELECT_OPTION, SET_WORDS} from "../types/rest.types";
 
 export const addManyTodos = (restsFromServer) => {
     return {
         type: ADD_RESTS_FROM_SERVER,
         payload: restsFromServer
+    }
+}
+
+export const getWords = (value) => {
+    return {
+        type: GET_WORDS,
+        payload: value
+    }
+}
+
+export const setWords = (value) => {
+    return {
+        type: SET_WORDS,
+        payload: value
     }
 }
 
@@ -14,10 +28,10 @@ export const optionAction = (city) => {
     }
 }
 
-export const searchAction = (title) => {
+export const searchAction = (input) => {
     return {
         type: SEARCH_OPTION,
-        payload: title
+        payload: input
     }
 }
 

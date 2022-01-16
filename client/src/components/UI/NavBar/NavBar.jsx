@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Selector from "../Selector/Selector";
 import Search from "../Search/Search";
-import './NavBar.css'
-import OneRest from "../../common/OneResr/OneRest";
-import {useSelector} from "react-redux";
+import classes from './NavBar.module.css'
+import id from './NavBar.module.css'
+import OneRest from "../../common/OneRest/OneRest";
+import {useDispatch, useSelector} from "react-redux";
+import {getWords} from "../../../redux/actions/action";
 
 const NavBar = () => {
 
-
+    const dispatch = useDispatch()
     const [rests, setRests] = useState()
 
     const [options, setOptions] = useState('')
@@ -17,6 +19,7 @@ const NavBar = () => {
     const [searchQuery, setSearchQuery] = useState('')
 
     const filterRests = (value) => {
+        console.log(value)
         setOptions(value)
         // setSelectedSort(value)
         // setSearchQuery('')
@@ -28,11 +31,11 @@ const NavBar = () => {
 
 
 
-
-
     return (
-        <div className="navbar">
-            Pascal
+
+
+        <div className={classes["navbar"]}>
+            <Link className={classes["home-link"]} to={'/'}>Pascal</Link>
 
             <Selector
                 value={options}
@@ -49,13 +52,14 @@ const NavBar = () => {
             <Search
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-            placeholder='Search'
             />
-            <Link className="nav-link" to={'/login'}>Sign in</Link>
-            <Link className="nav-link" to={'/register'}>Sign up</Link>
+            <Link className={classes["other-link"]} to={'/login'}>Sign in</Link>
+            <Link className={classes["other-link"]} to={'/register'}>Sign up</Link>
 
 
-</div>
+
+        </div>
+
     );
 };
 

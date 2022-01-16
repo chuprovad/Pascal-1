@@ -74,6 +74,16 @@ const restaurants = [
 
 
 // ------------ручки ресторана начало------------
+
+// заготовка саги для поиска
+app.get('/restaurants', async (req, res) => {
+  const search = req.body.title
+  const allRestaurants = await Restaurants.findAll({where:{ title:{[Op.iLike]: `%${search}%`}}})
+  setTimeout(() => {
+    res.json({allRestaurants})
+  }, 2000)
+})
+
 app.get("/restaurants/:id", (req, res) => {
   console.log('server ---');
   const id = req.params.id;
@@ -84,6 +94,8 @@ app.get("/restaurants/:id", (req, res) => {
 
   res.json(currentRestaurant)
 })
+
+
 
 // ----------------ручки ресторана конец------------
 

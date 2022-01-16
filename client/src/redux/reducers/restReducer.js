@@ -16,7 +16,7 @@ const restReducer = (state = initialState, action) => {
         }
 
         case SEARCH_OPTION: {
-            return state.filter(el => el.title === action.payload)
+            return state.filter(el => el.title.toLowerCase().includes(action.payload.toLowerCase()) )
         }
 
 
