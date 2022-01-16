@@ -53,8 +53,8 @@ const NavBar = () => {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
             />
-            <Link className={classes["other-link"]} to={'/login'}>Sign in</Link>
-            <Link className={classes["other-link"]} to={'/register'}>Sign up</Link>
+            <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
+            <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
 
 
 
