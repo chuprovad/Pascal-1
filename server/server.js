@@ -119,19 +119,21 @@ app.get("/restaurants/:id", (req, res) => {
 })
 
 app.post("/restaurants/:id/addRating", (req, res) => {
-  console.log('req.params ---> ', req.params);
-  console.log('req.body ===> )', req.body);
   const id = req.params.id;
 
   restaurants.find(el => el.id === Number(id)).rating.push(req.body.rating);
-  console.log(restaurants);
 
   const updatedRatingFromDB = restaurants.find(el => el.id === Number(id)).rating;
-  console.log('updatedRatingFromDB --->', updatedRatingFromDB);
 
   res.json(updatedRatingFromDB)
 })
 
+app.post("/restaurants/:id/reservation", (req, res) => {
+  const id = req.params.id;
+
+  const updatedTables = restaurants.find(el => el.id === Number(id)).bookedTables += 1;
+  res.json(updatedTables)
+})
 
 
 // ----------------ручки ресторана конец------------

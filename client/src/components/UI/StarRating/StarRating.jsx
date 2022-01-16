@@ -6,24 +6,16 @@ import { useParams } from 'react-router-dom';
 
 export default function StarRating({ restaurantRating }) {
   const dispatch = useDispatch();
-  // const [rating, setRating] = useState();
   const [hover, setHover] = useState();
 
   // Получаем ID ресторана из параметров URL
   const params = useParams();
   const restaurantId = params.id;
 
-  //TODO: получить рейтинг как среднее арифметическое всех оценок данного ресторана
-
-  // useEffect(() => {
-  //   setRating(restaurantRating)
-  // }, [restaurantRating])
-
   const setRatingHandler = (settedRating) => {
     const settedRatingData = {
       rating: settedRating,
       restaurantId: restaurantId,
-      // userId: 1
     }
     dispatch(THUNK_addRatingToDB(settedRatingData));
   }
