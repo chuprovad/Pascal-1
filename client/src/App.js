@@ -12,7 +12,7 @@ function App() {
     return (
         <div>
             <NavBar />
-            <RestsList />
+            {/* <RestsList /> */}
 
             <Routes>
                 {/* TODO: change routing */}

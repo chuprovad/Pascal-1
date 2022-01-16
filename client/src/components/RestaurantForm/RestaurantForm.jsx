@@ -1,8 +1,11 @@
 import { useState } from "react";
 import InputText from "../UI/InputText/InputText";
 import ButtonCreate from "../UI/ButtonCreate/ButtonCreate";
+import { useDispatch } from "react-redux";
+import { THUNK_addReservationToDB } from "../../redux/actions/restaurant.action";
 
-export default function RestaurantForm({ bookTableHandler }) {
+export default function RestaurantForm({ bookTableHandler, restaurantId }) {
+  const dispatch = useDispatch();
   const [booking, setBooking] = useState(
     {
       name: '',
@@ -12,13 +15,13 @@ export default function RestaurantForm({ bookTableHandler }) {
   );
 
   const createNewbooking = (event) => {
-    console.log(event);
     event.preventDefault();
-    const newBooking = {
-      ...booking,
-      id: new Date(),
-    };
-    bookTableHandler(newBooking);
+    dispatch(THUNK_addReservationToDB({ restaurantId, booking }));
+
+    // Закрываем модальное окно
+    bookTableHandler();
+
+    // Очищаем поля формы
     setBooking({ name: '', email: '', guestsQuantity: '' });
   };
 

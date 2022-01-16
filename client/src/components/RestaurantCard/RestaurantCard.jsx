@@ -14,9 +14,9 @@ const getProgressBarColor = (percantage) => {
 
 export default function RestaurantCard({ restaurantDataFromState }) {
 
-  const capactityPercantage = restaurantDataFromState.bookedTables / restaurantDataFromState.capacity * 100;
+  const capactityPercantage = Math.round((restaurantDataFromState.bookedTables / restaurantDataFromState.capacity * 100));
+
   const ratingArr = restaurantDataFromState?.rating;
-  console.log(ratingArr);
   const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
   
   return (
@@ -30,7 +30,7 @@ export default function RestaurantCard({ restaurantDataFromState }) {
          Booked tables:
           <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
         </li>
-        <li><StarRating restaurantRating={restaurantRating} /></li> 
+        <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li> 
         <li>Rating: {restaurantRating}</li> 
         <li>Category: {restaurantDataFromState.category}</li>
         <li>Address: {restaurantDataFromState.address}</li>
