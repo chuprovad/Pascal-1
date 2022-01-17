@@ -96,7 +96,7 @@ export const allRestaurants = () => async(dispatch) => {
   })
 }
 
-export const allRestByCoord = (coord) => async(dispatch) => {
+export const allRestByCoord = (coord) => async(dispatch) => { // TODO: дописать редьюсер для этого экшона
   console.log('%%%', coord)
   const response = await axios.post('http://localhost:3002/api/restaurants/all', {
     coord
