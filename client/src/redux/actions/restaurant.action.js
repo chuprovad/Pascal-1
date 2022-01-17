@@ -9,7 +9,7 @@ export const getRestaurantFromDB = (restaurantData) => {
 }
 
 export const THUNK_getRestaurantFromDB = (restaurantId) => async (dispatch) => {
-  const response = await axios.get(`http://localhost:3002/restaurants/${restaurantId}`);
+  const response = await axios.get(`http://localhost:3002/api/restaurants/${restaurantId}`);
   const restaurantData = response.data;
   dispatch(getRestaurantFromDB(restaurantData));
 }
@@ -23,9 +23,14 @@ export const addRating = (rating) => {
 
 export const THUNK_addRatingToDB = (payload) => async (dispatch) => {
   const { restaurantId, rating } = payload;
-  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/addRating`, {
-    rating: rating,
-  })
+  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/rating`,
+    {
+      score: rating,
+    },
+    {
+      withCredentials: true
+    }
+  )
 
   const updatedRatingFromDB = response.data;
   dispatch(addRating(updatedRatingFromDB));
@@ -40,7 +45,7 @@ export const addReservation = (updatedBookedTables) => {
 
 export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   const { restaurantId, booking } = payload;
-  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/reservation`, {
+  const response = await axios.put(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/reservation`, {
     guestsQuantity: Number(booking.guestsQuantity),
   })
   const updatedBookedTablesFromDB = response.data;

@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(Admin, {foreignKey: 'restaurantId'}),
 	    this.hasOne(Adress, {foreignKey: 'restaurantId'}),
       this.belongsToMany(User, {through: Reservation, foreignKey: 'restaurantId', otherKey: 'userId', constraints: false}),
-      this.belongsToMany(User, {through: Rating, foreignKey: 'restaurantId', otherKey: 'userId', constraints: false})
+      this.belongsToMany(User, {through: Rating, foreignKey: 'restaurantId', otherKey: 'userId', constraints: false}),
+      this.hasMany(Rating, { foreignKey: 'restaurantId' })
     }
   };
   Restaurant.init({
