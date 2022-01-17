@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_RESTAURANT, SET_RATING, SET_RESERVATION } from "../types/restaurant.types"
+import { GET_RESTAURANT, SET_RATING, SET_RESERVATION, GET_ALL_RESTAURANTS } from "../types/restaurant.types"
 
 export const getRestaurantFromDB = (restaurantData) => {
   return {
@@ -9,12 +9,7 @@ export const getRestaurantFromDB = (restaurantData) => {
 }
 
 export const THUNK_getRestaurantFromDB = (restaurantId) => async (dispatch) => {
-<<<<<<< HEAD
   const response = await axios.get(`http://localhost:3002/restaurants/${restaurantId}`);
-  // console.log(response.data);
-=======
-  const response = await axios.get(`http://localhost:3001/restaurants/${restaurantId}`);
->>>>>>> 71420ebdacd57fe147a8cfabfdf4293fdbd6cba9
   const restaurantData = response.data;
   dispatch(getRestaurantFromDB(restaurantData));
 }
@@ -28,7 +23,7 @@ export const addRating = (rating) => {
 
 export const THUNK_addRatingToDB = (payload) => async (dispatch) => {
   const { restaurantId, rating } = payload;
-  const response = await axios.post(`http://localhost:3002/restaurants/${Number(restaurantId)}/addRating`, {
+  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/addRating`, {
     rating: rating,
   })
 
@@ -45,9 +40,28 @@ export const addReservation = (updatedBookedTables) => {
 
 export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   const { restaurantId, booking } = payload;
-  const response = await axios.post(`http://localhost:3001/restaurants/${Number(restaurantId)}/reservation`, {
+  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/reservation`, {
     guestsQuantity: Number(booking.guestsQuantity),
   })
   const updatedBookedTablesFromDB = response.data;
   dispatch(addReservation(updatedBookedTablesFromDB));
+}
+//добавила Катя
+export const allRestaurants = () => async(dispatch) => {
+  // console.log('***')
+  const response = await axios.get('http://localhost:3002/api/restaurants/map')
+  const allRest = await response.data
+  // console.log('allRest', allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]})))
+  dispatch({
+    type: GET_ALL_RESTAURANTS,
+    payload: allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]}))
+  })
+}
+
+export const allRestByCoord = (coord) => async(dispatch) => {
+  console.log('%%%', coord)
+  const response = await axios.post('http://localhost:3002/api/restaurants/all', {
+    guestsQuantity: coord
+  })
+  // const allRest = await response.data
 }

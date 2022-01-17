@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false
       },
       building: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
       latitude: {
