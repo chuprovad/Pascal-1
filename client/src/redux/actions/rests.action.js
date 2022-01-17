@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rests.types";
+import {GET_RESTAURANTS_BY_COORD, GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rests.types";
 
 
 export const getRests = (value) => {
@@ -41,5 +41,9 @@ export const allRestByCoord = (coord) => async (dispatch) => {
   })
 
   const restaurantsByCoord = response.data;
-  console.log('restaurantsByCoord ******** ->', restaurantsByCoord);
+  // console.log('restaurantsByCoord ******** ->', restaurantsByCoord);
+  dispatch({
+    type: GET_RESTAURANTS_BY_COORD,
+    payload: response.data
+  })
 }

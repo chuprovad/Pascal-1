@@ -1,18 +1,46 @@
-import React from 'react';
-import {useSelector} from "react-redux";
+import CapacityProgressBar from '../../UI/CapacityProgressBar/CapacityProgressBar';
+import StarRating from '../../UI/StarRating/StarRating';
 
-const OneRest = ({id, title, category, location}) => {
+const getProgressBarColor = (percantage) => {
+  let bgcolor = '';
 
-    const rests = useSelector(state => state.rests)
+  if (percantage <= 30) bgcolor = "green";
+  else if (percantage <= 70) bgcolor = "orange";
+  else bgcolor = "red";
 
-    return (
-        <div>
-            <li className='restaurants'>
-                <h3>{id}</h3>
-                <h3>{title}</h3>
-            </li>
-        </div>
-    );
+  return bgcolor;
+}
+
+
+const OneRest = ({ rest}) => {
+  console.log('oneRest ------->', rest);
+  const capactityPercantage = Math.round((rest?.bookedTables / rest?.capacity * 100));
+
+  const ratingArr = rest?.rating;
+  const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+
+  return (
+    <div>
+      <h2>
+        {rest?.title}
+      </h2>
+
+      <ul>
+        <li>
+          Booked tables:
+          <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
+        </li>
+        <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li>
+        <li>Rating: {restaurantRating}</li>
+        <li>Category: {rest?.category}</li>
+        <li>Address: {rest?.address}</li>
+        <li>Cuisine: {rest?.cuisine}</li>
+        <li>Average price: {rest?.avarageCoast}&nbsp;$$</li>
+        {/* TODO: исправить инлайновый стиль на className */}
+        <img src={rest?.picture} style={{width: 200}} alt="rest" /> 
+      </ul>
+    </div>
+  );
 };
 
 export default OneRest;

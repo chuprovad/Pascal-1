@@ -113,6 +113,7 @@ const getVisibleRestaurants = async (req, res) => {
     bookedTables: el['Restaurant.bookedTables'],
     category: el['Restaurant.Category.title'],
     cuisine: el['Restaurant.Cuisine.title'],
+    address: `${el.city}, ${el.street} ${el.building}`,
     picture: currentRestaurantPicture.find(item => item.restaurantId === el.restaurantId).path,
     rating: currentRestaurantRating
       .filter(item => item.restaurantId === el.restaurantId)
