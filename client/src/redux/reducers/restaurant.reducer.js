@@ -1,6 +1,6 @@
 import initialState from "../initState";
 
-import { EDIT_RESTAURANT, GET_RESTAURANT, SET_RATING, SET_RESERVATION, GET_ALL_RESTAURANTS } from "../types/restaurant.types";
+import { EDIT_RESTAURANT, GET_RESTAURANT, SET_RATING, SET_RESERVATION, GET_ALL_RESTAURANTS, GET_RESTAURANTS_BY_COORD } from "../types/restaurant.types";
 export const restaurantReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RESTAURANT:
@@ -18,6 +18,9 @@ export const restaurantReducer = (state = initialState, action) => {
     // katya was here
     case GET_ALL_RESTAURANTS:
       // console.log('---------____',action.payload)
+      return action.payload
+
+    case GET_RESTAURANTS_BY_COORD:
       return action.payload
 
     default:

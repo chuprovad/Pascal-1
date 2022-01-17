@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import OneRest from "../OneRest/OneRest";
 import { v4 as uuidv4 } from 'uuid';
@@ -6,12 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 const RestsList = () => {
 
     const rests = useSelector(state => state.rests)
-    const dispatch = useDispatch()
-    
+    // const dispatch = useDispatch()
 
     return (
         <div>
-          <h1>Lorem Ipsum</h1>
+          <h1>List of restaurants on the map</h1>
         {rests &&
           rests.map(rest => <OneRest key={uuidv4()} id={rest.id} title={rest.title} />)
         }
