@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import { signIn } from "../../redux/actions/userinfo.action"
 
 function SingIn() {
-
+const allState = useSelector(state => state)
+console.log(allState);
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',

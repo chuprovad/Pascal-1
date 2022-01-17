@@ -15,12 +15,13 @@ const getReservation = async(req, res) => {
     const currentReservations = await User.findOne({
         // raw: true,
         where: { id },
-        include: [
+        include: 
             {
                 model: Restaurant,
+                as: 'reserv'
 
             },
-        ]
+        
 
     })
     console.log(currentReservations)

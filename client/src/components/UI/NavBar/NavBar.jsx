@@ -59,11 +59,12 @@ const NavBar = () => {
             {
                 user ?
                     <>
-                        <Link to={'/signout'}>Sign out</Link>
+                    <Link className={classes["other-link"]} to={'/users'}>User Profile</Link>
+                        <Link className={classes["other-link"]} to={'/signout'}>Sign out</Link>
                         </>
                         :
                     <>
-                        <Link className={classes["other-link"]} to={'/users'}>User Profile</Link>
+                        
             <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
             <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
 
