@@ -1,11 +1,5 @@
 import {ADD_RESTS_FROM_SERVER, GET_WORDS, SEARCH_OPTION, SELECT_OPTION, SET_WORDS} from "../types/rest.types";
 
-export const addManyTodos = (restsFromServer) => {
-    return {
-        type: ADD_RESTS_FROM_SERVER,
-        payload: restsFromServer
-    }
-}
 
 export const getWords = (value) => {
     return {

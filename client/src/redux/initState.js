@@ -1,6 +1,7 @@
 const initialState = () => {
   const state = {
     userInfo: null,
+    admin: null, // для проверки на авторизацию админа Даша
     restaurant: {},
     rests: [
       {id: 1, title:'Maze Grill', category:'fine dining restaurant', location:'Moscow'},

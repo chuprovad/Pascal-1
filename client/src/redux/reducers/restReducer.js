@@ -5,9 +5,6 @@ const restReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case ADD_RESTS_FROM_SERVER: {
-            return [...state, ...action.payload]
-        }
 
         case SELECT_OPTION: {
             console.log(action.payload)

@@ -61,6 +61,17 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
   }
 }
 
+// проверка на авторизацию юзера Даша
+export const checkAuthUser = () => async (dispatch) => {
+  const response = await fetch('http://localhost:3002/api/auth/checkuser', {
+    credentials: 'include'
+  })
+  if (response.status === 200) {
+    const user = await response.json()
+    dispatch(getUserInfo(user))
+  }
+}
+
 
 export const signUpAdmin = (payload, navigate) => async (dispatch) => {
   const response = await fetch('http://localhost:3002/api/auth/admin', {
