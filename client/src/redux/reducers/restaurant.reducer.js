@@ -1,5 +1,5 @@
 import initialState from "../initState";
-import { GET_RESTAURANT, SET_RATING, SET_RESERVATION } from "../types/restaurant.types";
+import { EDIT_RESTAURANT, GET_RESTAURANT, SET_RATING, SET_RESERVATION } from "../types/restaurant.types";
 
 export const restaurantReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -7,11 +7,14 @@ export const restaurantReducer = (state = initialState, action) => {
       return action.payload;
 
     case SET_RATING:
-      return {...state, rating: action.payload};
+      return { ...state, rating: action.payload };
 
     case SET_RESERVATION:
-      return {...state, bookedTables: action.payload};
-  
+      return { ...state, bookedTables: action.payload };
+
+    case EDIT_RESTAURANT:
+      return { ...state, title: action.payload.title, categoryId: action.payload.categoryId, cuisineId: action.payload.cuisineId, avarageCoast: action.payload.avarageCoast, capacity: action.payload.capacity   };
+
     default:
       return state;
   }

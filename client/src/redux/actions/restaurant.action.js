@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_RESTAURANT, SET_RATING, SET_RESERVATION } from "../types/restaurant.types"
+import { EDIT_RESTAURANT, GET_RESTAURANT, SET_RATING, SET_RESERVATION } from "../types/restaurant.types"
 
 export const getRestaurantFromDB = (restaurantData) => {
   return {
@@ -8,8 +8,13 @@ export const getRestaurantFromDB = (restaurantData) => {
   }
 }
 
+
+
+
+
+
+
 export const THUNK_getRestaurantFromDB = (restaurantId) => async (dispatch) => {
-  console.log("asdasdsdas");
   const response = await axios.get(`http://localhost:3002/api/restaurants/${restaurantId}`);
   const restaurantData = response.data;
   dispatch(getRestaurantFromDB(restaurantData));
@@ -47,3 +52,29 @@ export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   const updatedBookedTablesFromDB = response.data;
   dispatch(addReservation(updatedBookedTablesFromDB));
 }
+
+
+
+export const editRestaurant = (restaurantData) => {
+  return {
+    type: EDIT_RESTAURANT,
+    payload: restaurantData,
+  }
+}
+
+export const THUNK_editRestaurant = (payload, restId) => async (dispatch) => {
+  const response = await fetch('http://localhost:3001/api/', {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify(payload)
+  })
+  const restaurant = await response.json()
+  dispatch(editRestaurant(restaurant))
+}
+
+
+
+
