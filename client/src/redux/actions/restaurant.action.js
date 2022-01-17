@@ -99,7 +99,7 @@ export const allRestaurants = () => async(dispatch) => {
 export const allRestByCoord = (coord) => async(dispatch) => {
   console.log('%%%', coord)
   const response = await axios.post('http://localhost:3002/api/restaurants/all', {
-    guestsQuantity: coord
+    coord
   })
   // const allRest = await response.data
 }
