@@ -4,7 +4,7 @@ const { Admin, Restaurant, User } = require('../db/models')
 
 const signUp = async (req, res) => {
   const { name, email, password } = req.body
-  console.log( name, email, password);
+  console.log(name, email, password);
   if (name && email && password) {
     try {
       const hashPassword = await bcrypt.hash(password, 11)
@@ -34,8 +34,8 @@ const signIn = async (req, res) => {
       let currentUser = await User.findOne({ where: { email }, raw: true })
       if (!currentUser) {
         currentUser = await Admin.findOne({ where: { email }, raw: true })
-const rest = await Restaurant.findOne({where:{id: currentUser.restaurantId}})
-console.log(rest);
+        const rest = await Restaurant.findOne({ where: { id: currentUser.restaurantId } })
+        console.log(rest);
         if (currentUser && (await bcrypt.compare(password, currentUser.password))) {
 
           req.session.user = {
@@ -44,7 +44,7 @@ console.log(rest);
             isAdmin: 'isAdmin',
             restaurantId: rest.id
           }
-          return res.json({ id: currentUser.id, name: currentUser.name, isAdmin: 'isAdmin', restaurantId: rest.id})
+          return res.json({ id: currentUser.id, name: currentUser.name, isAdmin: 'isAdmin', restaurantId: rest.id })
         }
       }
       if (currentUser && (await bcrypt.compare(password, currentUser.password))) {
@@ -65,7 +65,7 @@ console.log(rest);
 
 const signOut = async (req, res) => {
   res.clearCookie("auth")
-  req.session.destroy()  
+  req.session.destroy()
   return res.sendStatus(200)
 }
 
@@ -100,7 +100,7 @@ const signUpAdmin = async (req, res) => {
         restaurantId: newRest.id
       }
 
-      return res.json({ id: newUser.get({ plain: true }).id, name: newUser.name, isAdmin: 'isAdmin', restaurantId: newRest.id  })
+      return res.json({ id: newUser.get({ plain: true }).id, name: newUser.name, isAdmin: 'isAdmin', restaurantId: newRest.id })
     } catch (error) {
       console.log(error);
       return res.sendStatus(500)
@@ -109,10 +109,40 @@ const signUpAdmin = async (req, res) => {
   return res.sendStatus(400)
 }
 
+const checkAuth = async (req, res) => {
+  console.log(33333);
+  try {
+    let user = await User.findByPk(req.session.user.id)
+
+    if (!user) {
+      user = await Admin.findByPk(req.session.user.id)
+
+      return res.json({ id: user.id, name: user.name, isAdmin: user.isAdmin, restaurantId: user.restaurantId })
+    } else {
+      return res.json({ id: user.id, name: user.name })
+    }
+
+
+
+    // console.log('=====>', user);
+    // console.log(22222);
+    // if (user.isAdmin) {
+    //   return res.json({ id: user.id, name: user.name, isAdmin: user.isAdmin, restaurantId: user.restaurantId })
+    // } else {
+
+    //   return res.json({ id: user.id, name: user.name })
+    // }
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500)
+  }
+}
+
 
 module.exports = {
   signIn,
   signOut,
   signUp,
   signUpAdmin,
+  checkAuth
 }
