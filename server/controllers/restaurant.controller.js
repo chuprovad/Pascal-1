@@ -1,11 +1,10 @@
 const {Restaurant,Rating} = require('../db/models')
+const {Op} = require('sequelize')
 
 const getAllRestaurant = async (req, res) => {
-  const search = req.body.title
-  const allRestaurants = await Restaurant.findAll({where:{ title:{[Op.iLike]: `%${search}%`}}})
-  setTimeout(() => {
-    res.json({allRestaurants})
-  }, 2000)
+  // const search = req.body.title
+  const allRestaurants = await Restaurant.findAll({raw:true})
+  res.json({allRestaurants})
 }
 
 const getCurrentRestaurant = async(req, res) => {
@@ -39,6 +38,7 @@ const addReservation = async(req, res) => {
 
   res.json(updatedBookedTables)
 }
+
 module.exports = {
   getAllRestaurant,
   getCurrentRestaurant,

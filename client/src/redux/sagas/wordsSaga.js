@@ -1,24 +1,24 @@
-import {GET_WORDS, SET_WORDS} from "../types/rest.types";
-import {setWords} from "../actions/action";
+import {GET_RESTS, SET_RESTS} from "../types/rest.types";
 import axios from "axios";
 import { call, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects'
+import {setRests} from "../actions/action";
 
-const getWordsFromBack = (word) => {
-    return axios.post('http://localhost:3001/', {word})
-        .then( res => res.data.words)
+const getRestsFromBack = (rest) => {
+    return axios.post('http://localhost:3002/', {rest})
+        .then( res => res.data.rests)
 }
 
 function* wordsSagaWorker(action) {
     try {
-        const words = yield call(getWordsFromBack, action.payload);
-        yield put(setWords(words));
+        const rests = yield call(getRestsFromBack, action.payload);
+        yield put(setRests(rests));
     } catch (e) {
-        yield put({type: SET_WORDS, payload: [{id:1, word:'server is death'}]});
+        yield put({type: SET_RESTS, payload: [{id:1, word:'server is death'}]});
     }
 }
 
 function* wordsSagaWatcher() {
-    yield throttle(2000, GET_WORDS, wordsSagaWorker);
+    yield throttle(2000, GET_RESTS, wordsSagaWorker);
 }
 
 

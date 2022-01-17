@@ -63,8 +63,10 @@ const NavBar = () => {
                         </>
                         :
                     <>
+                        <Link className={classes["other-link"]} to={'/users'}>User Profile</Link>
             <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
             <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
+
                     </>
             }
         </div>

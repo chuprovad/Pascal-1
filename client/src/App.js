@@ -11,54 +11,58 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {checkAuthUser} from "./redux/actions/userinfo.action";
 import {checkAuthAdmin} from "./redux/actions/admin.action";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 function App() {
 
-    const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(checkAuthUser())
-        dispatch(checkAuthAdmin())
-    }, [])
 
-    const user = useSelector(state => state.userInfo)
-    console.log(user)
+    // const dispatch = useDispatch()
+    //
+    // useEffect(() => {
+    //     dispatch(checkAuthUser())
+    //     dispatch(checkAuthAdmin())
+    // }, [])
+    //
+    // const user = useSelector(state => state.userInfo)
+    // console.log(user)
+    //
+    // const admin = useSelector(state => state.admin)
+    // console.log(admin)
 
-    const admin = useSelector(state => state.admin)
-    console.log(admin)
-
-    function RequireAuthUser({ children, redirectTo }) {
-        return user ? children : <Navigate to={redirectTo} />;
-    }
-
-    function RequireAuthAdmin({ children, redirectTo }) {
-        return admin ? children : <Navigate to={redirectTo} />;
-    }
-
-    function RequireUnauthUser({children, redirectTo}) {
-        return user ? <Navigate to={redirectTo} /> : children;
-    }
-
-    function RequireUnauthAdmin({children, redirectTo}) {
-        return admin ? <Navigate to={redirectTo} /> : children;
-    }
+    // function RequireAuthUser({ children, redirectTo }) {
+    //     return user ? children : <Navigate to={redirectTo} />;
+    // }
+    //
+    // function RequireAuthAdmin({ children, redirectTo }) {
+    //     return admin ? children : <Navigate to={redirectTo} />;
+    // }
+    //
+    // function RequireUnauthUser({children, redirectTo}) {
+    //     return user ? <Navigate to={redirectTo} /> : children;
+    // }
+    //
+    // function RequireUnauthAdmin({children, redirectTo}) {
+    //     return admin ? <Navigate to={redirectTo} /> : children;
+    // }
 
     return (
         <div>
             <NavBar />
-            {/* <RestsList /> */}
+             {/*<RestsList />*/}
 
             <Routes>
                 {/* TODO: change routing */}
                 {/* <Route path='/rests' element={<RestsList />}/> */}
                 <Route path='/' element={<Map/>}/>
                 <Route path='/restaurants/:id' element={<Restaurant />} />
+                <Route path='/users/:id' element={<UserProfile />} />
                 <Route path='/signin' element={<SingIn />} />
                 <Route path='/signup' element={<Reg />} />
                 <Route path='/signout' element={<SignOut />} />
             </Routes>
         </div>
     );
-} {/* DASHA PRIVET ))))))))) */}
+}
 
 export default App;

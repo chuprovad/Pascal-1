@@ -1,11 +1,29 @@
 import { DELETE_USER, GET_ADMIN, GET_USERINFO } from "../types/users.types"
+import {GET_RESTAURANT} from "../types/restaurant.types";
+import axios from "axios";
+import {getRestaurantFromDB} from "./restaurant.action";
 
 export const getUserInfo = (user) => ({
   type: GET_USERINFO,
   payload: user
 
-
 })
+
+
+export const THUNK_getUserInfoFromDB = () => async (dispatch) => {
+  const response = await axios.get(`http://localhost:3002/api/users/`);
+  const userData = response.data;
+  dispatch(getUserInfo(userData));
+}
+
+export const THUNK_getReservationInfoFromDB = (userId) => async (dispatch) => {
+  console.log('userid', userId)
+  const response = await axios.get(`http://localhost:3002/api/users/${userId}/reservations`)
+  const resData = response.data;
+  console.log(resData)
+  // dispatch()
+}
+
 
 export const getAdmin = (user) => ({
   type: GET_ADMIN,
@@ -30,9 +48,9 @@ export const signUp = (payload, navigate) => async (dispatch) => {
   if (response.status === 200) {
     const user = await response.json()
     dispatch(getUserInfo(user))
-    // navigate('/api/main') 
+    navigate('/users/1')
   } else {
-    //   navigate('/auth/signup')
+      // navigate('/auth/signup')
   }
 }
 
@@ -55,22 +73,22 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
 
       dispatch(getUserInfo(user))
     // }
-    // navigate('/cat')
+    navigate('/users/1')
   } else {
     // navigate('http://localhost:3000/auth/signin')
   }
 }
 
-// проверка на авторизацию юзера Даша
-export const checkAuthUser = () => async (dispatch) => {
-  const response = await fetch('http://localhost:3002/api/auth/checkuser', {
-    credentials: 'include'
-  })
-  if (response.status === 200) {
-    const user = await response.json()
-    dispatch(getUserInfo(user))
-  }
-}
+// // проверка на авторизацию юзера Даша
+// export const checkAuthUser = () => async (dispatch) => {
+//   const response = await fetch('http://localhost:3002/api/auth/checkuser', {
+//     credentials: 'include'
+//   })
+//   if (response.status === 200) {
+//     const user = await response.json()
+//     dispatch(getUserInfo(user))
+//   }
+// }
 
 
 export const signUpAdmin = (payload, navigate) => async (dispatch) => {
