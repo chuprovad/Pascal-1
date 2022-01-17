@@ -1,4 +1,4 @@
-
+const {Op} = require('sequelize')
 const { Adress, Category, Cuisine, Rating, Restaurant, Reservation, Picture } = require('../db/models')
 
 const getAllRestaurantSearch = async (req, res) => {
@@ -60,8 +60,33 @@ const getCurrentRestaurant = async (req, res) => {
 }
 
 const getVisibleRestaurants = async(req, res) => {
-  console.log('$$$', req.body)
-  res.sendStatus(200) // TODO: антон, допиши ресторана по координатам
+  // console.log('$$$', req.body)
+  const latitude = req.body.coord.map(el => el[0])
+  // console.log(latitude)
+  const result = await Adress.findAll({where: {latitude: {
+    [Op.in]: latitude
+
+}}, include:
+  {
+    model: Restaurant,
+    include:[
+      {
+        model: Adress,
+        attributes: ['city', 'street', 'building', 'latitude', 'longitude',],
+      },
+      {
+        model: Category,
+        attributes: ['id', 'title'],
+      },
+      {
+        model: Cuisine,
+        attributes: ['id', 'title'],
+      }
+    ],
+  }
+, raw: true}/* ,{include: [model]} */)
+console.log(result)
+  res.sendStatus(200) 
 }
 
 const addRating = async (req, res) => {
