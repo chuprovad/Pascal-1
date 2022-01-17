@@ -6,6 +6,8 @@ const FileStore = require('session-file-store')(session);
 const authRouter = require('./routes/auth.router')
 const restRouter = require('./routes/restaurant.router')
 const app = express();
+const {User} = require('./db/models')
+const {userRouter} = require("./routes/user.router");
 
 
 // const PORT = process.env.PORT ?? 3002;
@@ -34,6 +36,7 @@ app.use(session({
 
 app.use('/api/auth', authRouter)
 app.use('/api/restaurants', restRouter)
+app.use('/api/users', userRouter)
 
 app.listen(PORT, () => {
   console.log(`SERVER STARTED ON PORT`, PORT);

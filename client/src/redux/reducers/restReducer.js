@@ -1,13 +1,14 @@
 import initialState from "../initState";
-import {ADD_RESTS_FROM_SERVER, SEARCH_OPTION, SELECT_OPTION} from "../types/rest.types";
+import {GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rest.types";
 
 const restReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case ADD_RESTS_FROM_SERVER: {
-            return [...state, ...action.payload]
-        }
+        // case SET_RESTS: {
+        //     return action.payload
+        // }
+
 
         case SELECT_OPTION: {
             console.log(action.payload)

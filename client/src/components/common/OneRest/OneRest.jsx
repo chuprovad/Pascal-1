@@ -10,8 +10,6 @@ const OneRest = ({id, title, category, location}) => {
             <li className='restaurants'>
                 <h3>{id}</h3>
                 <h3>{title}</h3>
-                <h4>{category}</h4>
-                <h4>{location}</h4>
             </li>
         </div>
     );

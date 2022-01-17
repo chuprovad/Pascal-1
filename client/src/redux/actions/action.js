@@ -1,24 +1,22 @@
-import {ADD_RESTS_FROM_SERVER, GET_WORDS, SEARCH_OPTION, SELECT_OPTION, SET_WORDS} from "../types/rest.types";
+import {GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rest.types";
 
-export const addManyTodos = (restsFromServer) => {
-    return {
-        type: ADD_RESTS_FROM_SERVER,
-        payload: restsFromServer
-    }
-}
 
-export const getWords = (value) => {
+export const getRests = (value) => {
     return {
-        type: GET_WORDS,
+        type: GET_RESTS,
         payload: value
     }
 }
 
-export const setWords = (value) => {
+export const setRests = (value) => {
     return {
-        type: SET_WORDS,
+        type: SET_RESTS,
         payload: value
     }
+}
+
+export const getAllRestaurants = (data) => async(dispatch) => {
+    const response = await fetch('http://localhost:3002/api/')
 }
 
 export const optionAction = (city) => {
