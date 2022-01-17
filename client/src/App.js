@@ -23,7 +23,6 @@ function App() {
                 <Route path='/signin' element={<SingIn />} />
                 <Route path='/signup' element={<Reg />} />
                 <Route path='/signout' element={<SignOut />} />
-                <Route path='/users/:id' element={<UserProfile />} />
             </Routes>
         </div>
     );
