@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Admin from "../Admin/Admin";
 import Inputuser from "../Inputuser/Inputuser"
 import PageAdmin from "../PageAdmin/PageAdmin";
@@ -8,13 +9,17 @@ import PageAdmin from "../PageAdmin/PageAdmin";
 
 
 function Reg() {
-
+const user = useSelector(state => state.userInfo)
   const [who, setWho] = useState(false)
 
   function clickChange() {
 
     setWho(!who)
   }
+
+  // useEffect(()=>{
+
+  // }, [])
 
   return (
     <div>
