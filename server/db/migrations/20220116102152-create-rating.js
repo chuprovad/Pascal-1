@@ -13,14 +13,16 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id',
-        }
+        },
+        allowNull: false
       },
       restaurantId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Restaurants',
           key: 'id',
-        }
+        },
+        allowNull: false
       },
       score: {
         type: Sequelize.INTEGER

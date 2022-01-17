@@ -10,9 +10,6 @@ import { THUNK_getRestaurantFromDB } from '../../redux/actions/restaurant.action
 import PicturesGallery from '../../components/UI/PicturesGallery/PicturesGallery';
 import { useParams } from 'react-router-dom';
 
-//TODO: restaurantID получить из useParams
-
-
 export default function Restaurant() {
   const dispatch = useDispatch();
 
@@ -31,8 +28,7 @@ export default function Restaurant() {
   // Стейт для отображения модалки
   const [modal, setModal] = useState(false);
 
-  const bookTableHandler = (event) => {
-    // TODO: записать данные в БД
+  const bookTableHandler = () => {
     setModal(false);
   };
 
@@ -43,7 +39,7 @@ export default function Restaurant() {
         <ButtonCreate type="button" onClick={()=> setModal(true)}>Book a table</ButtonCreate>
         
         <BookingModal visible={modal} setVisible={setModal}>
-          <RestaurantForm bookTableHandler={bookTableHandler} />
+          <RestaurantForm bookTableHandler={bookTableHandler} restaurantId={restaurantId}/>
         </BookingModal>
 
         {/* <hr style={{ margin: '15px 0' }} /> */}

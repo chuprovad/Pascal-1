@@ -9,14 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       path: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       restaurantId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Restaurants',
           key: 'id',
-        }
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
