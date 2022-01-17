@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Admin from "../Admin/Admin";
 import Inputuser from "../Inputuser/Inputuser"
+import PageAdmin from "../PageAdmin/PageAdmin";
 
 
 
@@ -25,7 +26,9 @@ function Reg() {
         <Admin />
       )
       }
+      <PageAdmin />
     </div >
+
   )
 }
 

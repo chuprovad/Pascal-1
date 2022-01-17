@@ -9,6 +9,7 @@ export const getRestaurantFromDB = (restaurantData) => {
 }
 
 export const THUNK_getRestaurantFromDB = (restaurantId) => async (dispatch) => {
+  console.log("asdasdsdas");
   const response = await axios.get(`http://localhost:3002/api/restaurants/${restaurantId}`);
   const restaurantData = response.data;
   dispatch(getRestaurantFromDB(restaurantData));

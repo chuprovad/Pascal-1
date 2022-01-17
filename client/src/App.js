@@ -9,22 +9,22 @@ import SignOut from './components/SignOut/SingOut';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
-    return (
-        <div>
-            <NavBar />
-            {/* <RestsList /> */}
-
-            <Routes>
-                {/* TODO: change routing */}
-                {/* <Route path='/rests' element={<RestsList />}/> */}
-                <Route path='/' element={<Map/>}/>
-                <Route path='/restaurants/:id' element={<Restaurant />} />
-                <Route path='/signin' element={<SingIn />} />
-                <Route path='/signup' element={<Reg />} />
-                <Route path='/signout' element={<SignOut />} />
-            </Routes>
-        </div>
-    );
+  return (
+    <div>
+      <NavBar />
+      {/* <RestsList /> */}
+  
+      <Routes>
+        {/* TODO: change routing */}
+        {/* <Route path='/rests' element={<RestsList />}/> */}
+        <Route path='/' element={<Map />} />
+        <Route path='/restaurants/:id' element={<Restaurant />} />
+        <Route path='/signin' element={<SingIn />} />
+        <Route path='/signup' element={<Reg />} />
+        <Route path='/signout' element={<SignOut />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
