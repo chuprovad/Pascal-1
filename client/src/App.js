@@ -7,7 +7,6 @@ import Reg from './components/Reg/Reg';
 import SingIn from './components/SingIn/SingIn';
 import SignOut from './components/SignOut/SingOut';
 import { Route, Routes } from 'react-router-dom';
-import UserProfile from './pages/UserProfile/UserProfile';
 
 function App() {
     return (

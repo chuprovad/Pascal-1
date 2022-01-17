@@ -1,6 +1,7 @@
+
 const { Adress, Category, Cuisine, Rating, Restaurant, Reservation, Picture } = require('../db/models')
 
-const getAllRestaurant = async (req, res) => {
+const getAllRestaurantSearch = async (req, res) => {
   const search = req.body.title
   const allRestaurants = await Restaurant.findAll({ where: { title: { [Op.iLike]: `%${search}%` } } })
   setTimeout(() => {
@@ -8,6 +9,11 @@ const getAllRestaurant = async (req, res) => {
   }, 2000)
 }
 
+const getAllRestaurantsAdresses = async (req, res) => {
+  const aresses = await Adress.findAll({attributes: ['latitude', 'longitude'],raw:true})
+  // console.log('aresses',aresses)
+    res.json({aresses})
+}
 const getCurrentRestaurant = async (req, res) => {
   const { id } = req.params;
 
@@ -53,6 +59,10 @@ const getCurrentRestaurant = async (req, res) => {
   res.json(currentRestaurantData);
 }
 
+const getVisibleRestaurants = async(req, res) => {
+  console.log('$$$', req.body)
+}
+
 const addRating = async (req, res) => {
   const { id } = req.params;
   const { score } = req.body;
@@ -73,6 +83,7 @@ const addRating = async (req, res) => {
 
 }
 
+
 const addReservation = async (req, res) => {
   const { id } = req.params;
   try {
@@ -87,8 +98,10 @@ const addReservation = async (req, res) => {
 }
 
 module.exports = {
-  getAllRestaurant,
+  getAllRestaurantSearch,
   getCurrentRestaurant,
   addRating,
-  addReservation
+  addReservation,
+  getAllRestaurantsAdresses,
+  getVisibleRestaurants
 }

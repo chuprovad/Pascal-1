@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_RESTAURANT, SET_RATING, SET_RESERVATION } from "../types/restaurant.types"
+import { GET_RESTAURANT, SET_RATING, SET_RESERVATION, GET_ALL_RESTAURANTS } from "../types/restaurant.types"
 
 export const getRestaurantFromDB = (restaurantData) => {
   return {
@@ -50,4 +50,23 @@ export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   })
   const updatedBookedTablesFromDB = response.data;
   dispatch(addReservation(updatedBookedTablesFromDB));
+}
+//добавила Катя
+export const allRestaurants = () => async(dispatch) => {
+  // console.log('***')
+  const response = await axios.get('http://localhost:3002/api/restaurants/map')
+  const allRest = await response.data
+  // console.log('allRest', allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]})))
+  dispatch({
+    type: GET_ALL_RESTAURANTS,
+    payload: allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]}))
+  })
+}
+
+export const allRestByCoord = (coord) => async(dispatch) => {
+  console.log('%%%', coord)
+  const response = await axios.post('http://localhost:3002/api/restaurants/all', {
+    guestsQuantity: coord
+  })
+  // const allRest = await response.data
 }
