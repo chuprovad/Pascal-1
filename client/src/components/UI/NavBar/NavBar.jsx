@@ -10,6 +10,7 @@ import {getWords} from "../../../redux/actions/action";
 
 const NavBar = () => {
 
+    const user = useSelector(state => state.userInfo)
     const dispatch = useDispatch()
     const [rests, setRests] = useState()
 
@@ -35,12 +36,14 @@ const NavBar = () => {
 
 
         <div className={classes["navbar"]}>
+
             <Link className={classes["home-link"]} to={'/'}>Pascal</Link>
+
 
             <Selector
                 value={options}
                 onChange={filterRests}
-                defaultValue="Cities"
+                defaultValue={"Choose city"}
                 options={[
                     {value: 'Moscow', name: 'Moscow'},
                     {value: 'Togliatti', name: 'Togliatti'},
@@ -53,15 +56,25 @@ const NavBar = () => {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
             />
+            {
+                user ?
+                    <>
+                        <Link to={'/signout'}>Sign out</Link>
+                        </>
+                        :
+                    <>
+                        <Link className={classes["other-link"]} to={'/users'}>User Profile</Link>
             <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
             <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
-            <Link className={classes["other-link"]} to={'/restaurants/1'}>Ресторан 1</Link>
 
-
+                    </>
+            }
         </div>
 
     );
 };
+
+// add /auth inside to in the begining
 
 export default NavBar;
 
