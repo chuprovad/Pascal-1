@@ -12,7 +12,7 @@ const getCurrentRestaurant = async(req, res) => {
   const {id} = req.params
 
   const currentRestaurant = await Restaurant.findByPk(id)
-
+  console.log('currentRestaurant', currentRestaurant);
   res.json(currentRestaurant);
 }
 
@@ -21,6 +21,7 @@ const addRating = async (req, res) => {
   console.log('req.body ===> )', req.body);
   const {id} = req.params
   const {score} = req.body
+  console.log(req.session);
   const result = await Rating.create({userId: req.session.user.id, restaurantId: id, score })
 
   const updatedRatingFromDB = await Restaurant.findByPk(id)
