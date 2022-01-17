@@ -1,7 +1,7 @@
-import {GET_RESTS, SET_RESTS} from "../types/rest.types";
+import {GET_RESTS, SET_RESTS} from "../types/rests.types";
 import axios from "axios";
 import { call, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects'
-import {setRests} from "../actions/action";
+import {setRests} from "../actions/rests.action";
 
 const getRestsFromBack = (rest) => {
     return axios.post('http://localhost:3002/', {rest})

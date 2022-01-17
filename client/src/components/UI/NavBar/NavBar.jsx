@@ -6,7 +6,7 @@ import classes from './NavBar.module.css'
 import id from './NavBar.module.css'
 import OneRest from "../../common/OneRest/OneRest";
 import {useDispatch, useSelector} from "react-redux";
-import {getWords} from "../../../redux/actions/action";
+import {getWords} from "../../../redux/actions/rests.action";
 
 const NavBar = () => {
 

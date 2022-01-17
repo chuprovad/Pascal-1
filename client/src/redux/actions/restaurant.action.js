@@ -85,14 +85,3 @@ export const allRestaurants = () => async(dispatch) => {
     payload: allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]}))
   })
 }
-
-export const allRestByCoord = (coord) => async(dispatch) => { // TODO: дописать редьюсер для этого экшона
-  // console.log('%%%', coord)
-  const response = await axios.post('http://localhost:3002/api/restaurants/all', {
-    coord
-  })
-  
-  const restaurantsByCoord = response.data;
-  console.log('restaurantsByCoord ******** ->', restaurantsByCoord);
-
-}

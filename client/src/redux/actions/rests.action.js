@@ -1,4 +1,5 @@
-import {GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rest.types";
+import axios from "axios";
+import {GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rests.types";
 
 
 export const getRests = (value) => {
@@ -33,3 +34,12 @@ export const searchAction = (input) => {
     }
 }
 
+export const allRestByCoord = (coord) => async (dispatch) => {
+  // console.log('%%%', coord)
+  const response = await axios.post('http://localhost:3002/api/restaurants/all', {
+    coord
+  })
+
+  const restaurantsByCoord = response.data;
+  console.log('restaurantsByCoord ******** ->', restaurantsByCoord);
+}

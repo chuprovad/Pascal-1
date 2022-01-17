@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { allRestaurants, allRestByCoord } from "../../redux/actions/restaurant.action";
+import { allRestaurants } from "../../redux/actions/restaurant.action";
+import { allRestByCoord } from "../../redux/actions/rests.action";
 
 const Map = () => {
-
-  
-
   let ymaps = window.ymaps;
   const dispatch = useDispatch()
 
@@ -34,8 +32,6 @@ const Map = () => {
     if (coordinates.length)
       ymaps.ready(init);
   }, [coordinates.length])
-
-
 
   //подключаем карты
   function init() {
