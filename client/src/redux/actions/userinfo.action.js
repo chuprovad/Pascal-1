@@ -1,11 +1,16 @@
+import axios from "axios";
 import { DELETE_USER, GET_ADMIN, GET_USERINFO } from "../types/users.types"
 
 export const getUserInfo = (user) => ({
   type: GET_USERINFO,
   payload: user
-
-
 })
+
+export const THUNK_getUserInfoFromDB = (userId) => async (dispatch) => {
+  const response = await axios.get(`http://localhost:3002/api/userprofile/${userId}`);
+  const userData = response.data;
+  dispatch(getUserInfo(userData));
+}
 
 export const getAdmin = (user) => ({
   type: GET_ADMIN,

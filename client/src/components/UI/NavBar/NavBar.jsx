@@ -55,7 +55,7 @@ const NavBar = () => {
             />
             <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
             <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
-
+            <Link className={classes["other-link"]} to={'/restaurants/1'}>Ресторан 1</Link>
 
 
         </div>

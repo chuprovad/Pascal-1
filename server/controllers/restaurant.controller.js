@@ -41,9 +41,6 @@ const getCurrentRestaurant = async (req, res) => {
     raw: true
   })
 
-  // console.log('currentRestaurant', currentRestaurant);
-  // console.log('currentRestaurantRating', currentRestaurantRating);
-
   const currentRestaurantData = {
     ...currentRestaurant,
     category: currentRestaurant['Category.title'],
@@ -52,31 +49,35 @@ const getCurrentRestaurant = async (req, res) => {
     pictures: currentRestaurantPicures,
     rating: currentRestaurantRating.map((el) => el.score)
   };
-  console.log('currentRestaurantData ===>', currentRestaurantData);
+
   res.json(currentRestaurantData);
 }
 
 const addRating = async (req, res) => {
-  console.log('req.params ---> ', req.params);
-  console.log('req.body ===> )', req.body);
   const { id } = req.params
   const { score } = req.body
-  console.log(req.session);
-  const result = await Rating.create({ userId: req.session.user.id, restaurantId: id, score })
+  try {
+    const result = await Rating.create({ userId: req.session.user.id, restaurantId: id, score })
 
-  const updatedRatingFromDB = await Restaurant.findByPk(id)
-  console.log('updatedRatingFromDB --->', updatedRatingFromDB);
+    const currentRestaurantRating = await Rating.findAll({
+      where: { restaurantId: id },
+      attributes: ['score'],
+      raw: true
+    })
+    
+    const rating = currentRestaurantRating.map((el) => el.score)
+    res.json(rating)
+  } catch (error) {
+    console.log(error);
+  }
 
-  res.json(updatedRatingFromDB)
 }
 
 const addReservation = async (req, res) => {
-  console.log('req.params ---> ', req.params);
   const { id } = req.params
   const result = await Restaurant.increment({ bookedTables: 1 }, { where: id })
 
-  const updatedBookedTables = await Restaurant.findByPk(id,)
-  console.log('updatedRatingFromDB --->', updatedRatingFromDB);
+  const updatedRestaurantData = await Restaurant.findByPk(id, { raw: true })
 
   res.json(updatedBookedTables)
 }

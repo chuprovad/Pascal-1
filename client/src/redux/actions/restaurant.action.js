@@ -23,9 +23,14 @@ export const addRating = (rating) => {
 
 export const THUNK_addRatingToDB = (payload) => async (dispatch) => {
   const { restaurantId, rating } = payload;
-  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/rating`, {
-    score: rating,
-  })
+  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/rating`,
+    {
+      score: rating,
+    },
+    {
+      withCredentials: true
+    }
+  )
 
   const updatedRatingFromDB = response.data;
   dispatch(addRating(updatedRatingFromDB));
