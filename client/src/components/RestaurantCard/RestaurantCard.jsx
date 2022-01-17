@@ -18,7 +18,6 @@ export default function RestaurantCard({ restaurantDataFromState }) {
 
   const ratingArr = restaurantDataFromState?.rating;
   const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
-  console.log(restaurantDataFromState);
 
   return (
     <div>

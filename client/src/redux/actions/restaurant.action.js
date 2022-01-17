@@ -45,7 +45,7 @@ export const addReservation = (updatedBookedTables) => {
 
 export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   const { restaurantId, booking } = payload;
-  const response = await axios.post(`http://localhost:3001/api/restaurants/${Number(restaurantId)}/reservation`, {
+  const response = await axios.put(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/reservation`, {
     guestsQuantity: Number(booking.guestsQuantity),
   })
   const updatedBookedTablesFromDB = response.data;

@@ -54,19 +54,19 @@ const getCurrentRestaurant = async (req, res) => {
 }
 
 const addRating = async (req, res) => {
-  const { id } = req.params
-  const { score } = req.body
+  const { id } = req.params;
+  const { score } = req.body;
   try {
-    const result = await Rating.create({ userId: req.session.user.id, restaurantId: id, score })
+    const result = await Rating.create({ userId: req.session.user.id, restaurantId: id, score });
 
     const currentRestaurantRating = await Rating.findAll({
       where: { restaurantId: id },
       attributes: ['score'],
       raw: true
     })
-    
-    const rating = currentRestaurantRating.map((el) => el.score)
-    res.json(rating)
+
+    const rating = currentRestaurantRating.map((el) => el.score);
+    res.json(rating);
   } catch (error) {
     console.log(error);
   }
@@ -74,13 +74,18 @@ const addRating = async (req, res) => {
 }
 
 const addReservation = async (req, res) => {
-  const { id } = req.params
-  const result = await Restaurant.increment({ bookedTables: 1 }, { where: id })
+  const { id } = req.params;
+  try {
+    await Restaurant.increment('bookedTables', { where: { id: Number(id) } });
 
-  const updatedRestaurantData = await Restaurant.findByPk(id, { raw: true })
+    const updatedRestaurantData = await Restaurant.findByPk(id, { raw: true });
 
-  res.json(updatedBookedTables)
+    res.json(updatedRestaurantData.bookedTables);
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 module.exports = {
   getAllRestaurant,
   getCurrentRestaurant,
