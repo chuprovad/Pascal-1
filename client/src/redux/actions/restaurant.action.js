@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_RESTAURANT, SET_RATING, SET_RESERVATION } from "../types/restaurant.types"
+import { EDIT_RESTAURANT, GET_RESTAURANT, SET_RATING, SET_RESERVATION,  GET_ALL_RESTAURANTS } from "../types/restaurant.types"
+
 
 export const getRestaurantFromDB = (restaurantData) => {
   return {
@@ -7,6 +8,12 @@ export const getRestaurantFromDB = (restaurantData) => {
     payload: restaurantData,
   }
 }
+
+
+
+
+
+
 
 export const THUNK_getRestaurantFromDB = (restaurantId) => async (dispatch) => {
   const response = await axios.get(`http://localhost:3002/api/restaurants/${restaurantId}`);
@@ -23,9 +30,14 @@ export const addRating = (rating) => {
 
 export const THUNK_addRatingToDB = (payload) => async (dispatch) => {
   const { restaurantId, rating } = payload;
-  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/addRating`, {
-    rating: rating,
-  })
+  const response = await axios.post(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/rating`,
+    {
+      score: rating,
+    },
+    {
+      withCredentials: true
+    }
+  )
 
   const updatedRatingFromDB = response.data;
   dispatch(addRating(updatedRatingFromDB));
@@ -40,9 +52,54 @@ export const addReservation = (updatedBookedTables) => {
 
 export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   const { restaurantId, booking } = payload;
-  const response = await axios.post(`http://localhost:3001/restaurants/${Number(restaurantId)}/reservation`, {
+  const response = await axios.put(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/reservation`, {
     guestsQuantity: Number(booking.guestsQuantity),
   })
   const updatedBookedTablesFromDB = response.data;
   dispatch(addReservation(updatedBookedTablesFromDB));
+}
+
+
+
+export const editRestaurant = (restaurantData) => {
+  return {
+    type: EDIT_RESTAURANT,
+    payload: restaurantData,
+  }
+}
+
+export const THUNK_editRestaurant = (payload, restId) => async (dispatch) => {
+  const response = await fetch('http://localhost:3001/api/', {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify(payload)
+  })
+  const restaurant = await response.json()
+  dispatch(editRestaurant(restaurant))
+}
+
+
+
+
+//добавила Катя
+export const allRestaurants = () => async(dispatch) => {
+  // console.log('***')
+  const response = await axios.get('http://localhost:3002/api/restaurants/map')
+  const allRest = await response.data
+  // console.log('allRest', allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]})))
+  dispatch({
+    type: GET_ALL_RESTAURANTS,
+    payload: allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]}))
+  })
+}
+
+export const allRestByCoord = (coord) => async(dispatch) => {
+  console.log('%%%', coord)
+  const response = await axios.post('http://localhost:3002/api/restaurants/all', {
+    guestsQuantity: coord
+  })
+  // const allRest = await response.data
 }

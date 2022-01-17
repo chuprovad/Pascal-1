@@ -34,15 +34,17 @@ const signIn = async (req, res) => {
       let currentUser = await User.findOne({ where: { email }, raw: true })
       if (!currentUser) {
         currentUser = await Admin.findOne({ where: { email }, raw: true })
-
+const rest = await Restaurant.findOne({where:{id: currentUser.restaurantId}})
+console.log(rest);
         if (currentUser && (await bcrypt.compare(password, currentUser.password))) {
 
           req.session.user = {
             id: currentUser.id,
             name: currentUser.name,
-            isAdmin: 'isAdmin'
+            isAdmin: 'isAdmin',
+            restaurantId: rest.id
           }
-          return res.json({ id: currentUser.id, name: currentUser.name, isAdmin: 'isAdmin' })
+          return res.json({ id: currentUser.id, name: currentUser.name, isAdmin: 'isAdmin', restaurantId: rest.id})
         }
       }
       if (currentUser && (await bcrypt.compare(password, currentUser.password))) {
@@ -68,19 +70,21 @@ const signOut = async (req, res) => {
 }
 
 const signUpAdmin = async (req, res) => {
-  const { name, email, password, title, category, cuisine, city, address, capacity } = req.body
+  const { name, email, password, title, categoryId, cuisineId, avarageCoast, capacity } = req.body
+  console.log('lol');
+  console.log(name, email, password, title, categoryId, cuisineId, avarageCoast, capacity);
   if (name && email && password) {
     try {
       const newRest = await Restaurant.create({
         title,
-        category,
-        cuisine,
-        city,
-        address,
+        categoryId,
+        cuisineId,
+        avarageCoast,
         capacity,
         bookedTables: 0
       })
 
+      console.log('kek');
       const hashPassword = await bcrypt.hash(password, 11)
       const newUser = await Admin.create({
         name,
@@ -92,10 +96,11 @@ const signUpAdmin = async (req, res) => {
       req.session.user = {
         id: newUser.get({ plain: true }).id,
         name: newUser.name,
-        isAdmin: 'isAdmin'
+        isAdmin: 'isAdmin',
+        restaurantId: newRest.id
       }
 
-      return res.json({ id: newUser.get({ plain: true }).id, name: newUser.name, isAdmin: 'isAdmin' })
+      return res.json({ id: newUser.get({ plain: true }).id, name: newUser.name, isAdmin: 'isAdmin', restaurantId: newRest.id  })
     } catch (error) {
       console.log(error);
       return res.sendStatus(500)

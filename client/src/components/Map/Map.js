@@ -1,36 +1,50 @@
-import { useEffect } from "react";
-import {useSelector} from 'react-redux'
+import { useEffect, useState } from "react";
+import {useDispatch, useSelector} from 'react-redux'
+import { allRestaurants, allRestByCoord} from "../../redux/actions/restaurant.action";
 
 const Map = () => {
-    
-  const rest = useSelector(state => state)
 
   let ymaps = window.ymaps;
+  const dispatch = useDispatch()  
 
-    
+  const coordinates  = useSelector(state => state.restaurant)
+  console.log(coordinates)
+
+  const [myLocation, setmyLocation] = useState(getMyAdress())
+  // console.log(myLocation)
+   const [points, setPoints] = useState()
+
+  
+  async function getMyAdress() {
+    navigator.geolocation.getCurrentPosition( async (geoData) => {
+      const { longitude, latitude } = geoData.coords;
+      // console.log(latitude, longitude)
+      setmyLocation([latitude, longitude])
+      // const YapiK = '8e593647-2d9f-4250-8947-44b467394541'; // Ya API Key
+      // const ftch = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=${YapiK}&geocode=${longitude},${latitude}&format=json`);
+      // const adress = await ftch.json();
+      // console.log(adress.response.GeoObjectCollection.featureMember[0].GeoObject.description, ',', adress.response.GeoObjectCollection.featureMember[0].GeoObject.name);
+    });
+  };
+
+  useEffect(() => {
+    dispatch(allRestaurants())
+    if (coordinates.length)
+    ymaps.ready(init);
+  }, [coordinates.length]) 
+  
+  
+
   //подключаем карты
   function init(){
     let myMap = new ymaps.Map("map", {
-      center: [55.706541,37.5948184],
-      zoom: 14,
+      center: [55.7066426, 37.5973765],
+      zoom: 10,
       controls: ['zoomControl'],
       behaviors: ['drag', 'scrollZoom']
         })
       // Создадим объекты на основе JSON-описания геометрий.
-      let  objects = ymaps.geoQuery([
-          {
-              type: 'Point',
-              coordinates: [55.706541,37.5948184]
-          },
-          {
-              type: 'Point',
-              coordinates: [55.75, 37.64]
-          },
-          {
-              type: 'Point',
-              coordinates: [55.75, 37.62]
-          }
-      ]).addToMap(myMap)
+      let  objects = ymaps?.geoQuery(coordinates).addToMap(myMap)
 
       objects.searchInside(myMap)
         // И затем добавим найденные объекты на карту.
@@ -39,21 +53,20 @@ const Map = () => {
     myMap.events.add('boundschange', function () {
         // После каждого сдвига карты будем смотреть, какие объекты попадают в видимую область.
         let visibleObjects = objects.searchInside(myMap).addToMap(myMap);
-
-        console.log(visibleObjects)
+        const coord = visibleObjects._objects.map(el => el.geometry._coordinates)
         // Оставшиеся объекты будем удалять с карты.
         objects.remove(visibleObjects).removeFromMap(myMap);
+        dispatch(allRestByCoord(coord))
     });
   }
 
-    useEffect(() => {
-      ymaps.ready(init);
-    }, [])
+    
 
   const buttonHandler = () => {
-    fetch ('https://geocode-maps.yandex.ru/1.x/?apikey=8e593647-2d9f-4250-8947-44b467394541&geocode=Масква,+Тверская+улица,+дом+7&format=json')
-    .then(res => res.json())
-    .then(data => console.log(data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos)) 
+    
+  //   fetch('https://geocode-maps.yandex.ru/1.x/?apikey=8e593647-2d9f-4250-8947-44b467394541&geocode=37.63336273141365,55.75765672968874&format=json')
+  //   .then(res => res.json())
+  //   .then(data => console.log(data.response.GeoObjectCollection.featureMember[1].GeoObject.name)) 
   }
   return (
   <>
