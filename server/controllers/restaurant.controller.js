@@ -61,6 +61,7 @@ const getCurrentRestaurant = async (req, res) => {
 
 const getVisibleRestaurants = async(req, res) => {
   console.log('$$$', req.body)
+  res.sendStatus(200) // TODO: антон, допиши ресторана по координатам
 }
 
 const addRating = async (req, res) => {

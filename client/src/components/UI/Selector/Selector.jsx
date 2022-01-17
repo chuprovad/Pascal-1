@@ -21,11 +21,11 @@ const dispatch = useDispatch()
 
 
 
-            <select value={value}
+            <select value={city ? city : defaultValue}
                     className={classes["selector"]}
             onChange={onChange}
             >
-                <option selected value={defaultValue}>{defaultValue}</option>
+                <option disabled value={defaultValue}>{defaultValue}</option>
                 {options.map(option =>
                 <option key={option.value} value={option.value}>{option.name}</option>
                     )}

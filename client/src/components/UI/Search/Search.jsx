@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getWords, optionAction, searchAction} from "../../../redux/actions/action";
+import {getRests, optionAction, searchAction} from "../../../redux/actions/action";
 import {useDispatch} from "react-redux";
 import classes from './Search.module.css'
 
@@ -20,9 +20,9 @@ const Search = ({value}) => {
     //
     // useEffect(()=> {
     //     if (searchQuery) {
-    //         dispatch(getWords(searchQuery))
+    //         dispatch(getRests(searchQuery))
     //     }
-    // }, [searchQuery]);  =====> заготовка для саги
+    // }, [searchQuery]);  // =====> заготовка для саги
 
     const inputHandler = (e) => {
         console.log(e)
@@ -37,7 +37,7 @@ const Search = ({value}) => {
             <input type="text"
                    className={classes["search"]}
                    placeholder="Type here..."
-                   // value={searchQuery} ==> заготовка для саги
+                   // value={searchQuery} for saga use
             onChange={inputHandler}
             />
         </>

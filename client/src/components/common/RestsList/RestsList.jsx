@@ -13,10 +13,14 @@ const RestsList = () => {
         <div>
           <h1>Lorem Ipsum</h1>
         {rests &&
-          rests.map(rest => <OneRest key={uuidv4()} id={rest.id} title={rest.title} category={rest.category} location={rest.location} />)
+          rests.map(rest => <OneRest key={uuidv4()} id={rest.id} title={rest.title} />)
         }
         </div>
     );
 };
 
 export default RestsList;
+
+// {rests &&
+// rests.map(rest => <OneRest key={uuidv4()} id={rest.id} title={rest.title} category={rest.category} location={rest.location} />)
+// }
