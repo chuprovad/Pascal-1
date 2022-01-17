@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { checkAuthUser } from "./redux/actions/userinfo.action";
 import { checkAuthAdmin } from "./redux/actions/admin.action";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import Main from './pages/Main/Main';
 
 
 function App() {
@@ -58,12 +59,10 @@ function App() {
   return (
     <div>
       <NavBar />
-      {/*<RestsList />*/}
 
       <Routes>
-        {/* TODO: change routing */}
-        {/* <Route path='/rests' element={<RestsList />}/> */}
-        <Route path='/' element={<Map />} />
+        {/* <Route path='/' element={<Map />} /> */}
+        <Route path='/' element={<Main />} />
         <Route path='/restaurants/:id' element={<Restaurant />} />
         <Route path='/users/:id' element={<UserProfile />} />
         <Route path='/signin' element={<SingIn />} />
