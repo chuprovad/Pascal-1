@@ -10,11 +10,10 @@ function Admin() {
     email: '',
     password: '',
     title: '',
-    category: '',
-    cuisine: '',
-    city: '',
-    address: '',
-    capacity: '',
+    categoryId: '',
+    cuisineId: '',
+    avarageCoast: '',
+    capacity: ''
   })
   
   const changeHandler = (e) => {
@@ -45,7 +44,7 @@ function Admin() {
       <h1>Информация о вашем ресторане</h1>
       <input onChange={changeHandler} placeholder='title' name="title" value={userAdminSignUp.title} type="text" />
       <br />
-      <input onChange={changeHandler} placeholder='category' name="category" value={userAdminSignUp.category} type="text" />
+      <input onChange={changeHandler} placeholder='categoryId' name="categoryId" value={userAdminSignUp.categoryId} type='number' />
       <br />
       {/* <select >
         <option selected>Open this select menu</option>
@@ -53,11 +52,9 @@ function Admin() {
         <option defaultValue="2">Two</option>
         <option defaultValue="3">Three</option>
       </select> */}
-      <input onChange={changeHandler} placeholder='cuisine' name="cuisine" value={userAdminSignUp.cuisine} type='text' />
+      <input onChange={changeHandler} placeholder='cuisineId' name="cuisineId" value={userAdminSignUp.cuisineId} type='number' />
       <br />
-      <input onChange={changeHandler} placeholder='city' name="city" value={userAdminSignUp.city} type="text" />
-      <br />
-      <input onChange={changeHandler} placeholder='address' name="address" value={userAdminSignUp.address} type="text" />
+      <input onChange={changeHandler} placeholder='avarageCoast' name="avarageCoast" value={userAdminSignUp.avarageCoast} type='number' />
       <br />
       <input onChange={changeHandler} placeholder='capacity' name="capacity" value={userAdminSignUp.capaciti} type='text' />
       <br />
