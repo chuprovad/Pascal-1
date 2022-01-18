@@ -17,6 +17,7 @@ import { checkAuthUser } from "./redux/actions/userinfo.action";
 import { checkAuthAdmin } from "./redux/actions/admin.action";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from './pages/Main/Main';
+import PageAdmin from './components/PageAdmin/PageAdmin';
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         <Route path='/signin' element={<SingIn />} />
         <Route path='/signup' element={<Reg />} />
         <Route path='/signout' element={<SignOut />} />
+        <Route path='/api/admin/:id' element={<PageAdmin/>} />
       </Routes>
     </div>
   );
