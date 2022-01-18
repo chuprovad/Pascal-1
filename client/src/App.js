@@ -33,30 +33,30 @@ function App() {
   //
   // const admin = useSelector(state => state.admin)
   // console.log(admin)
-
+  
   function RequireAuthUser({ children, redirectTo }) {
     return user ? children : <Navigate to={redirectTo} />;
   }
   //
   // function RequireAuthAdmin({ children, redirectTo }) {
-  //     return admin ? children : <Navigate to={redirectTo} />;
-  // }
-  //
-  // function RequireUnauthUser({children, redirectTo}) {
-  //     return user ? <Navigate to={redirectTo} /> : children;
-  // }
-  //
-  // function RequireUnauthAdmin({children, redirectTo}) {
-  //     return admin ? <Navigate to={redirectTo} /> : children;
-  // }
-  const user = useSelector(state => state.userInfo)
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(checkAuth())
-  }, [])
-
+    //     return admin ? children : <Navigate to={redirectTo} />;
+    // }
+    //
+    // function RequireUnauthUser({children, redirectTo}) {
+      //     return user ? <Navigate to={redirectTo} /> : children;
+      // }
+      //
+      // function RequireUnauthAdmin({children, redirectTo}) {
+        //     return admin ? <Navigate to={redirectTo} /> : children;
+        // }
+        const user = useSelector(state => state.userInfo)
+        
+        const dispatch = useDispatch()
+        
+        useEffect(() => {
+          dispatch(checkAuth())
+        }, [])
+console.log('scam',user);
   return (
     <div>
       <NavBar />
@@ -70,7 +70,8 @@ function App() {
         <Route path='/signin' element={<SingIn />} />
         <Route path='/signup' element={<Reg />} />
         <Route path='/signout' element={<SignOut />} />
-        <Route path='/api/admin/:id' element={<PageAdmin/>} />
+        <Route path='/admin/:id' element={<PageAdmin/>} />
+        
       </Routes>
     </div>
   );
