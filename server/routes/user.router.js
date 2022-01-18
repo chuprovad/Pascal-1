@@ -7,4 +7,5 @@ const userRouter = Router()
 
 userRouter.get("/:id/reservations", getReservation)
 
+
 module.exports = {userRouter}

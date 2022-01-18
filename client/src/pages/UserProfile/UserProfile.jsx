@@ -15,12 +15,10 @@ const UserProfile = ({id}) => {
 
     // Получить данные одного юзера с бэка при монтировании компонента
     useEffect(() => {
-        dispatch(THUNK_getUserInfoFromDB());
+        // dispatch(THUNK_getUserInfoFromDB());
         dispatch(THUNK_getReservationInfoFromDB(userDataFromState.id));
 
     }, [])
-
-
 
     return (
         <div>

@@ -4,42 +4,41 @@ import StarRating from "../UI/StarRating/StarRating";
 import {useDispatch, useSelector} from "react-redux";
 import ButtonCreate from "../UI/ButtonCreate/ButtonCreate";
 import {deleteReservation, editReservation} from "../../redux/actions/reservation.action";
+import {v4 as uuidv4} from "uuid";
 
-const UserCard = ({userDataFromState, id}) => {
-
+const UserCard = ({userDataFromState}) => {
     const reservation = useSelector(state => state.reservation)
-    console.log(reservation)
 
-    const dispatch = useDispatch()
-
-    const [isVisible, setIsVisible] = useState(false)
-    const [editReservationTitle, setEditReservationTitle] = useState('')
-    const [editReservationDate, setEditReservationDate] = useState('')
-
-    const editReservationHandler = () => {
-        setIsVisible(prev => !prev)
-    }
-
-    const deleteReservationHandler = (e) => {
-        e.preventDefault()
-        dispatch(deleteReservation({id}))
-    }
-
-    const restaurantNameHandler = (e) => {
-        e.preventDefault()
-        setEditReservationTitle(e.target.value)
-    }
-
-    const reservationDateHandler = (e) => {
-        e.preventDefault()
-        setEditReservationDate(e.target.value)
-    }
-
-    const addNewReservationHandler = (e) => {
-        e.preventDefault()
-        const {id} = e.target.name
-        dispatch(editReservation({id, editReservationDate, editReservationTitle}))
-    }
+    // const dispatch = useDispatch()
+    //
+    // const [isVisible, setIsVisible] = useState(false)
+    // const [editReservationTitle, setEditReservationTitle] = useState('')
+    // const [editReservationDate, setEditReservationDate] = useState('')
+    //
+    // const editReservationHandler = () => {
+    //     setIsVisible(prev => !prev)
+    // }
+    //
+    // const deleteReservationHandler = (e) => {
+    //     e.preventDefault()
+    //     dispatch(deleteReservation(reservation.id))
+    // }
+    //
+    // const restaurantNameHandler = (e) => {
+    //     e.preventDefault()
+    //     setEditReservationTitle(e.target.value)
+    // }
+    //
+    // const reservationDateHandler = (e) => {
+    //     e.preventDefault()
+    //     setEditReservationDate(e.target.value)
+    // }
+    //
+    // const addNewReservationHandler = (e) => {
+    //     e.preventDefault()
+    //     const {id} = e.target.name
+    //     dispatch(editReservation({id, editReservationDate, editReservationTitle}))
+    // }
 
 
     return (
@@ -52,22 +51,26 @@ const UserCard = ({userDataFromState, id}) => {
                 Your bookings:
             </h2>
             <ul>
-                {reservation?.reserv.map(el => <li>
-                    Restaurant name: {el.title}
-                    <br/>
-                   Date and time of your booking: {el.createdAt}</li> )}
+                {reservation?.reserv?.map(el =>
+                    <li key={uuidv4()}>
+                        Restaurant name: {el.title}
+                        <br/>
+                       Date and time of your booking: {el.createdAt}
+                    </li> )}
             </ul>
-            <button type="button" onClick={editReservationHandler}>Edit your reservation</button>
-            <button type="button" onClick={deleteReservationHandler}>Cancel your reservation</button>
-            <div className={isVisible ? "d-block" : "d-none"}>
-                <form onSubmit={addNewReservationHandler}>
-                    <input name='name' id={id} onChange={restaurantNameHandler} type="text"/>
-                    <input onChange={reservationDateHandler} type="text"/>
-                    <button onClick={editReservationHandler}>Save</button>
-                </form>
-            </div>
+
         </div>
     );
 };
 
 export default UserCard;
+//
+// <button type="button" onClick={editReservationHandler}>Edit your reservation</button>
+// <button type="button" onClick={deleteReservationHandler}>Cancel your reservation</button>
+// <div className={isVisible ? "d-block" : "d-none"}>
+//     <form onSubmit={addNewReservationHandler}>
+//         <input name='name' id={reservation.id} onChange={restaurantNameHandler} type="text"/>
+//         <input onChange={reservationDateHandler} type="text"/>
+//         <button onClick={editReservationHandler}>Save</button>
+//     </form>
+// </div>
