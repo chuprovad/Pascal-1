@@ -15,7 +15,7 @@ function PageAdmin() {
   //     dispatch(THUNK_getRestaurantFromDB(userState.restaurantId))
   //   }
   // }, [userState.restaurantId])
-  const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(true)
   // useEffect(() => {
   //   setLoader(false)
   // }, [])
@@ -26,7 +26,7 @@ function PageAdmin() {
   const userState = useSelector(state => state.userInfo)
   const allState = useSelector(state => state)
   const restState = useSelector(state => state.restaurant)
-  let restId = userState.restaurantId
+  
   const [edit, setEdit] = useState(false)
 
   const [dataRest, setDataRest] = useState({
@@ -55,10 +55,13 @@ function PageAdmin() {
     if (userState && userState.restaurantId) {
       console.log('useeffect')
       dispatch(THUNK_getRestaurantFromDB(userState.restaurantId))
-      setLoader(true)
+      
     }
-  }, [])
+  }, [userState])
 
+  // useEffect(()=>{
+
+  // }, [])
 
   console.log('---->', allState);
 
@@ -81,7 +84,7 @@ function PageAdmin() {
     let payload = Object.entries(dataRest).filter((el) => el[1] ? el[1].trim() : el[1])
     if (payload.length) {
       payload = Object.fromEntries(payload)
-      dispatch(THUNK_editRestaurant(payload, restId))
+      dispatch(THUNK_editRestaurant(payload, userState.restaurantId))
       setEdit(false)
     }
   }
@@ -113,9 +116,9 @@ function PageAdmin() {
 
 
     <div>
-      {!loader && (
-        <h1>MINYTY</h1>
-      )}
+    {/* //   {!loader && ( */}
+    {/* //     <h1>MINYTY</h1> */}
+    {/* //   )} */}
 
       {loader && (
 
