@@ -1,4 +1,4 @@
-const {Op} = require('sequelize')
+const { Op } = require('sequelize')
 const { Adress, Category, Cuisine, Rating, Restaurant, Reservation, Picture } = require('../db/models')
 
 const getAllRestaurantSearch = async (req, res) => {
@@ -10,9 +10,9 @@ const getAllRestaurantSearch = async (req, res) => {
 }
 
 const getAllRestaurantsAdresses = async (req, res) => {
-  const aresses = await Adress.findAll({attributes: ['latitude', 'longitude'],raw:true})
+  const aresses = await Adress.findAll({ attributes: ['latitude', 'longitude'], raw: true })
   // console.log('aresses',aresses)
-    res.json({aresses})
+  res.json({ aresses })
 }
 const getCurrentRestaurant = async (req, res) => {
   const { id } = req.params;
@@ -59,34 +59,70 @@ const getCurrentRestaurant = async (req, res) => {
   res.json(currentRestaurantData);
 }
 
-const getVisibleRestaurants = async(req, res) => {
+const getVisibleRestaurants = async (req, res) => {
   // console.log('$$$', req.body)
   const latitude = req.body.coord.map(el => el[0])
   // console.log(latitude)
-  const result = await Adress.findAll({where: {latitude: {
-    [Op.in]: latitude
-
-}}, include:
-  {
-    model: Restaurant,
-    include:[
-      {
-        model: Adress,
-        attributes: ['city', 'street', 'building', 'latitude', 'longitude',],
-      },
-      {
-        model: Category,
-        attributes: ['id', 'title'],
-      },
-      {
-        model: Cuisine,
-        attributes: ['id', 'title'],
+  const result = await Adress.findAll({
+    where: {
+      latitude: {
+        [Op.in]: latitude
       }
-    ],
-  }
-, raw: true}/* ,{include: [model]} */)
-console.log(result)
-  res.sendStatus(200) 
+    },
+    include: {
+      model: Restaurant,
+      attributes: ['title', 'avarageCoast', 'capacity', 'bookedTables'],
+      include: [
+        {
+          model: Category,
+          attributes: ['id', 'title'],
+        },
+        {
+          model: Cuisine,
+          attributes: ['id', 'title'],
+        }
+      ],
+    },
+    raw: true
+  })
+
+  const restaurantsId = result.map((el) => el.restaurantId)
+
+  const currentRestaurantPicture = await Picture.findAll({
+    where: {
+      restaurantId:
+        { [Op.in]: restaurantsId }
+    },
+    raw: true
+  })
+
+  const currentRestaurantRating = await Rating.findAll({
+    where: {
+      restaurantId:
+        { [Op.in]: restaurantsId }
+    },
+    attributes: ['score', 'restaurantId'],
+    raw: true
+  })
+
+  const restaurantsByCoordData = result.map((el) => ({
+    ...el,
+    title: el['Restaurant.title'],
+    avarageCoast: el['Restaurant.avarageCoast'],
+    capacity: el['Restaurant.capacity'],
+    bookedTables: el['Restaurant.bookedTables'],
+    category: el['Restaurant.Category.title'],
+    cuisine: el['Restaurant.Cuisine.title'],
+    address: `${el.city}, ${el.street} ${el.building}`,
+    picture: currentRestaurantPicture.find(item => item.restaurantId === el.restaurantId).path,
+    rating: currentRestaurantRating
+      .filter(item => item.restaurantId === el.restaurantId)
+      .map(item => item.score)
+  }))
+
+  console.log(restaurantsByCoordData);
+
+  res.json(restaurantsByCoordData)
 }
 
 const addRating = async (req, res) => {
