@@ -2,26 +2,26 @@ const reservations = [
   {
     userId: 1,
     restaurantId: 1,
-    createdAt: '15/01/2022',
-    updatedAt: '15/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     userId: 1,
     restaurantId: 2,
-    createdAt: '16/01/2022',
-    updatedAt: '16/01/2022',
+    createdAt: '2022-01-17 21:30:24.393 +0300',
+    updatedAt: '2022-01-17 21:30:24.393 +0300',
   },
   {
     userId: 2,
     restaurantId: 3,
-    createdAt: '17/01/2022',
-    updatedAt: '17/01/2022',
+    createdAt: '2022-01-18 21:30:24.393 +0300',
+    updatedAt: '2022-01-18 21:30:24.393 +0300',
   },
   {
     userId: 2,
     restaurantId: 4,
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-14 21:30:24.393 +0300',
+    updatedAt: '2022-01-14 21:30:24.393 +0300',
   },
 ]
 

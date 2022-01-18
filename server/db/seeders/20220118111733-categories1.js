@@ -1,28 +1,28 @@
 const categories = [
   {
     title: 'Bar',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Restaurant',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Coffee shop',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Cafe',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Burgers',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
 ]
 

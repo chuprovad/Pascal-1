@@ -1,33 +1,33 @@
 const cuisines = [
   {
     title: 'Italian',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'French',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Japanese',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Irish',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Russian',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
   {
     title: 'Belgian',
-    createdAt: '18/01/2022',
-    updatedAt: '18/01/2022',
+    createdAt: '2022-01-16 21:30:24.393 +0300',
+    updatedAt: '2022-01-16 21:30:24.393 +0300',
   },
 ]
 
