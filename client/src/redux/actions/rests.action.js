@@ -1,12 +1,5 @@
 import axios from "axios";
-import {
-    ALL_RESTS,
-    GET_RESTAURANTS_BY_COORD,
-    GET_RESTS,
-    SEARCH_OPTION,
-    SELECT_OPTION,
-    SET_RESTS
-} from "../types/rests.types";
+import {GET_ALL_RESTAURANTS_APP, GET_RESTAURANTS_BY_COORD, GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rests.types";
 
 
 export const getRests = (value) => {
@@ -23,14 +16,10 @@ export const setRests = (value) => {
     }
 }
 
-export const getAllRestaurants = (data) => async(dispatch) => {
-    const response = await fetch('http://localhost:3002/api/')
-}
-
-export const optionAction = (categoryId) => {
+export const optionAction = (city) => {
     return {
         type: SELECT_OPTION,
-        payload: categoryId
+        payload: city
     }
 }
 
@@ -41,24 +30,25 @@ export const searchAction = (input) => {
     }
 }
 
+// ****** Получение всех ресторанов в области видимости ******
 export const allRestByCoord = (coord) => async (dispatch) => {
-  // console.log('%%%', coord)
   const response = await axios.post('http://localhost:3002/api/restaurants/all', {
     coord
   })
 
-  const restaurantsByCoord = response.data;
-  // console.log('restaurantsByCoord ******** ->', restaurantsByCoord);
   dispatch({
     type: GET_RESTAURANTS_BY_COORD,
     payload: response.data
   })
 }
 
-export const getAllRests = () => async(dispatch) => {
-    const response = await axios(`http://localhost:3002/api/restaurants/1`)
-    dispatch({
-        type: ALL_RESTS,
-        payload: response.data
-    })
+// ****** Получение всех ресторанов ******
+export const THUNK_getAllRestaurantsFromDB = () => async (dispatch) => {
+  const response = await axios.get('http://localhost:3002/api/restaurants/allrests');
+  // console.log('ACTION All Restaurants ----->', response.data);
+
+  dispatch({
+    type: GET_ALL_RESTAURANTS_APP,
+    payload: response.data
+  })
 }
