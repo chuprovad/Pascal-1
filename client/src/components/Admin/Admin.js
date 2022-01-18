@@ -13,7 +13,10 @@ function Admin() {
     categoryId: '',
     cuisineId: '',
     avarageCoast: '',
-    capacity: ''
+    capacity: '',
+    city: '',
+    street: '',
+    building: ''
   })
   
   const changeHandler = (e) => {
@@ -57,6 +60,12 @@ function Admin() {
       <input onChange={changeHandler} placeholder='avarageCoast' name="avarageCoast" value={userAdminSignUp.avarageCoast} type='number' />
       <br />
       <input onChange={changeHandler} placeholder='capacity' name="capacity" value={userAdminSignUp.capaciti} type='text' />
+      <br />
+      <input onChange={changeHandler} placeholder='city' name="city" value={userAdminSignUp.city} type='text' />
+      <br />
+      <input onChange={changeHandler} placeholder='street' name="street" value={userAdminSignUp.street} type='text' />
+      <br />
+      <input onChange={changeHandler} placeholder='building' name="building" value={userAdminSignUp.building} type='text' />
       <br />
       <button onClick={submitHandler} >Зарегистрироваться</button>
     </div>

@@ -31,7 +31,6 @@ const user = useSelector(state => state.userInfo)
         <Admin />
       )
       }
-      <PageAdmin />
     </div >
 
   )

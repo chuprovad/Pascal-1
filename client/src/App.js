@@ -32,9 +32,9 @@ function App() {
   // const admin = useSelector(state => state.admin)
   // console.log(admin)
 
-  // function RequireAuthUser({ children, redirectTo }) {
-  //     return user ? children : <Navigate to={redirectTo} />;
-  // }
+  function RequireAuthUser({ children, redirectTo }) {
+    return user ? children : <Navigate to={redirectTo} />;
+  }
   //
   // function RequireAuthAdmin({ children, redirectTo }) {
   //     return admin ? children : <Navigate to={redirectTo} />;
@@ -63,8 +63,12 @@ function App() {
       <Routes>
         {/* TODO: change routing */}
         {/* <Route path='/rests' element={<RestsList />}/> */}
+
+
         <Route path='/' element={<Map />} />
+
         <Route path='/restaurants/:id' element={<Restaurant />} />
+
         <Route path='/users/:id' element={<UserProfile />} />
         <Route path='/signin' element={<SingIn />} />
         <Route path='/signup' element={<Reg />} />
