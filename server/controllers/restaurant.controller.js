@@ -85,7 +85,7 @@ const getVisibleRestaurants = async (req, res) => {
     },
     raw: true
   })
-
+  // console.log('$$$')
   const restaurantsId = result.map((el) => el.restaurantId)
 
   const currentRestaurantPicture = await Picture.findAll({
@@ -120,7 +120,7 @@ const getVisibleRestaurants = async (req, res) => {
       .map(item => item.score)
   }))
 
-  console.log(restaurantsByCoordData);
+  // console.log(restaurantsByCoordData);
 
   res.json(restaurantsByCoordData)
 }
