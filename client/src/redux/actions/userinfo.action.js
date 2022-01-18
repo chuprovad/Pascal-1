@@ -1,7 +1,7 @@
-import {DELETE_USER, GET_ADMIN, GET_RESERVATION, GET_USERINFO} from "../types/users.types"
-import {GET_RESTAURANT} from "../types/restaurant.types";
+import { DELETE_USER, GET_ADMIN, GET_RESERVATION, GET_USERINFO } from "../types/users.types"
+import { GET_RESTAURANT } from "../types/restaurant.types";
 import axios from "axios";
-import {getRestaurantFromDB} from "./restaurant.action";
+import { getRestaurantFromDB } from "./restaurant.action";
 
 export const getUserInfo = (user) => ({
   type: GET_USERINFO,
@@ -43,9 +43,9 @@ export const signUp = (payload, navigate) => async (dispatch) => {
   if (response.status === 200) {
     const user = await response.json()
     dispatch(getUserInfo(user))
-    // navigate('/users/1')
+    navigate(`/users/${user.id}`)
   } else {
-      // navigate('/auth/signup')
+    // navigate('/auth/signup')
   }
 }
 
@@ -66,11 +66,10 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
     //   dispatch(getAdmin(user))
     // } else {
 
-      dispatch(getUserInfo(user))
-    // }
-    navigate('/users/1')
+    dispatch(getUserInfo(user))
+    navigate(`/users/${user.id}`)
   } else {
-    // navigate('http://localhost:3000/auth/signin')
+    navigate('/signup')
   }
 }
 
@@ -98,7 +97,7 @@ export const signUpAdmin = (payload, navigate) => async (dispatch) => {
   if (response.status === 200) {
     const user = await response.json()
     dispatch(getUserInfo(user))
-    navigate(`/api/admin/${user.id}`) 
+    navigate(`/admin/${user.id}`)
   } else {
     //   navigate('/auth/signup')
   }
@@ -111,7 +110,7 @@ export const signOut = () => async (dispatch) => {
   if (response.status === 200) {
     dispatch(deleteUser())
   }
-} 
+}
 
 export const checkAuth = () => async (dispatch) => {
   const response = await fetch('http://localhost:3002/api/auth/check', {

@@ -13,7 +13,6 @@ const getProgressBarColor = (percantage) => {
 
 
 const OneRest = ({ rest}) => {
-  console.log('oneRest ------->', rest);
   const capactityPercantage = Math.round((rest?.bookedTables / rest?.capacity * 100));
 
   const ratingArr = rest?.rating;
