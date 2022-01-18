@@ -17,7 +17,10 @@ function PageAdmin() {
     categoryId: '',
     cuisineId: '',
     avarageCoast: '',
-    capacity: ''
+    capacity: '',
+    city: '',
+    street: '',
+    building: ''
   })
 
   const changeHandler = (e) => {
@@ -101,6 +104,12 @@ function PageAdmin() {
           <br />
           <input onChange={changeHandler} name="capacity" value={dataRest.capacity} placeholder='capacity' type="text" />
           <br />
+          <input onChange={changeHandler} placeholder='city' name="city" value={dataRest.city} type='text' />
+          <br />
+          <input onChange={changeHandler} placeholder='street' name="street" value={dataRest.street} type='text' />
+          <br />
+          <input onChange={changeHandler} placeholder='building' name="building" value={dataRest.building} type='text' />
+          <br/>
           <button onClick={editRest}>Сохранить изменения</button>
         </div>
       )}

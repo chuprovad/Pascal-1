@@ -17,6 +17,7 @@ import { checkAuthUser } from "./redux/actions/userinfo.action";
 import { checkAuthAdmin } from "./redux/actions/admin.action";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from './pages/Main/Main';
+import PageAdmin from './components/PageAdmin/PageAdmin';
 
 
 function App() {
@@ -33,9 +34,9 @@ function App() {
   // const admin = useSelector(state => state.admin)
   // console.log(admin)
 
-  // function RequireAuthUser({ children, redirectTo }) {
-  //     return user ? children : <Navigate to={redirectTo} />;
-  // }
+  function RequireAuthUser({ children, redirectTo }) {
+    return user ? children : <Navigate to={redirectTo} />;
+  }
   //
   // function RequireAuthAdmin({ children, redirectTo }) {
   //     return admin ? children : <Navigate to={redirectTo} />;
@@ -64,10 +65,12 @@ function App() {
         {/* <Route path='/' element={<Map />} /> */}
         <Route path='/' element={<Main />} />
         <Route path='/restaurants/:id' element={<Restaurant />} />
+
         <Route path='/users/:id' element={<UserProfile />} />
         <Route path='/signin' element={<SingIn />} />
         <Route path='/signup' element={<Reg />} />
         <Route path='/signout' element={<SignOut />} />
+        <Route path='/api/admin/:id' element={<PageAdmin/>} />
       </Routes>
     </div>
   );
