@@ -95,8 +95,13 @@ function PageAdmin() {
     setNewInput(!newInput)
   }
 
+  const capactityPercantage = Math.round((restState?.bookedTables / restState?.capacity * 100));
   // для изменения брони
+  console.log(restState?.bookedTables);
+  const ratingArr = restState?.rating;
+  const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
 
+  
   function minus() {
     let restaurantId = userState.restaurantId
     dispatch(THUNK_minusReservationToDB({ restaurantId }))
@@ -154,13 +159,13 @@ function PageAdmin() {
               <ul>
                 <li>
                   Booked tables:
-                  <CapacityProgressBar bgcolor={getProgressBarColor(10)} completed={10} />
+                  <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
                 </li>
-                <li><StarRating restaurantRating={Math.round(4)} /></li>
+                <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li>
+                <li>Rating: {restaurantRating}</li> 
                 <li>avarageCoast: {restState?.avarageCoast}</li>
                 <li>Category: {restState?.categoryId}</li>
                 <li>Cuisine: {restState?.cuisineId}</li>
-                <h1>1231</h1>
               </ul>
               <button onClick={() => {
                 getInput()

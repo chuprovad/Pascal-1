@@ -147,12 +147,12 @@ const addRating = async (req, res) => {
 
 const minusReservation = async (req, res) => {
   const { id } = req.params;
-  
+
   try {
     await Restaurant.decrement('bookedTables', { where: { id: Number(id) } });
 
     const updatedRestaurantData = await Restaurant.findByPk(id, { raw: true });
-    console.log('ser',updatedRestaurantData);
+    console.log('ser', updatedRestaurantData);
 
     res.json(updatedRestaurantData.bookedTables);
   } catch (error) {
@@ -163,12 +163,12 @@ const minusReservation = async (req, res) => {
 
 const addReservation = async (req, res) => {
   const { id } = req.params;
-  
+
   try {
     await Restaurant.increment('bookedTables', { where: { id: Number(id) } });
 
     const updatedRestaurantData = await Restaurant.findByPk(id, { raw: true });
-    console.log('lll',updatedRestaurantData);
+    console.log('lll', updatedRestaurantData);
 
     res.json(updatedRestaurantData.bookedTables);
   } catch (error) {
