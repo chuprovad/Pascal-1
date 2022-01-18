@@ -14,17 +14,8 @@ export const getReservationInfo = (data) => ({
   payload: data
 })
 
-
-export const THUNK_getUserInfoFromDB = () => async (dispatch) => {
-  const response = await axios.get(`http://localhost:3002/api/users/`);
-  const userData = response.data;
-  dispatch(getUserInfo(userData));
-}
-
 export const THUNK_getReservationInfoFromDB = (userId) => async (dispatch) => {
-  // console.log('userid', userId)
   const response = await axios.get(`http://localhost:3002/api/users/${userId}/reservations`)
-  // console.log(response)
   const resData = response.data;
 
   dispatch(getReservationInfo(resData))
@@ -34,8 +25,6 @@ export const THUNK_getReservationInfoFromDB = (userId) => async (dispatch) => {
 export const getAdmin = (user) => ({
   type: GET_ADMIN,
   payload: user
-
-
 })
 
 export const deleteUser = () => ({
@@ -125,7 +114,6 @@ export const signOut = () => async (dispatch) => {
 } 
 
 export const checkAuth = () => async (dispatch) => {
-  console.log('lolololo');
   const response = await fetch('http://localhost:3002/api/auth/check', {
     credentials: 'include'
   })
@@ -134,3 +122,9 @@ export const checkAuth = () => async (dispatch) => {
     dispatch(getUserInfo(user))
   }
 }
+
+// export const THUNK_getUserInfoFromDB = () => async (dispatch) => {
+//   const response = await axios.get(`http://localhost:3002/api/users/`);
+//   const userData = response.data;
+//   dispatch(getUserInfo(userData));
+// }

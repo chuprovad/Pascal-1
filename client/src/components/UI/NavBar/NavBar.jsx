@@ -59,7 +59,7 @@ const NavBar = () => {
             {
                 user ?
                     <>
-                    <Link className={classes["other-link"]} to={'/users'}>User Profile</Link>
+                    <Link className={classes["other-link"]} to={`/users/${user.id}`}>User Profile</Link>
                         <Link className={classes["other-link"]} to={'/signout'}>Sign out</Link>
                         </>
                         :

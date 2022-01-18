@@ -2,7 +2,8 @@ const initialState = () => {
   const state = {
     userInfo: null,
     restaurant: {},
-    rests: []
+    rests: [],
+    reservation: {}
   };
 
   return state;
