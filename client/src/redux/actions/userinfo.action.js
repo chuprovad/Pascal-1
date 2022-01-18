@@ -1,4 +1,4 @@
-import { DELETE_USER, GET_ADMIN, GET_USERINFO } from "../types/users.types"
+import {DELETE_USER, GET_ADMIN, GET_RESERVATION, GET_USERINFO} from "../types/users.types"
 import {GET_RESTAURANT} from "../types/restaurant.types";
 import axios from "axios";
 import {getRestaurantFromDB} from "./restaurant.action";
@@ -9,6 +9,11 @@ export const getUserInfo = (user) => ({
 
 })
 
+export const getReservationInfo = (data) => ({
+  type: GET_RESERVATION,
+  payload: data
+})
+
 
 export const THUNK_getUserInfoFromDB = () => async (dispatch) => {
   const response = await axios.get(`http://localhost:3002/api/users/`);
@@ -17,11 +22,12 @@ export const THUNK_getUserInfoFromDB = () => async (dispatch) => {
 }
 
 export const THUNK_getReservationInfoFromDB = (userId) => async (dispatch) => {
-  console.log('userid', userId)
+  // console.log('userid', userId)
   const response = await axios.get(`http://localhost:3002/api/users/${userId}/reservations`)
+  // console.log(response)
   const resData = response.data;
-  console.log(resData)
-  // dispatch()
+
+  dispatch(getReservationInfo(resData))
 }
 
 
@@ -48,7 +54,7 @@ export const signUp = (payload, navigate) => async (dispatch) => {
   if (response.status === 200) {
     const user = await response.json()
     dispatch(getUserInfo(user))
-    navigate('/users/1')
+    // navigate('/users/1')
   } else {
       // navigate('/auth/signup')
   }

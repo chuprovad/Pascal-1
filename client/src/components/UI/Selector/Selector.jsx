@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {optionAction, searchAction} from "../../../redux/actions/action";
+import {optionAction, searchAction} from "../../../redux/actions/rests.action";
 import classes from "../Selector/Selector.module.css";
 
 const Selector = ({options, defaultValue, value}) => {
