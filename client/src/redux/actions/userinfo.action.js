@@ -98,7 +98,7 @@ export const signUpAdmin = (payload, navigate) => async (dispatch) => {
   if (response.status === 200) {
     const user = await response.json()
     dispatch(getUserInfo(user))
-    navigate(`/api/admin/${user.id}`) 
+    navigate(`/admin/${user.id}`) 
   } else {
     //   navigate('/auth/signup')
   }

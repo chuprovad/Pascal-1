@@ -112,15 +112,18 @@ const signUpAdmin = async (req, res) => {
 const checkAuth = async (req, res) => {
   console.log(33333);
   try {
-    let user = await User.findByPk(req.session.user.id)
 
+    let user = await User.findByPk(req.session.user.id)
+    console.log('lol1', user);
     if (!user) {
       user = await Admin.findByPk(req.session.user.id)
-
-      return res.json({ id: user.id, name: user.name, isAdmin: user.isAdmin, restaurantId: user.restaurantId })
-    } else {
+      console.log('lol1', user.isAdmin);
+      console.log(user);
+      return res.json({ id: user.id, name: user.name, isAdmin: 'isAdmin', restaurantId: user.restaurantId })
+    } else if(user){
       return res.json({ id: user.id, name: user.name })
-    }
+    } 
+    return res.redirect('/')
 
 
 
