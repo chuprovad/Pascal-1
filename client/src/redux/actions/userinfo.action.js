@@ -123,3 +123,14 @@ export const signOut = () => async (dispatch) => {
     dispatch(deleteUser())
   }
 } 
+
+export const checkAuth = () => async (dispatch) => {
+  console.log('lolololo');
+  const response = await fetch('http://localhost:3002/api/auth/check', {
+    credentials: 'include'
+  })
+  if (response.status === 200) {
+    const user = await response.json()
+    dispatch(getUserInfo(user))
+  }
+}

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getRests, optionAction, searchAction} from "../../../redux/actions/action";
+import {getRests, optionAction, searchAction} from "../../../redux/actions/rests.action";
 import {useDispatch} from "react-redux";
 import classes from './Search.module.css'
 
