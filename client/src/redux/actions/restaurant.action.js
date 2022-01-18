@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { EDIT_RESTAURANT, GET_RESTAURANT, SET_RATING, SET_RESERVATION,  GET_ALL_RESTAURANTS } from "../types/restaurant.types"
+import { EDIT_RESTAURANT, GET_RESTAURANT, SET_RATING, SET_RESERVATION, GET_ALL_RESTAURANTS } from "../types/restaurant.types"
 
 export const getRestaurantFromDB = (restaurantData) => {
   return {
@@ -43,11 +43,22 @@ export const addReservation = (updatedBookedTables) => {
   }
 }
 
+export const THUNK_minusReservationToDB = (payload) => async (dispatch) => {
+  const { restaurantId } = payload;
+  console.log(payload);
+  console.log(restaurantId);
+  const response = await axios.put(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/minus`)
+  const updatedBookedTablesFromDB = response.data;
+  dispatch(addReservation(updatedBookedTablesFromDB));
+}
+
+
+
 export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
-  const { restaurantId, booking } = payload;
-  const response = await axios.put(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/reservation`, {
-    guestsQuantity: Number(booking.guestsQuantity),
-  })
+  const { restaurantId } = payload;
+  console.log(payload);
+  console.log(restaurantId);
+  const response = await axios.put(`http://localhost:3002/api/restaurants/${Number(restaurantId)}/reservation`)
   const updatedBookedTablesFromDB = response.data;
   dispatch(addReservation(updatedBookedTablesFromDB));
 }
@@ -75,13 +86,13 @@ export const THUNK_editRestaurant = (payload, restId) => async (dispatch) => {
 }
 
 //добавила Катя
-export const allRestaurants = () => async(dispatch) => {
+export const allRestaurants = () => async (dispatch) => {
   // console.log('***')
   const response = await axios.get('http://localhost:3002/api/restaurants/map')
   const allRest = await response.data
   // console.log('allRest', allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]})))
   dispatch({
     type: GET_ALL_RESTAURANTS,
-    payload: allRest.aresses.map(el => ({type:'Point', coordinates: [el.latitude, el.longitude]}))
+    payload: allRest.aresses.map(el => ({ type: 'Point', coordinates: [el.latitude, el.longitude] }))
   })
 }
