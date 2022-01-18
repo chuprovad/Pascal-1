@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const { Admin, Restaurant, User } = require('../db/models')
+const { Admin, Restaurant, User, Adress } = require('../db/models')
 
 
 const signUp = async (req, res) => {
@@ -70,7 +70,7 @@ const signOut = async (req, res) => {
 }
 
 const signUpAdmin = async (req, res) => {
-  const { name, email, password, title, categoryId, cuisineId, avarageCoast, capacity } = req.body
+  const { name, email, password, title, categoryId, cuisineId, avarageCoast, capacity, city, street, building } = req.body
   console.log('lol');
   console.log(name, email, password, title, categoryId, cuisineId, avarageCoast, capacity);
   if (name && email && password) {
@@ -92,6 +92,11 @@ const signUpAdmin = async (req, res) => {
         password: hashPassword,
         restaurantId: newRest.id
       })
+      //katya
+      const response = await axios.get(`https://geocode-maps.yandex.ru/1.x/?apikey=8e593647-2d9f-4250-8947-44b467394541&geocode=${city},+${street}+улица,+дом+${building}&format=json`)
+      const result = await response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+      console.log(result)
+      // const addAdress = await Adress.create({city, street, building, latitude, longitude, restaurantId: newRest.id})
 
       req.session.user = {
         id: newUser.get({ plain: true }).id,
