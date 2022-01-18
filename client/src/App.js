@@ -3,11 +3,10 @@ import Map from './components/Map/Map';
 import Restaurant from './pages/Restaurant/Restaurant';
 import NavBar from "./components/UI/NavBar/NavBar";
 import RestsList from "./components/common/RestsList/RestsList";
+
 import Reg from './components/Reg/Reg';
 import SingIn from './components/SingIn/SingIn';
 import SignOut from './components/SignOut/SingOut';
-
-
 import { checkAuth, THUNK_getUserInfoFromDB } from './redux/actions/userinfo.action';
 
 import { Route, Routes, Navigate } from 'react-router-dom';
@@ -18,51 +17,37 @@ import { checkAuthAdmin } from "./redux/actions/admin.action";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from './pages/Main/Main';
 import PageAdmin from './components/PageAdmin/PageAdmin';
+import { THUNK_getAllRestaurantsFromDB } from './redux/actions/rests.action';
 
 
 function App() {
-  // const dispatch = useDispatch()
-  //
-  // useEffect(() => {
-  //     dispatch(checkAuthUser())
-  //     dispatch(checkAuthAdmin())
-  // }, [])
-  //
-  // const user = useSelector(state => state.userInfo)
-  // console.log(user)
-  //
-  // const admin = useSelector(state => state.admin)
-  // console.log(admin)
-  
+
   function RequireAuthUser({ children, redirectTo }) {
     return user ? children : <Navigate to={redirectTo} />;
   }
-  //
-  // function RequireAuthAdmin({ children, redirectTo }) {
-    //     return admin ? children : <Navigate to={redirectTo} />;
-    // }
-    //
-    // function RequireUnauthUser({children, redirectTo}) {
-      //     return user ? <Navigate to={redirectTo} /> : children;
-      // }
-      //
-      // function RequireUnauthAdmin({children, redirectTo}) {
-        //     return admin ? <Navigate to={redirectTo} /> : children;
-        // }
-        const user = useSelector(state => state.userInfo)
-        
-        const dispatch = useDispatch()
-        
-        useEffect(() => {
-          dispatch(checkAuth())
-        }, [])
-console.log('scam',user);
+
+  const user = useSelector(state => state.userInfo)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(checkAuth())
+  }, [])
+
+  useEffect(() => {
+    // ****** Получение всех ресторанов ******
+    dispatch(THUNK_getAllRestaurantsFromDB())
+  }, [])
+
+  //TODO: для Даши - все растораны
+  const allRestsApp = useSelector(state => state.rests)
+  // console.log('APP allRests --->', allRestsApp);
+
   return (
     <div>
       <NavBar />
 
       <Routes>
-        {/* <Route path='/' element={<Map />} /> */}
         <Route path='/' element={<Main />} />
         <Route path='/restaurants/:id' element={<Restaurant />} />
 

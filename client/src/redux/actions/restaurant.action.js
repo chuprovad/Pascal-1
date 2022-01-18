@@ -74,6 +74,7 @@ export const THUNK_editRestaurant = (payload, restId) => async (dispatch) => {
   dispatch(editRestaurant(restaurant))
 }
 
+// ****** Получение адресов всех ресторанов ******
 //добавила Катя
 export const allRestaurants = () => async(dispatch) => {
   // console.log('***')

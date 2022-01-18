@@ -1,5 +1,5 @@
 import initialState from "../initState";
-import { SEARCH_OPTION, SELECT_OPTION } from "../types/rests.types";
+import { GET_ALL_RESTAURANTS_APP, SEARCH_OPTION, SELECT_OPTION } from "../types/rests.types";
 import { GET_RESTAURANTS_BY_COORD } from "../types/rests.types";
 
 const restReducer = (state = initialState, action) => {
@@ -15,6 +15,9 @@ const restReducer = (state = initialState, action) => {
         }
 
         case GET_RESTAURANTS_BY_COORD:
+          return action.payload
+
+        case GET_ALL_RESTAURANTS_APP:
           return action.payload
 
         default: {
