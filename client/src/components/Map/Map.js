@@ -8,7 +8,7 @@ const Map = () => {
   const dispatch = useDispatch()
 
   const coordinates = useSelector(state => state.restaurant)
-  console.log(coordinates)
+  // console.log(coordinates)
 
   const [myLocation, setmyLocation] = useState(getMyAdress())
   // console.log(myLocation)

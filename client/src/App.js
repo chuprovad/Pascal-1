@@ -18,6 +18,7 @@ import { checkAuthAdmin } from "./redux/actions/admin.action";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from './pages/Main/Main';
 import PageAdmin from './components/PageAdmin/PageAdmin';
+import { THUNK_getAllRestaurantsFromDB } from './redux/actions/rests.action';
 
 
 function App() {
@@ -56,6 +57,15 @@ function App() {
   useEffect(() => {
     dispatch(checkAuth())
   }, [])
+
+  useEffect(() => {
+    // ****** Получение всех ресторанов ******
+    dispatch(THUNK_getAllRestaurantsFromDB())
+  }, [])
+
+  //TODO: для Даши - все растораны
+  const allRestsApp = useSelector(state => state.rests)
+  // console.log('APP allRests --->', allRestsApp);
 
   return (
     <div>
