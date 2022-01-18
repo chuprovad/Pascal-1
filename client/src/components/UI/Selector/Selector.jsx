@@ -18,9 +18,6 @@ const dispatch = useDispatch()
 
     return (
         <>
-
-
-
             <select value={city ? city : defaultValue}
                     className={classes["selector"]}
             onChange={onChange}
@@ -31,8 +28,6 @@ const dispatch = useDispatch()
                     )}
             </select>
         </>
-
-
     );
 };
 

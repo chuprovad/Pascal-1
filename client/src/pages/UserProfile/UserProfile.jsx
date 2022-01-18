@@ -21,7 +21,7 @@ const UserProfile = ({id}) => {
     }, [])
 
     return (
-        <div>
+        <div className={classes["container"]}>
             <UserCard userDataFromState={userDataFromState}/>
 
         </div>

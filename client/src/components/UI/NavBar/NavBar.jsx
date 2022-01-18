@@ -19,7 +19,7 @@ const NavBar = () => {
 
     const [searchQuery, setSearchQuery] = useState('')
 
-    const filterRests = (value) => {
+    const filterRestsHandle = (value) => {
         console.log(value)
         setOptions(value)
         // setSelectedSort(value)
@@ -29,6 +29,7 @@ const NavBar = () => {
     //        return  el.location = 'Novikov'
     // }))
     }
+
 
 
 
@@ -42,19 +43,20 @@ const NavBar = () => {
 
             <Selector
                 value={options}
-                onChange={filterRests}
-                defaultValue={"Choose city"}
+                onChange={filterRestsHandle}
+                defaultValue={"Choose category"}
                 options={[
-                    {value: 'Moscow', name: 'Moscow'},
-                    {value: 'Togliatti', name: 'Togliatti'},
-                    {value: 'Tver', name: 'Tver'},
-                    {value: 'Samara', name: 'Samara'}
+                    {value: 'Bar', name: 'Bar'},
+                    {value: 'Restaurant', name: 'Restaurant'},
+                    {value: 'Pub', name: 'Pub'},
+                    {value: 'Cafe', name: 'Cafe'}
                 ]}
             />
 
             <Search
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
+
             />
             {
                 user ?

@@ -1,5 +1,12 @@
 import axios from "axios";
-import {GET_RESTAURANTS_BY_COORD, GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rests.types";
+import {
+    ALL_RESTS,
+    GET_RESTAURANTS_BY_COORD,
+    GET_RESTS,
+    SEARCH_OPTION,
+    SELECT_OPTION,
+    SET_RESTS
+} from "../types/rests.types";
 
 
 export const getRests = (value) => {
@@ -20,10 +27,10 @@ export const getAllRestaurants = (data) => async(dispatch) => {
     const response = await fetch('http://localhost:3002/api/')
 }
 
-export const optionAction = (city) => {
+export const optionAction = (category) => {
     return {
         type: SELECT_OPTION,
-        payload: city
+        payload: category
     }
 }
 
@@ -46,4 +53,12 @@ export const allRestByCoord = (coord) => async (dispatch) => {
     type: GET_RESTAURANTS_BY_COORD,
     payload: response.data
   })
+}
+
+export const getAllRests = () => async(dispatch) => {
+    const response = await axios(`http://localhost:3002/api/restaurants/1`)
+    dispatch({
+        type: ALL_RESTS,
+        payload: response.data
+    })
 }
