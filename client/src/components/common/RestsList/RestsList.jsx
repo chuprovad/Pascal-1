@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import OneRest from "../OneRest/OneRest";
 import { v4 as uuidv4 } from 'uuid';
 import {useEffect} from "react";
-import {getAllRests} from "../../../redux/actions/rests.action";
+import {getAllRests, getRests, THUNK_getAllRestaurantsFromDB} from "../../../redux/actions/rests.action";
 
 const RestsList = () => {
 
@@ -13,8 +13,9 @@ const RestsList = () => {
     const dispatch = useDispatch()
 
 useEffect(()=> {
-    // dispatch(getAllRests())
-}, [rests, search])
+    if (search.length === 0)
+    dispatch(THUNK_getAllRestaurantsFromDB())
+}, [search])
 
     return (
         <div>

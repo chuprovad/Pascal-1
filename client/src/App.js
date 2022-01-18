@@ -39,9 +39,7 @@ function App() {
     dispatch(THUNK_getAllRestaurantsFromDB())
   }, [])
 
-  //TODO: для Даши - все растораны
-  const allRestsApp = useSelector(state => state.rests)
-  // console.log('APP allRests --->', allRestsApp);
+
 
   return (
     <div>
