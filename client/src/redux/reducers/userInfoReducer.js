@@ -1,4 +1,4 @@
-import { DELETE_USER, GET_USERINFO } from "../types/users.types"
+import {DELETE_USER, GET_RESERVATION, GET_USERINFO} from "../types/users.types"
 
 const userinfoReducer = (state = null, action) => {
   const { type, payload } = action

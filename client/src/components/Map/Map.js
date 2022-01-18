@@ -8,17 +8,17 @@ const Map = () => {
   const dispatch = useDispatch()  
 
   const coordinates  = useSelector(state => state.restaurant)
-  console.log(coordinates)
+
 
   const [myLocation, setmyLocation] = useState(getMyAdress())
-  // console.log(myLocation)
+
    const [points, setPoints] = useState()
 
   
   async function getMyAdress() {
     navigator.geolocation.getCurrentPosition( async (geoData) => {
       const { longitude, latitude } = geoData.coords;
-      // console.log(latitude, longitude)
+
       setmyLocation([latitude, longitude])
       // const YapiK = '8e593647-2d9f-4250-8947-44b467394541'; // Ya API Key
       // const ftch = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=${YapiK}&geocode=${longitude},${latitude}&format=json`);

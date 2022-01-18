@@ -2,6 +2,7 @@ const initialState = () => {
   const state = {
     userInfo: null,
     restaurant: {},
+    reservation: null,
     rests: [
       {id: 1, title:'Maze Grill', category:'fine dining restaurant', location:'Moscow'},
       {id: 2, title:'Boticario', category:'cocktail bar', location:'Moscow'},
