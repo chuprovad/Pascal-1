@@ -9,11 +9,60 @@ const getAllRestaurantSearch = async (req, res) => {
   }, 2000)
 }
 
+// ****** Получение адресов всех ресторанов ******
 const getAllRestaurantsAdresses = async (req, res) => {
   const aresses = await Adress.findAll({ attributes: ['latitude', 'longitude'], raw: true })
   // console.log('aresses',aresses)
   res.json({ aresses })
 }
+
+// ****** Получение всех ресторанов ******
+const getAllRestaurantsApp = async (req, res) => {
+  const allRestaurantsApp = await Restaurant.findAll(
+    {
+      raw: true,
+      include: [
+        {
+          model: Category,
+          attributes: ['title'],
+        },
+        {
+          model: Cuisine,
+          attributes: ['title'],
+        },
+        {
+          model: Adress,
+          attributes: ['city', 'street', 'building', 'latitude', 'longitude'],
+        },
+      ],
+    })
+
+  const allPictures = await Picture.findAll({
+    attributes: ['id', 'restaurantId', 'path'],
+    raw: true
+  })
+
+  const allRatings = await Rating.findAll({
+    attributes: ['score', 'restaurantId'],
+    raw: true
+  })
+
+  const alrRestaurantsMapped = allRestaurantsApp.map((el) => ({
+    ...el,
+    category: el['Category.title'],
+    cuisine: el['Cuisine.title'],
+    address: `${el['Adress.city']}, ${el['Adress.street']} ${el['Adress.building']}`,
+    picture: allPictures.find(item => item.restaurantId === el.id)?.path,
+    rating: allRatings
+      .filter(item => item.restaurantId === el.id)
+      .map(item => item.score)
+  }))
+
+  // console.log('alrRestaurantsMapped 888 ###', alrRestaurantsMapped);
+  res.json(alrRestaurantsMapped);
+}
+
+
 const getCurrentRestaurant = async (req, res) => {
   const { id } = req.params;
 
@@ -59,6 +108,7 @@ const getCurrentRestaurant = async (req, res) => {
   res.json(currentRestaurantData);
 }
 
+// ****** Получение всех ресторанов в области видимости ******
 const getVisibleRestaurants = async (req, res) => {
   // console.log('$$$', req.body)
   const latitude = req.body.coord.map(el => el[0])
@@ -85,7 +135,7 @@ const getVisibleRestaurants = async (req, res) => {
     },
     raw: true
   })
-
+  // console.log('$$$')
   const restaurantsId = result.map((el) => el.restaurantId)
 
   const currentRestaurantPicture = await Picture.findAll({
@@ -114,13 +164,13 @@ const getVisibleRestaurants = async (req, res) => {
     category: el['Restaurant.Category.title'],
     cuisine: el['Restaurant.Cuisine.title'],
     address: `${el.city}, ${el.street} ${el.building}`,
-    picture: currentRestaurantPicture.find(item => item.restaurantId === el.restaurantId).path,
+    picture: currentRestaurantPicture.find(item => item.restaurantId === el.restaurantId)?.path,
     rating: currentRestaurantRating
       .filter(item => item.restaurantId === el.restaurantId)
       .map(item => item.score)
   }))
 
-  console.log(restaurantsByCoordData);
+  // console.log(restaurantsByCoordData);
 
   res.json(restaurantsByCoordData)
 }
@@ -165,5 +215,6 @@ module.exports = {
   addRating,
   addReservation,
   getAllRestaurantsAdresses,
-  getVisibleRestaurants
+  getVisibleRestaurants,
+  getAllRestaurantsApp
 }

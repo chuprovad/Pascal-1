@@ -26,6 +26,7 @@ function Inputuser({ who }) {
     if (payload.length) {
       payload = Object.fromEntries(payload)
       dispatch(signUp(payload, navigate))
+      
     }
   }
 
