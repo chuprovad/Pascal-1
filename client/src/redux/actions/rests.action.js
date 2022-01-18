@@ -27,10 +27,10 @@ export const getAllRestaurants = (data) => async(dispatch) => {
     const response = await fetch('http://localhost:3002/api/')
 }
 
-export const optionAction = (category) => {
+export const optionAction = (categoryId) => {
     return {
         type: SELECT_OPTION,
-        payload: category
+        payload: categoryId
     }
 }
 

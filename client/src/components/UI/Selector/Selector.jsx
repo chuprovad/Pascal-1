@@ -13,7 +13,6 @@ const dispatch = useDispatch()
     const data = e.target.value
         setCity(data)
         dispatch(optionAction(e.target.value))
-
     }
 
     return (

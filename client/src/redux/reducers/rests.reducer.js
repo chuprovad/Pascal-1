@@ -9,7 +9,7 @@ const restReducer = (state = initialState, action) => {
         case SELECT_OPTION: {
             console.log(action.payload)
             console.log(state)
-            return state.filter(el => el.location === action.payload)
+            return state.filter(el => el.categoryId === Number(action.payload))
         }
 
         case SEARCH_OPTION: {
