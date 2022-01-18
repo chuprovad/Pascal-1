@@ -15,7 +15,7 @@ export const getReservationInfo = (data) => ({
 })
 
 export const THUNK_getReservationInfoFromDB = (userId) => async (dispatch) => {
-  const response = await axios.get(`http://localhost:3002/api/users/${userId}/reservations`)
+  const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}/reservations`)
   const resData = response.data;
 
   dispatch(getReservationInfo(resData))
@@ -32,7 +32,7 @@ export const deleteUser = () => ({
 })
 
 export const signUp = (payload, navigate) => async (dispatch) => {
-  const response = await fetch('http://localhost:3002/api/auth/signup', {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signup`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ export const signUp = (payload, navigate) => async (dispatch) => {
 
 
 export const signIn = (payload, navigate, from) => async (dispatch) => {
-  const response = await fetch('http://localhost:3002/api/auth/signin', {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signin`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
 
 // // проверка на авторизацию юзера Даша
 // export const checkAuthUser = () => async (dispatch) => {
-//   const response = await fetch('http://localhost:3002/api/auth/checkuser', {
+//   const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/checkuser`, {
 //     credentials: 'include'
 //   })
 //   if (response.status === 200) {
@@ -86,7 +86,7 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
 
 
 export const signUpAdmin = (payload, navigate) => async (dispatch) => {
-  const response = await fetch('http://localhost:3002/api/auth/admin', {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/admin`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ export const signUpAdmin = (payload, navigate) => async (dispatch) => {
 }
 
 export const signOut = () => async (dispatch) => {
-  const response = await fetch('http://localhost:3002/api/auth/signout', {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signout`, {
     credentials: 'include'
   })
   if (response.status === 200) {
@@ -113,7 +113,7 @@ export const signOut = () => async (dispatch) => {
 }
 
 export const checkAuth = () => async (dispatch) => {
-  const response = await fetch('http://localhost:3002/api/auth/check', {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/check`, {
     credentials: 'include'
   })
   if (response.status === 200) {
@@ -123,7 +123,7 @@ export const checkAuth = () => async (dispatch) => {
 }
 
 // export const THUNK_getUserInfoFromDB = () => async (dispatch) => {
-//   const response = await axios.get(`http://localhost:3002/api/users/`);
+//   const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/`);
 //   const userData = response.data;
 //   dispatch(getUserInfo(userData));
 // }
