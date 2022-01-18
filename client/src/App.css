@@ -1,0 +1,37 @@
+/* ------- Обнуление стилей -------- */
+
+* {
+  padding: 0;
+  margin: 0;
+  /* border-box говорит браузеру учитывать любые границы и внутренние отступы
+  в значениях, которые вы указываете в ширине и высоте элемента */
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none; /* Убираем подчеркивание у ссылок */
+}
+ul, li {
+  list-style: none; /* Убираем оформление списков */
+}
+
+
+/* ------- main-page -------- */
+
+.main-page__container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+/* ------- XXX page -------- */
+
+
+
+/* ------- XXX something -------- */
+
+
+
+/* ------- XXX something -------- */

@@ -1,0 +1,10 @@
+.on {
+  color: rgb(241, 86, 13);
+}
+.off {
+  color: #ccc;
+}
+
+.star {
+  font-size: 24px;
+}
