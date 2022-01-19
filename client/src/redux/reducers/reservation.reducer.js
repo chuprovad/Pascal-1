@@ -1,9 +1,8 @@
-import {DELETE_RESERVATION, GET_RESERVATION} from "../types/users.types";
+
 import initialState from "../initState";
+import {DELETE_RESERVATION, GET_RESERVATION} from "../types/reservation.types";
 
 const reservationReducer = (state = initialState, action) => {
-
-
     switch (action.type) {
 
         case GET_RESERVATION: {
@@ -11,8 +10,12 @@ const reservationReducer = (state = initialState, action) => {
         }
 
         case DELETE_RESERVATION: {
-            return state.filter(el => (el.id !== action.payload.id))
+            const newState = {
+                ...state,
+                reserv: state.reserv.filter(el => el.id !== action.payload)
+            }
 
+            return newState
         }
 
         default:
