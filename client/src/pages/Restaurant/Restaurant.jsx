@@ -1,5 +1,5 @@
 import classes from './Restaurant.module.css';
-
+import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import BookingModal from '../../components/UI/BookingModal/BookingModal';
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
@@ -28,7 +28,12 @@ export default function Restaurant() {
   // Стейт для отображения модалки
   const [modal, setModal] = useState(false);
 
+  //Функция для вывода уведомления
+  const notify = () => toast.success("Booking confirmed!");                                                                            
+
   const bookTableHandler = () => {
+    const randomDelay = Math.ceil(Math.random() * 3) * 1000    
+    setTimeout(() => notify(), randomDelay)
     setModal(false);
   };
 
@@ -41,6 +46,14 @@ export default function Restaurant() {
         <BookingModal visible={modal} setVisible={setModal}>
           <RestaurantForm bookTableHandler={bookTableHandler} restaurantId={restaurantId}/>
         </BookingModal>
+        <ToastContainer position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover/>
 
         {/* <hr style={{ margin: '15px 0' }} /> */}
         <h2>{restaurantDataFromState?.pictures?.length} Photos</h2>
