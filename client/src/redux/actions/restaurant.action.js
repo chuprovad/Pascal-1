@@ -58,7 +58,12 @@ export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   const { restaurantId } = payload;
   console.log(payload);
   console.log(restaurantId);
-  const response = await axios.put(`${process.env.REACT_APP_API_URL}/restaurants/${Number(restaurantId)}/reservation`)
+  // const response = await axios.put(`${process.env.REACT_APP_API_URL}/restaurants/${Number(restaurantId)}/reservation`)
+  const response = await axios.put(`${process.env.REACT_APP_API_URL}/restaurants/${Number(restaurantId)}/newReservation`,
+      {},
+      {
+        withCredentials: true
+      })
   const updatedBookedTablesFromDB = response.data;
   dispatch(addReservation(updatedBookedTablesFromDB));
 }

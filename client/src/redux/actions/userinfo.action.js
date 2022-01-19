@@ -9,18 +9,6 @@ export const getUserInfo = (user) => ({
 
 })
 
-export const getReservationInfo = (data) => ({
-  type: GET_RESERVATION,
-  payload: data
-})
-
-export const THUNK_getReservationInfoFromDB = (userId) => async (dispatch) => {
-  const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}/reservations`)
-  const resData = response.data;
-
-  dispatch(getReservationInfo(resData))
-}
-
 
 export const getAdmin = (user) => ({
   type: GET_ADMIN,
