@@ -4,7 +4,7 @@ import StarRating from "../UI/StarRating/StarRating";
 
 const getProgressBarColor = (percantage) => {
   let bgcolor = '';
-
+  
   if (percantage <= 30) bgcolor = "green";
   else if (percantage <= 70) bgcolor = "orange";
   else bgcolor = "red" ;
@@ -14,10 +14,18 @@ const getProgressBarColor = (percantage) => {
 
 export default function RestaurantCard({ restaurantDataFromState }) {
 
-  const capactityPercantage = Math.round((restaurantDataFromState?.bookedTables / restaurantDataFromState?.capacity * 100));
+  let capactityPercantage = 0;
+  if (restaurantDataFromState?.bookedTables > 0) {
+    capactityPercantage = Math.round((restaurantDataFromState?.bookedTables / restaurantDataFromState?.capacity * 100));
+  }
 
   const ratingArr = restaurantDataFromState?.rating;
-  const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+  let restaurantRating = 0;
+
+  // Если в массиве ratingArr есть элемент, то вычисляем среднее значение
+  if (ratingArr?.length > 0) {
+    restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+  }
 
   return (
     <div>
