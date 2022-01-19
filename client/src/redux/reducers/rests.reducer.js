@@ -1,13 +1,11 @@
 import initialState from "../initState";
-import { GET_ALL_RESTAURANTS_APP, SEARCH_OPTION, SELECT_OPTION } from "../types/rests.types";
-import { GET_RESTAURANTS_BY_COORD } from "../types/rests.types";
+import {GET_ALL_RESTAURANTS_APP, GET_RESTAURANTS_BY_COORD, SEARCH_OPTION, SELECT_OPTION} from "../types/rests.types";
 
 const restReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SELECT_OPTION: {
-            console.log(action.payload)
-            return state.filter(el => el.location === action.payload)
+            return state.filter(el => el.categoryId === Number(action.payload));
         }
 
         case SEARCH_OPTION: {

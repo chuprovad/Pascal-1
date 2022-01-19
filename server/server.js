@@ -6,13 +6,10 @@ const FileStore = require('session-file-store')(session);
 const authRouter = require('./routes/auth.router')
 const restRouter = require('./routes/restaurant.router')
 const app = express();
-const {User} = require('./db/models')
-const {userRouter} = require("./routes/user.router");
+const { User } = require('./db/models')
+const { userRouter } = require("./routes/user.router");
 
-
-// const PORT = process.env.PORT ?? 3002;
-const PORT = 3002;
-
+const PORT = process.env.PORT ?? 3002;
 
 app.use(cors({
   origin: true,
@@ -20,6 +17,7 @@ app.use(cors({
 }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//TODO: add secret from .env
 app.use(session({
   name: 'auth',
   secret: 'qwerty',
@@ -41,4 +39,3 @@ app.use('/api/users', userRouter)
 app.listen(PORT, () => {
   console.log(`SERVER STARTED ON PORT`, PORT);
 });
-

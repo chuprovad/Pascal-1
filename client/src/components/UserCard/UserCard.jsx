@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ButtonCreate from "../UI/ButtonCreate/ButtonCreate";
 import {deleteReservation, editReservation} from "../../redux/actions/reservation.action";
 import {v4 as uuidv4} from "uuid";
+import classes from "../../pages/UserProfile/UserProfile.module.css";
 
 const UserCard = ({userDataFromState}) => {
     const reservation = useSelector(state => state.reservation)
@@ -50,12 +51,14 @@ const UserCard = ({userDataFromState}) => {
             <h2>
                 Your bookings:
             </h2>
-            <ul>
+            <ul className={classes["text"]}>
                 {reservation?.reserv?.map(el =>
                     <li key={uuidv4()}>
                         Restaurant name: {el.title}
                         <br/>
-                       Date and time of your booking: {el.createdAt}
+                       Date of your booking: {el.createdAt.slice(0,10)}
+                        <br/>
+                        Time of your booking: {el.createdAt.slice(11,16)}
                     </li> )}
             </ul>
 

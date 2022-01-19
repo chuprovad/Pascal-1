@@ -3,7 +3,8 @@ const initialState = () => {
     userInfo: null,
     restaurant: {},
     rests: [],
-    reservation: {}
+    reservation: {},
+    searchInput: ''
   };
 
   return state;
