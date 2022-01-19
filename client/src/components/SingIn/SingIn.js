@@ -6,8 +6,8 @@ import MyModel from "../MyModel/MyModel"
 import classes from './Singin.module.css'
 
 function SingIn() {
-  const allState = useSelector(state => state)
-  console.log(allState);
+const allState = useSelector(state => state)
+// console.log(allState);
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
@@ -30,7 +30,7 @@ function SingIn() {
   }
   const [modal, setModal] = useState(true)
   return (
-    
+
    <div>
    <MyModel visible={modal} setVisible={setModal}>
       <div className={classes.form}>

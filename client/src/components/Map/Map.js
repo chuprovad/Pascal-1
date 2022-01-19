@@ -2,28 +2,21 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { allRestaurants } from "../../redux/actions/restaurant.action";
 import { allRestByCoord } from "../../redux/actions/rests.action";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Map = () => {
   let ymaps = window.ymaps;
   const dispatch = useDispatch()
 
   const coordinates = useSelector(state => state.restaurant)
-  // console.log(coordinates)
 
   const [myLocation, setmyLocation] = useState(getMyAdress())
-  // console.log(myLocation)
-  const [points, setPoints] = useState()
 
 
   async function getMyAdress() {
     navigator.geolocation.getCurrentPosition(async (geoData) => {
       const { longitude, latitude } = geoData.coords;
-      // console.log(latitude, longitude)
       setmyLocation([latitude, longitude])
-      // const YapiK = '8e593647-2d9f-4250-8947-44b467394541'; // Ya API Key
-      // const ftch = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=${YapiK}&geocode=${longitude},${latitude}&format=json`);
-      // const adress = await ftch.json();
-      // console.log(adress.response.GeoObjectCollection.featureMember[0].GeoObject.description, ',', adress.response.GeoObjectCollection.featureMember[0].GeoObject.name);
     });
   };
 
@@ -48,6 +41,9 @@ const Map = () => {
       // И затем добавим найденные объекты на карту.
       .addToMap(myMap);
 
+      objects._objects.forEach(el => el.events.add('click', (e) => {
+        dispatch(allRestByCoord([el.geometry._coordinates])) // показывает ресторан по клику
+      }))
     myMap.events.add('boundschange', function () {
       // После каждого сдвига карты будем смотреть, какие объекты попадают в видимую область.
       let visibleObjects = objects.searchInside(myMap).addToMap(myMap);
@@ -58,19 +54,9 @@ const Map = () => {
     });
   }
 
-
-
-  const buttonHandler = () => {
-
-    //   fetch('https://geocode-maps.yandex.ru/1.x/?apikey=8e593647-2d9f-4250-8947-44b467394541&geocode=37.63336273141365,55.75765672968874&format=json')
-    //   .then(res => res.json())
-    //   .then(data => console.log(data.response.GeoObjectCollection.featureMember[1].GeoObject.name)) 
-  }
   return (
     <div>
       <div style={{ width: '500px', height: '500px' }} id="map" />
-      <br />
-      <button onClick={buttonHandler}>Верни мне мой json</button>
     </div>
   )
 }

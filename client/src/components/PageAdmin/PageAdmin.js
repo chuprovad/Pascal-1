@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { THUNK_addReservationToDB, THUNK_editRestaurant, THUNK_getRestaurantFromDB, THUNK_minusReservationToDB } from "../../redux/actions/restaurant.action";
+import { THUNK_addReservationToDB, THUNK_addReservationToDBAdmin, THUNK_editRestaurant, THUNK_getRestaurantFromDB, THUNK_minusReservationToDB } from "../../redux/actions/restaurant.action";
 import { checkAuth } from "../../redux/actions/userinfo.action";
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
 import PicturesGallery from "../UI/PicturesGallery/PicturesGallery";
@@ -113,7 +113,7 @@ function PageAdmin() {
   function onePlus() {
     let restaurantId = userState.restaurantId
     console.log(restaurantId);
-    dispatch(THUNK_addReservationToDB({ restaurantId }))
+    dispatch(THUNK_addReservationToDBAdmin({ restaurantId }))
 
   }
 

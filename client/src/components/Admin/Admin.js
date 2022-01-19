@@ -20,7 +20,7 @@ function Admin() {
     building: '',
     image: '',
   })
-  console.log(userAdminSignUp);
+// console.log(userAdminSignUp);
   const changeHandler = (e) => {
     setUserAdminSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }

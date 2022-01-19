@@ -1,6 +1,9 @@
 const { Router } = require('express')
 
-const { getAllRestaurantSearch,getVisibleRestaurants,getAllRestaurantsAdresses, addRating, getCurrentRestaurant, addReservation, minusReservation, getAllRestaurantsApp } = require('../controllers/restaurant.controller')
+const { getAllRestaurantSearch,getVisibleRestaurants,getAllRestaurantsAdresses, addRating, getCurrentRestaurant, addReservation, minusReservation, getAllRestaurantsApp,
+    addReservationToDB,
+    delReservationToDB
+} = require('../controllers/restaurant.controller')
 
 const restRouter = Router()
 
@@ -11,6 +14,8 @@ restRouter.post('/all', getVisibleRestaurants) //katya
 restRouter.get("/:id", getCurrentRestaurant)
 restRouter.post("/:id/rating", addRating)
 restRouter.put("/:id/reservation", addReservation)
+restRouter.put("/:id/newReservation", addReservationToDB)
+restRouter.delete("/:id/delReservation", delReservationToDB)
 restRouter.put("/:id/minus", minusReservation) // типо анти резервация, точнее минус 1
 
 module.exports = restRouter
