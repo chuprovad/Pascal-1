@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { THUNK_addReservationToDB, THUNK_editRestaurant, THUNK_getRestaurantFromDB, THUNK_minusReservationToDB } from "../../redux/actions/restaurant.action";
 import { checkAuth } from "../../redux/actions/userinfo.action";
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
+import PicturesGallery from "../UI/PicturesGallery/PicturesGallery";
 import StarRating from "../UI/StarRating/StarRating";
 
 function PageAdmin() {
@@ -186,7 +187,7 @@ function PageAdmin() {
                   </>
                 )}
               </div>
-
+              <PicturesGallery restaurantDataFromState={restState} />
             </div>
 
           )}
