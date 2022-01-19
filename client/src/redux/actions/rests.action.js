@@ -32,7 +32,7 @@ export const searchAction = (input) => {
 
 // ****** Получение всех ресторанов в области видимости ******
 export const allRestByCoord = (coord) => async (dispatch) => {
-  const response = await axios.post('http://localhost:3002/api/restaurants/all', {
+  const response = await axios.post(`${process.env.REACT_APP_API_URL}/restaurants/all`, {
     coord
   })
 
@@ -44,7 +44,7 @@ export const allRestByCoord = (coord) => async (dispatch) => {
 
 // ****** Получение всех ресторанов ******
 export const THUNK_getAllRestaurantsFromDB = () => async (dispatch) => {
-  const response = await axios.get('http://localhost:3002/api/restaurants/allrests');
+  const response = await axios.get(`${process.env.REACT_APP_API_URL}/restaurants/allrests`);
   // console.log('ACTION All Restaurants ----->', response.data);
 
   dispatch({
