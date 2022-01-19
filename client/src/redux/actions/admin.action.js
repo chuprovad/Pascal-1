@@ -8,7 +8,7 @@ export const getAdmin = (user) => ({
 
 // проверка на авторизацию админа Даша
 export const checkAuthAdmin = () => async (dispatch) => {
-    const response = await fetch('http://localhost:3002/api/auth/checkadmin', {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/checkadmin`, {
         credentials: 'include'
     })
     if (response.status === 200) {

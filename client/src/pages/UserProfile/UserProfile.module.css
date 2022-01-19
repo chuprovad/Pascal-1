@@ -4,6 +4,10 @@
     flex-direction: row;
     align-items: baseline;
     overflow: hidden;
+    /*background-image: url("https://st2.depositphotos.com/3542901/7910/i/950/depositphotos_79108092-stock-photo-customer-at-restaurant-blur-background.jpg");*/
+
 }
 
-/*background-image: url("https://st2.depositphotos.com/3542901/7910/i/950/depositphotos_79108092-stock-photo-customer-at-restaurant-blur-background.jpg");*/
+.text {
+    font-family: "Times New Roman"
+}
