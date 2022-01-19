@@ -93,21 +93,22 @@ const signUpAdmin = async (req, res) => {
         password: hashPassword,
         restaurantId: newRest.id
       })
-      // ------------ // katya
-
+      
+      
       const newImage = await Picture.create({
         path: image,
         restaurantId: newRest.id
       })
-
-      console.log(newImage);
-
+      
+      // console.log(newImage);
+      
+      const fullStreet = street.trim().split(' ').join('+')
 
 
       city.split
 
       console.log('********')
-      const url = encodeURI(`https://geocode-maps.yandex.ru/1.x/?apikey=8e593647-2d9f-4250-8947-44b467394541&geocode=${city},+${street}+улица,+дом+${building}&format=json`)
+      const url = encodeURI(`https://geocode-maps.yandex.ru/1.x/?apikey=8e593647-2d9f-4250-8947-44b467394541&geocode=${city},+${fullStreet}+улица,+дом+${building}&format=json`)
       const response = await axios.get(url)
       const result = await response
       const [longitude, latitude,] = result.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ')
