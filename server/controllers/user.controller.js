@@ -21,8 +21,6 @@ const getReservation = async(req, res) => {
                 as: 'reserv'
 
             },
-        
-
     })
     console.log(currentReservations)
     res.json(currentReservations);

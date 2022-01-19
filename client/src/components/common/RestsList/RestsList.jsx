@@ -25,8 +25,9 @@ const RestsList = () => {
             rests.map(rest => (
               <Link
                 to={`/restaurants/${rest.id}`}
+                key={uuidv4()}
               >
-                <OneRest key={uuidv4()} rest={rest} />
+                <OneRest rest={rest} />
               </Link>
             ))
           }
