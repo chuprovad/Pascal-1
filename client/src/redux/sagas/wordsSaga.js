@@ -3,6 +3,7 @@ import axios from "axios";
 import { call, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects'
 import {setRests} from "../actions/rests.action";
 
+//TODO: исправить или удалить код ниже
 const getRestsFromBack = (rest) => {
     return axios.post('http://localhost:3002/', {rest})
         .then( res => res.data.rests)
