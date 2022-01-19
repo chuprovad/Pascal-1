@@ -46,10 +46,11 @@ const NavBar = () => {
                 onChange={filterRestsHandle}
                 defaultValue={"Choose category"}
                 options={[
-                    {value: 'Bar', name: 'Bar'},
-                    {value: 'Restaurant', name: 'Restaurant'},
-                    {value: 'Pub', name: 'Pub'},
-                    {value: 'Cafe', name: 'Cafe'}
+                    {value: '1', name: 'Bar'},
+                    {value: '2', name: 'Restaurant'},
+                    {value: '3', name: 'Coffee shop'},
+                    {value: '4', name: 'Cafe'},
+                    {value: '5', name: 'Burgers'}
                 ]}
             />
 
