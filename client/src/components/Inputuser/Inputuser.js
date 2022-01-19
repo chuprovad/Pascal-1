@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { signUp } from "../../redux/actions/userinfo.action";
+import classes from './Inputuser.module.css'
 
 function Inputuser({ who }) {
 
@@ -26,23 +27,24 @@ function Inputuser({ who }) {
     if (payload.length) {
       payload = Object.fromEntries(payload)
       dispatch(signUp(payload, navigate))
-      
+
     }
   }
 
   return (
 
-    <div>
+    <div className={classes.form}>
       {who === false && (
         <>
-          <h1>Registr</h1>
-          <input onChange={changeHandler} name="name" value={userSignUp.name} placeholder='name' type="text" />
-          <br />
-          <input onChange={changeHandler} name="email" value={userSignUp.email} placeholder='email' type="email" />
-          <br />
-          <input onChange={changeHandler} name="password" value={userSignUp.password} placeholder='password' type='password' />
-          <br />
-          <button onClick={submitHandler}>Зарегистрироваться как пользователь</button>
+
+          <h1 className={classes.form__title}>Регистрация</h1>
+          <div className={classes.form__box}> 
+            <input onChange={changeHandler} name="name" value={userSignUp.name} placeholder='name' type="text" />
+            <input onChange={changeHandler} name="email" value={userSignUp.email} placeholder='email' type="email" />
+            <input onChange={changeHandler} name="password" value={userSignUp.password} placeholder='password' type='password' />
+          </div>
+        
+          <button className={classes.form__btn} onClick={submitHandler}>Зарегистрироваться</button>
         </>
       )}
     </div>

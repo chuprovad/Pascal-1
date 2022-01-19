@@ -5,6 +5,7 @@ import { checkAuth } from "../../redux/actions/userinfo.action";
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
 import PicturesGallery from "../UI/PicturesGallery/PicturesGallery";
 import StarRating from "../UI/StarRating/StarRating";
+import classes from './PageAdmin.module.css'
 
 function PageAdmin() {
 
@@ -102,7 +103,7 @@ function PageAdmin() {
   const ratingArr = restState?.rating;
   const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
 
-  
+
   function minus() {
     let restaurantId = userState.restaurantId
     dispatch(THUNK_minusReservationToDB({ restaurantId }))
@@ -133,16 +134,6 @@ function PageAdmin() {
 
   return (
 
-
-
-
-
-
-
-
-
-
-
     <div>
       {/* //   {!loader && ( */}
       {/* //     <h1>MINYTY</h1> */}
@@ -152,67 +143,93 @@ function PageAdmin() {
 
         <>
           {edit === false && (
-            <div>
-              <h1>
+            <div className={classes.form}>
+              <h1 className={classes.form__title}>
                 {restState?.title}
               </h1>
-
-              <ul>
-                <li>
-                  Booked tables:
-                  <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
-                </li>
-                <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li>
-                <li>Rating: {restaurantRating}</li> 
-                <li>avarageCoast: {restState?.avarageCoast}</li>
-                <li>Category: {restState?.categoryId}</li>
-                <li>Cuisine: {restState?.cuisineId}</li>
-              </ul>
-              <button onClick={() => {
-                getInput()
-                editD()
-              }} >Редактировать</button>
+              <div className={classes.rest__info}>
 
 
-              <div>
-                <li>BookedTables: {restState?.bookedTables}</li>
-                <button onClick={minus} > - 1</button>
-                <button onClick={onePlus} > + 1</button>
-                <input type="checkbox" onClick={clickChange} />
-                <label >Check me out</label>
-                {newInput && (
-                  <>
-                    <input />
-                    <button> изменить</button>
-                  </>
-                )}
+                <div className={classes.order__info}>
+                  <ul className={classes.ul__info}>
+                    <li>
+                      Booked tables:
+                      <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
+                    </li>
+                    <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li>
+                    <li>Rating: {restaurantRating}</li>
+                    <li>avarageCoast: {restState?.avarageCoast}</li>
+                    <li>Category: {restState?.categoryId}</li>
+                    <li>Cuisine: {restState?.cuisineId}</li>
+                  </ul>
+                  <button className={classes.btn__edit} onClick={() => {
+                    getInput()
+                    editD()
+                  }} >Редактировать</button>
+
+                </div>
+
+
+                <div className={classes.order__info} >
+                  <div className={classes.foto__info}>
+                    <PicturesGallery restaurantDataFromState={restState} />
+                  </div>
+                  <div>BookedTables: {restState?.bookedTables}</div>
+                  <button className={classes.btn__count} onClick={minus} >Cancel</button>
+                  <button className={classes.btn__count} onClick={onePlus} >Add</button>
+                  {/* <input type="checkbox" onClick={clickChange} />
+                  <label >Check me out</label> */}
+                  {newInput && (
+                    <>
+                      <input />
+                      <button> изменить</button>
+                    </>
+                  )}
+                </div>
               </div>
-              <PicturesGallery restaurantDataFromState={restState} />
             </div>
 
           )}
 
           {edit && (
-            <div>
-              <h1>Edit Rest</h1>
-              <input onChange={changeHandler} name="title" value={dataRest?.title} placeholder='title' type="text" />
-              <br />
-              <input onChange={changeHandler} name="avarageCoast" value={dataRest?.avarageCoast} placeholder='avarageCoast' type="text" />
-              <br />
-              <input onChange={changeHandler} name="categoryId" value={dataRest?.categoryId} placeholder='category' type="text" />
-              <br />
-              <input onChange={changeHandler} name="cuisineId" value={dataRest?.cuisineId} placeholder='cuisine' type="text" />
-              <br />
-              <input onChange={changeHandler} name="capacity" value={dataRest?.capacity} placeholder='capacity' type="text" />
-              <br />
-              <input onChange={changeHandler} placeholder='city' name="city" value={dataRest?.city} type='text' />
-              <br />
-              <input onChange={changeHandler} placeholder='street' name="street" value={dataRest?.street} type='text' />
-              <br />
-              <input onChange={changeHandler} placeholder='building' name="building" value={dataRest?.building} type='text' />
-              <br />
-              <button onClick={editRest}>Сохранить изменения</button>
-              <br />
+            <div className={classes.edit}>
+              <h1 className={classes.edit__title}>Edit Rest</h1>
+              <div className={classes.edit__form}>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} name="title" value={dataRest?.title} placeholder='title' type="text" />
+                </div>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} name="avarageCoast" value={dataRest?.avarageCoast} placeholder='avarageCoast' type="text" />
+                </div>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} name="categoryId" value={dataRest?.categoryId} placeholder='category' type="text" />
+                </div>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} name="cuisineId" value={dataRest?.cuisineId} placeholder='cuisine' type="text" />
+                </div>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} name="capacity" value={dataRest?.capacity} placeholder='capacity' type="text" />
+                </div>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} placeholder='city' name="city" value={dataRest?.city} type='text' />
+                </div>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} placeholder='street' name="street" value={dataRest?.street} type='text' />
+                </div>
+                <div className={classes.edit__col}>
+                  <p>fsafadsf</p>
+                  <input onChange={changeHandler} placeholder='building' name="building" value={dataRest?.building} type='text' />
+                </div>
+              <button  onClick={editRest}>Сохранить изменения</button>
+
+              </div>
             </div>
           )}
         </>

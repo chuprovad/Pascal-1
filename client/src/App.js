@@ -18,6 +18,7 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from './pages/Main/Main';
 import PageAdmin from './components/PageAdmin/PageAdmin';
 import { THUNK_getAllRestaurantsFromDB } from './redux/actions/rests.action';
+import MyModel from './components/MyModel/MyModel';
 
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
 
 
   return (
+
+
+
+    
     <div>
       <NavBar />
 
