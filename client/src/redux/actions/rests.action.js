@@ -1,5 +1,6 @@
 import axios from "axios";
 import {GET_ALL_RESTAURANTS_APP, GET_RESTAURANTS_BY_COORD, GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rests.types";
+import {CHANGE} from "../types/search.types";
 
 
 export const getRests = (value) => {
@@ -8,6 +9,7 @@ export const getRests = (value) => {
         payload: value
     }
 }
+
 
 export const setRests = (value) => {
     return {
@@ -32,7 +34,7 @@ export const searchAction = (input) => {
 
 // ****** Получение всех ресторанов в области видимости ******
 export const allRestByCoord = (coord) => async (dispatch) => {
-  const response = await axios.post('http://localhost:3002/api/restaurants/all', {
+  const response = await axios.post(`${process.env.REACT_APP_API_URL}/restaurants/all`, {
     coord
   })
 
@@ -44,7 +46,7 @@ export const allRestByCoord = (coord) => async (dispatch) => {
 
 // ****** Получение всех ресторанов ******
 export const THUNK_getAllRestaurantsFromDB = () => async (dispatch) => {
-  const response = await axios.get('http://localhost:3002/api/restaurants/allrests');
+  const response = await axios.get(`${process.env.REACT_APP_API_URL}/restaurants/allrests`);
   // console.log('ACTION All Restaurants ----->', response.data);
 
   dispatch({

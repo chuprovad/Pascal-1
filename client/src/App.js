@@ -39,9 +39,7 @@ function App() {
     dispatch(THUNK_getAllRestaurantsFromDB())
   }, [])
 
-  //TODO: для Даши - все растораны
-  const allRestsApp = useSelector(state => state.rests)
-  // console.log('APP allRests --->', allRestsApp);
+
 
   return (
     <div>
@@ -50,7 +48,6 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/restaurants/:id' element={<Restaurant />} />
-
         <Route path='/users/:id' element={<UserProfile />} />
         <Route path='/signin' element={<SingIn />} />
         <Route path='/signup' element={<Reg />} />

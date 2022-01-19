@@ -16,7 +16,12 @@ const OneRest = ({ rest}) => {
   const capactityPercantage = Math.round((rest?.bookedTables / rest?.capacity * 100));
 
   const ratingArr = rest?.rating;
-  const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+  let restaurantRating = 0;
+
+  // Если в массиве ratingArr есть элемент, то вычисляем среднее значение
+  if (ratingArr.length > 0) {
+    restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1);
+  }
 
   return (
     <div>

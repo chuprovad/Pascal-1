@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Selector from "../Selector/Selector";
 import Search from "../Search/Search";
-import { useNavigate } from "react-router"
 import classes from './NavBar.module.css'
 import id from './NavBar.module.css'
 import OneRest from "../../common/OneRest/OneRest";
@@ -21,7 +20,7 @@ const NavBar = () => {
 
   const [searchQuery, setSearchQuery] = useState('')
 
-  const filterRests = (value) => {
+  const filterRestsHandle = (value) => {
     console.log(value)
     setOptions(value)
     // setSelectedSort(value)
@@ -31,14 +30,14 @@ const NavBar = () => {
     //        return  el.location = 'Novikov'
     // }))
   }
+  function deleteUser() {
+    dispatch(signOut())
+    // navigate('/')
 
-  const navigate = useNavigate()
-  const all = useSelector(state => state)
-    function deleteUser() {
-      dispatch(signOut())
-      // navigate('/')
-  console.log(all);
-    }
+  }
+
+
+
   return (
 
 
@@ -49,24 +48,22 @@ const NavBar = () => {
 
       <Selector
         value={options}
-        onChange={filterRests}
-        defaultValue={"Choose city"}
+        onChange={filterRestsHandle}
+        defaultValue={"Choose category"}
         options={[
-          { value: 'Moscow', name: 'Moscow' },
-          { value: 'Togliatti', name: 'Togliatti' },
-          { value: 'Tver', name: 'Tver' },
-          { value: 'Samara', name: 'Samara' }
+          { value: '1', name: 'Bar' },
+          { value: '2', name: 'Restaurant' },
+          { value: '3', name: 'Coffee shop' },
+          { value: '4', name: 'Cafe' },
+          { value: '5', name: 'Burgers' }
         ]}
       />
 
       <Search
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
+
       />
-
-
-
-
       {user && (
 
         <>
@@ -92,23 +89,6 @@ const NavBar = () => {
 
         </>
       )}
-
-
-
-      {/* {
-        user ?
-          <>
-            <Link className={classes["other-link"]} to={`/users/${user.id}`}>User Profile</Link>
-            <Link className={classes["other-link"]} to={'/signout'}>Sign out</Link>
-          </>
-          :
-          <>
-
-            <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
-            <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
-
-          </>
-      } */}
     </div>
 
   );

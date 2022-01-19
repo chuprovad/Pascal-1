@@ -26,5 +26,9 @@ console.log(str)
  */
 
 
-const pos = "37.458678 55.796395"
-console.log(pos.split(' '))
+// const pos = "37.458678 55.796395"
+// console.log(pos.split(' '))
+
+const street = 'Соловьиная роща' 
+const trimStreet = street.trim().split(' ').join('+')
+console.log(trimStreet)

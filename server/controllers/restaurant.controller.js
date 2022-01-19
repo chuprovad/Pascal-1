@@ -12,7 +12,6 @@ const getAllRestaurantSearch = async (req, res) => {
 // ****** Получение адресов всех ресторанов ******
 const getAllRestaurantsAdresses = async (req, res) => {
   const aresses = await Adress.findAll({ attributes: ['latitude', 'longitude'], raw: true })
-  // console.log('aresses',aresses)
   res.json({ aresses })
 }
 
@@ -170,8 +169,6 @@ const getVisibleRestaurants = async (req, res) => {
       .map(item => item.score)
   }))
 
-  // console.log(restaurantsByCoordData);
-
   res.json(restaurantsByCoordData)
 }
 
@@ -195,9 +192,24 @@ const addRating = async (req, res) => {
 
 }
 
+const minusReservation = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Restaurant.decrement('bookedTables', { where: { id: Number(id) } });
+
+    const updatedRestaurantData = await Restaurant.findByPk(id, { raw: true });
+
+    res.json(updatedRestaurantData.bookedTables);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 const addReservation = async (req, res) => {
   const { id } = req.params;
+
   try {
     await Restaurant.increment('bookedTables', { where: { id: Number(id) } });
 
@@ -209,6 +221,35 @@ const addReservation = async (req, res) => {
   }
 }
 
+const addReservationToDB = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const newReservation = await Reservation.create({ userId: req.session?.user.id, restaurantId: id });
+    await Restaurant.increment('bookedTables', { where: { id: Number(id) } });
+
+    const updatedRestaurantData = await Restaurant.findByPk(id, { raw: true });
+
+    res.json(updatedRestaurantData.bookedTables);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+const delReservationToDB = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Reservation.destroy(
+        {where: {userId: req.session?.user.id  , restaurantId: id}}
+    )
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
 module.exports = {
   getAllRestaurantSearch,
   getCurrentRestaurant,
@@ -216,5 +257,8 @@ module.exports = {
   addReservation,
   getAllRestaurantsAdresses,
   getVisibleRestaurants,
-  getAllRestaurantsApp
+  minusReservation,
+  getAllRestaurantsApp,
+  addReservationToDB,
+  delReservationToDB
 }

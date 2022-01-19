@@ -16,9 +16,10 @@ function Admin() {
     capacity: '',
     city: '',
     street: '',
-    building: ''
+    building: '',
+    image: '',
   })
-  
+console.log(userAdminSignUp);
   const changeHandler = (e) => {
     setUserAdminSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
@@ -67,6 +68,17 @@ function Admin() {
       <br />
       <input onChange={changeHandler} placeholder='building' name="building" value={userAdminSignUp.building} type='text' />
       <br />
+      <div className="row mt-5">
+        <div className="col-12">
+          <form>
+            <div className="form-group">
+              <label htmlFor="uploadInput">Загрузка файлов</label>
+              <input type="file" onChange={changeHandler} className="form-control-file" name="image" value={userAdminSignUp.image} id="uploadInput"/>
+            </div>
+          </form>
+          <button type="button" className="btn btn-outline-info" id="uploadButton">Загрузить!</button>
+        </div>
+      </div>
       <button onClick={submitHandler} >Зарегистрироваться</button>
     </div>
   )
