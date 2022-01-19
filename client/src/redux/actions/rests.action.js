@@ -1,5 +1,6 @@
 import axios from "axios";
 import {GET_ALL_RESTAURANTS_APP, GET_RESTAURANTS_BY_COORD, GET_RESTS, SEARCH_OPTION, SELECT_OPTION, SET_RESTS} from "../types/rests.types";
+import {CHANGE} from "../types/search.types";
 
 
 export const getRests = (value) => {
@@ -8,6 +9,7 @@ export const getRests = (value) => {
         payload: value
     }
 }
+
 
 export const setRests = (value) => {
     return {
