@@ -1,5 +1,5 @@
 .on {
-  color: rgb(241, 86, 13);
+  color: rgb(236, 3, 3);
 }
 .off {
   color: #ccc;
@@ -9,10 +9,8 @@
   font-size: 24px;
 }
 
-
 .stars{
   width: 200px;
   display: flex;
- justify-content: flex-start;
-
+  justify-content: flex-start;
 }
