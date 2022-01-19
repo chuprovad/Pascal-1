@@ -11,15 +11,10 @@ const { userRouter } = require("./routes/user.router");
 
 const PORT = process.env.PORT ?? 3002;
 
-//
-// require('dotenv').config();
-
 const fileUpload = require('express-fileupload');
 // const cloudinary = require('cloudinary').v2; // get api key https://cloudinary.com/users/register/free and add to .env CLOUDINARY_URL=cloudinary://my_key:my_secret@my_cloud_name
 
 // const app = express();
-
-
 
 // app.use(express.static(`${process.env.PWD}/public`));
 app.use(fileUpload());
