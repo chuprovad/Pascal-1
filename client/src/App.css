@@ -1,3 +1,4 @@
+/* CHECKKKKKKKKK */
 /* ------- Обнуление стилей -------- */
 
 * {
@@ -29,9 +30,13 @@ html, body {
 }
 
 .App {
-  background-image:
+  overflow: hidden;
+}
+
+.main-back {
+  background:
     url(https://cdn.pixabay.com/photo/2016/07/30/20/52/vintage-1557993_1280.jpg);
-  height: inherit;
+    min-height: 813px;
 }
 
 /* ------- main-page -------- */
@@ -69,6 +74,7 @@ input{
   padding: 5px;
   color: white;
   font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.45);
 }
 
 .rest-card:hover {
@@ -85,7 +91,3 @@ input{
   border-radius: 7px;
 }
 
-/* ------- XXX something -------- */
-
-
-/* ------- XXX something -------- */
