@@ -46,9 +46,6 @@ function Admin() {
   }
 
 
-
-
-
   const dispatch = useDispatch()
   let navigate = useNavigate()
 
@@ -67,13 +64,13 @@ function Admin() {
 
   return (
     <div className={classes.form}>
-      <h1 className={classes.form__title}>Данные пользователя</h1>
+      <h1 className={classes.form__title}>USER &nbsp;INFORMATION</h1>
       <div className={classes.form__box}>
         <input onChange={changeHandler} name="name" value={userAdminSignUp.name} placeholder='name' type="text" />
         <input onChange={changeHandler} name="email" value={userAdminSignUp.email} placeholder='email' type="email" />
         <input onChange={changeHandler} name="password" value={userAdminSignUp.password} placeholder='password' type='password' />
       </div>
-      <h1 className={classes.form__title}>Информация о вашем ресторане</h1>
+      <h1 className={classes.form__title}>Information &nbsp;about &nbsp;your &nbsp;restaurant</h1>
       <div className={classes.form__row}>
         <div className={classes.form__col}>
           <input onChange={changeHandler} placeholder='title' name="title" value={userAdminSignUp.title} type="text" />

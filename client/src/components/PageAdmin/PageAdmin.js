@@ -240,8 +240,8 @@ function PageAdmin() {
               {/*  */}
               <div>
                 <form onSubmit={handleSubmit} >
-                  <h2>Тема</h2>
-                  <label htmlFor="file">Добавить фото</label>
+                  <h2>Тheme???</h2>
+                  <label htmlFor="file">Add photo</label>
                   <input
                     type="file"
                     name="file"
@@ -250,7 +250,7 @@ function PageAdmin() {
                     onChange={imageHandler}
                   />
                   <button type="submit">
-                    Отправить
+                    Send
                   </button>
                 </form>
               </div>

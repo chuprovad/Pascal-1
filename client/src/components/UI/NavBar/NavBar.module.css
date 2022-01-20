@@ -37,17 +37,17 @@ a:hover{
 .other-link {
   display: block;
   color: white;
-  text-align: end;
-  padding: 14px 16px;
+  /* text-align: end; */
+  padding: 7px;
   text-decoration: none;
   font-size: 20px;
   /* border: 1px solid black; */
-  border-radius: 3px;
+  border-radius: 7px;
   background-color: rgba(252, 122, 0, 0.5);
-   box-shadow: 0 10px 25px rgb(0 0 0 / 0.7);
+  box-shadow: 0 10px 25px rgb(0 0 0 / 0.7);
   margin-right: 20px;
   width: 150px;
-  height: 60px;
+  height: 45px;
   text-align: center;
 }
 

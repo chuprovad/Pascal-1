@@ -43,8 +43,10 @@ function Inputuser({ who }) {
             <input onChange={changeHandler} name="email" value={userSignUp.email} placeholder='email' type="email" />
             <input onChange={changeHandler} name="password" value={userSignUp.password} placeholder='password' type='password' />
           </div>
-        
-          <button className={classes.form__btn} onClick={submitHandler}>Sign up</button>
+
+          <div className={classes.form__btnWrapper}>
+            <button className={classes.form__btn} onClick={submitHandler}>Sign up</button>
+          </div>
         </>
       )}
     </div>
