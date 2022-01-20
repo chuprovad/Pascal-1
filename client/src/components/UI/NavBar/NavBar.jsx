@@ -18,16 +18,20 @@ const NavBar = () => {
   const [options, setOptions] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const filterRestsHandle = (value) => {
-    console.log(value)
-    setOptions(value)
-
-  }
+  // const filterRestsHandle = (value) => {
+  //   console.log(value)
+  //   setOptions(value)
+  //
+  // }
   function deleteUser() {
     dispatch(signOut())
     // navigate('/')
 
   }
+
+  // const changeCategory = () => {
+  //     console.log(options)
+  // }
 
   return (
     <div className={classes["navbar"]}>
@@ -37,14 +41,15 @@ const NavBar = () => {
       <Selector
         className={classes['navbar__select']}
         value={options}
-        onChange={filterRestsHandle}
+        // onChange={changeCategory}
         defaultValue={"Choose category"}
         options={[
           { value: '1', name: 'Bar' },
           { value: '2', name: 'Restaurant' },
           { value: '3', name: 'Coffee shop' },
           { value: '4', name: 'Cafe' },
-          { value: '5', name: 'Burgers' }
+          { value: '5', name: 'Burgers' },
+            { value: '6', name: 'All Restaurants' }
         ]}
       />
 
