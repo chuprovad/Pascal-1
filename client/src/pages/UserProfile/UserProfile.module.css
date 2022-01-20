@@ -1,13 +1,26 @@
 .container {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: baseline;
-    overflow: hidden;
-    /*background-image: url("https://st2.depositphotos.com/3542901/7910/i/950/depositphotos_79108092-stock-photo-customer-at-restaurant-blur-background.jpg");*/
-
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: baseline;
+  overflow: hidden;
 }
 
 .text {
     font-family: "Times New Roman"
+}
+
+.user-card {
+  border: 2px solid rgb(255, 173, 126);
+  border-radius: 7px;
+  margin-bottom: 10px;
+  padding: 5px;
+  color: white;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px #dfb5a9;
 }

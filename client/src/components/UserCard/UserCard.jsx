@@ -26,7 +26,7 @@ const UserCard = ({userDataFromState}) => {
     }
 
     return (
-        <div>
+      <div className={classes['user-card']}>
             <h1>
                 We are happy to welcome you here, {userDataFromState?.name}!
             </h1>
