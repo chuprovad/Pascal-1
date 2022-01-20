@@ -101,7 +101,11 @@ function PageAdmin() {
   // для изменения брони
   console.log(restState?.bookedTables);
   const ratingArr = restState?.rating;
-  const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+  let restaurantRating = 0;
+  if (ratingArr?.length > 0) {
+    restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+  }
+
 
 
   function minus() {
@@ -154,13 +158,13 @@ function PageAdmin() {
                   <ul className={classes.ul__info}>
                     <li>
                       Booked tables:
-                      <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
+                      <CapacityProgressBar bgcolor={getProgressBarColor(Number(capactityPercantage))} completed={Number(capactityPercantage)} />
                     </li>
-                    <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li>
+                    <li><StarRating restaurantRating={Math.round(Number(restaurantRating))} /></li>
                     <li>Rating: {restaurantRating}</li>
-                    <li>avarageCoast: {restState?.avarageCoast}</li>
-                    <li>Category: {restState?.categoryId}</li>
-                    <li>Cuisine: {restState?.cuisineId}</li>
+                    <li>Average cost: {restState?.avarageCoast}</li>
+                    <li>Category: {restState?.category}</li>
+                    <li>Cuisine: {restState?.cuisine}</li>
                   </ul>
                   <button
                     className={classes.btn__edit} onClick={() => {
@@ -178,15 +182,15 @@ function PageAdmin() {
                   <div className={classes.foto__info}>
                     <PicturesGallery restaurantDataFromState={restState} />
                   </div>
-                  <div>BookedTables: {restState?.bookedTables}</div>
-                  <button className={classes.btn__count} onClick={minus} >Cancel</button>
+                  <div>Booked Tables: {restState?.bookedTables}</div>
+                  <button className={classes.btn__count} onClick={minus} >Remove</button>
                   <button className={classes.btn__count} onClick={onePlus} >Add</button>
                   {/* <input type="checkbox" onClick={clickChange} />
                   <label >Check me out</label> */}
                   {newInput && (
                     <>
                       <input />
-                      <button> Edit</button>
+                      <button>Edit</button>
                     </>
                   )}
                 </div>
