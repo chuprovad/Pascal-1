@@ -32,8 +32,10 @@ const Map = () => {
       center: [55.7066426, 37.5973765],
       zoom: 10,
       controls: ['zoomControl'],
-      behaviors: ['drag', 'scrollZoom']
+      behaviors: ['drag', 'scrollZoom'],
+      color: "red"
     })
+    
     // Создадим объекты на основе JSON-описания геометрий.
     let objects = ymaps?.geoQuery(coordinates).addToMap(myMap)
 
@@ -55,8 +57,8 @@ const Map = () => {
   }
 
   return (
-    <div className="main__map">
-      <div style={{ width: '600px', height: '600px' }} id="map" />
+    <div>
+      <div style={{ width: '500px', height: '500px' }} id="map" />
     </div>
   )
 }

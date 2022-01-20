@@ -7,52 +7,36 @@
   в значениях, которые вы указываете в ширине и высоте элемента */
   box-sizing: border-box;
 }
-
 p {
   margin-bottom: 0;
 }
-
 a {
   text-decoration: none; /* Убираем подчеркивание у ссылок */
 }
-
 ul, li {
   list-style: none; /* Убираем оформление списков */
 }
 
-html, body {
-  height: 100%;
-}
-
-#root {
-  height: inherit;
-}
-
-.App {
-  background-image:
-    url(https://cdn.pixabay.com/photo/2016/07/30/20/52/vintage-1557993_1280.jpg);
-  height: inherit;
-}
 
 /* ------- main-page -------- */
 
 .main-page__container {
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
 }
 
-button {
-  min-width: 120px;
+button{
+  min-width: 20px;
   width: 100%;
   outline: 0;
   /* border: 2px solid teal; */
   border: 0;
   border-radius: 5px;
-  background-color: #ffe5b4;
+  background-color: rgb(116, 173, 173);
   padding: 5px 5px;
-  color: black; 
+color: #fff; 
 }
 
 input{
@@ -61,20 +45,8 @@ input{
   border: 0;
   border-bottom: 1px solid #333;
 }
-/* ------- RESTS LIST -------- */
-.rest-card {
-  border: 2px solid rgb(255, 173, 126);
-  border-radius: 7px;
-  margin-bottom: 10px;
-  padding: 5px;
-  color: white;
-  font-weight: 500;
-}
+/* ------- XXX page -------- */
 
-.rest-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 40px #dfb5a9;
-}
 
 .main__map {
   margin-top: 37px;
@@ -89,6 +61,7 @@ input{
 
 
 /* ------- XXX something -------- */
+
 
 
 /* ------- XXX something -------- */

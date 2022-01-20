@@ -129,7 +129,7 @@ function PageAdmin() {
 
   return (
 
-    <div>
+    <div className={classes.back__v}>
       {/* //   {!loader && ( */}
       {/* //     <h1>MINYTY</h1> */}
       {/* //   )} */}
@@ -157,14 +157,10 @@ function PageAdmin() {
                     <li>Category: {restState?.categoryId}</li>
                     <li>Cuisine: {restState?.cuisineId}</li>
                   </ul>
-                  <button
-                    className={classes.btn__edit} onClick={() => {
-                      getInput()
-                      editD()
-                    }}
-                  >
-                    Edit
-                  </button>
+                  <button className={classes.btn__edit} onClick={() => {
+                    getInput()
+                    editD()
+                  }} >Редактировать</button>
 
                 </div>
                 <ToastContainer position="top-right"
@@ -190,7 +186,7 @@ function PageAdmin() {
                   {newInput && (
                     <>
                       <input />
-                      <button> Edit</button>
+                      <button> изменить</button>
                     </>
                   )}
                 </div>
@@ -204,38 +200,38 @@ function PageAdmin() {
               <h1 className={classes.edit__title}>Edit Rest</h1>
               <div className={classes.edit__form}>
                 <div className={classes.edit__col}>
-                  <p>title</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} name="title" value={dataRest?.title} placeholder='title' type="text" />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>avarageCoast</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} name="avarageCoast" value={dataRest?.avarageCoast} placeholder='avarageCoast' type="text" />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>category</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} name="categoryId" value={dataRest?.categoryId} placeholder='category' type="text" />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>cuisine</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} name="cuisineId" value={dataRest?.cuisineId} placeholder='cuisine' type="text" />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>capacity</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} name="capacity" value={dataRest?.capacity} placeholder='capacity' type="text" />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>city</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} placeholder='city' name="city" value={dataRest?.city} type='text' />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>street</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} placeholder='street' name="street" value={dataRest?.street} type='text' />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>building</p>
+                  <p>fsafadsf</p>
                   <input onChange={changeHandler} placeholder='building' name="building" value={dataRest?.building} type='text' />
                 </div>
-              <button  onClick={editRest}>Save changes</button>
+                <button onClick={editRest}>Сохранить изменения</button>
 
               </div>
             </div>

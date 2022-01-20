@@ -16,8 +16,7 @@ const UserCard = ({userDataFromState}) => {
     const reservation = useSelector(state => state.reservation)
 
     const dispatch = useDispatch()
-
-    const notify = () => toast.info("Reservation canceled!");  
+    const notify = () => toast.success("Add new reservation"); 
 
     const deleteReservationHandler = (e ,id) => {
         e.preventDefault()

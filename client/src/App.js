@@ -43,7 +43,11 @@ function App() {
 
 
   return (
-    <div className='App'>
+
+
+
+    
+    <div>
       <NavBar />
 
       <Routes>

@@ -2,30 +2,32 @@
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    align-items: center;
-    background-image: url("https://cdn.pixabay.com/photo/2017/04/29/20/57/pub-2271549_1280.jpg");
+    align-items: baseline;
+    background-image: url("https://media.istockphoto.com/photos/freedom-chains-that-transform-into-birds-charge-concept-picture-id1322104312?b=1&k=20&m=1322104312&s=170667a&w=0&h=VQyPkFkMKmo0e4ixjhiOLjiRs_ZiyKR_4SAsagQQdkk=");
     overflow: hidden;
     margin-bottom: 30px;
-    height: 130px;
 }
+
+
 
 .home-link {
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 26px;
     font-family: fantasy;
-    font-weight: 900;
-    letter-spacing: 1px;
 }
 
 .other-link {
     display: block;
-    color: white;
+    color: black;
     text-align: end;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 20px;
+
 }
+
+

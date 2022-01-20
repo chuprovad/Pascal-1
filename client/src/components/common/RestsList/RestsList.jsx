@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import {useEffect} from "react";
 import {getAllRests, getRests, THUNK_getAllRestaurantsFromDB} from "../../../redux/actions/rests.action";
 import { Link } from "react-router-dom";
-import classes from './RestsList.module.css'
 
 const RestsList = () => {
 
@@ -20,8 +19,8 @@ const RestsList = () => {
     }, [search])
 
     return (
-        <div className={classes.box}>
-          <h2 className={classes.listTitle}>List of restaurants on the map</h2>
+        <div>
+          <h2>List of restaurants on the map</h2>
           {rests &&
             rests.map(rest => (
               <Link
