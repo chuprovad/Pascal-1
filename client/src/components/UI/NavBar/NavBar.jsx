@@ -40,19 +40,20 @@ const NavBar = () => {
       <Link className={classes["home-link"]} to={'/'}>Pascal</Link>
 
       <div className={classes.wrapper_filters}>
-        <Selector
-          className={classes['navbar__select']}
-          value={options}
-          onChange={filterRestsHandle}
-          defaultValue={"Choose category"}
-          options={[
-            { value: '1', name: 'Bar' },
-            { value: '2', name: 'Restaurant' },
-            { value: '3', name: 'Coffee shop' },
-            { value: '4', name: 'Cafe' },
-            { value: '5', name: 'Burgers' }
-          ]}
-        />
+      <Selector
+        className={classes['navbar__select']}
+        value={options}
+        // onChange={changeCategory}
+        defaultValue={"Choose category"}
+        options={[
+          { value: '1', name: 'Bar' },
+          { value: '2', name: 'Restaurant' },
+          { value: '3', name: 'Coffee shop' },
+          { value: '4', name: 'Cafe' },
+          { value: '5', name: 'Burgers' },
+            { value: '6', name: 'All Restaurants' }
+        ]}
+      />
 
         <Search
           value={searchQuery}

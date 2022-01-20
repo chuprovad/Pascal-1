@@ -41,6 +41,7 @@ export default function RestaurantCard({ restaurantDataFromState }) {
         <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li> 
         <li>Rating: {restaurantRating}</li> 
         <li>Category: {restaurantDataFromState?.category}</li>
+          <li>Average cost: {restaurantDataFromState?.avarageCoast}</li>
         <li>Address: {restaurantDataFromState?.address}</li>
         <li>Cuisine: {restaurantDataFromState?.cuisine}</li>
       </ul>

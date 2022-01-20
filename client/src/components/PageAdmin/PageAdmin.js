@@ -87,7 +87,8 @@ function PageAdmin() {
     e.preventDefault()
     dispatch(THUNK_editRestaurant (dataRest, userState.restaurantId))
       setEdit(false)
-  }
+    }
+
   console.log(edit);
 
   function clickChange() {
@@ -101,21 +102,21 @@ function PageAdmin() {
   const ratingArr = restState?.rating;
   const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
 
-  const notify1 = () => toast.warn("Reservation canceled!");  
-  
+  const notify1 = () => toast.warn("Reservation canceled!");
+
   function minus() {
     let restaurantId = userState.restaurantId
     dispatch(THUNK_minusReservationToDB({ restaurantId }))
     notify1()
   }
-  
-  const notify = () => toast.success("Add new reservation");  
-  
+
+  const notify = () => toast.success("Add new reservation");
+
   function onePlus() {
     let restaurantId = userState.restaurantId
     console.log(restaurantId);
     dispatch(THUNK_addReservationToDBAdmin({ restaurantId }))
-    notify() 
+    notify()
   }
 
   function editD() {
@@ -162,15 +163,7 @@ function PageAdmin() {
 
   return (
 
-    <div>
-
-
-
-
-
-
-
-
+    <div className={classes.back__v}>
       {/* //   {!loader && ( */}
       {/* //     <h1>MINYTY</h1> */}
       {/* //   )} */}
@@ -180,26 +173,26 @@ function PageAdmin() {
         <>
           {edit === false && (
             <div className={classes.form}>
-
               <h1 className={classes.form__title}>
                 {restState?.title}
               </h1>
               <div className={classes.rest__info}>
+
+
                 <div className={classes.order__info}>
                   <ul className={classes.ul__info}>
                     <li>
                       Booked tables:
-                      <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
+                      <CapacityProgressBar bgcolor={getProgressBarColor(Number(capactityPercantage))} completed={Number(capactityPercantage)} />
                     </li>
-                    <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li>
+                    <li><StarRating restaurantRating={Math.round(Number(restaurantRating))} /></li>
                     <li>Rating: {restaurantRating}</li>
-                    <li>avarageCoast: {restState?.avarageCoast}</li>
-                    <li>Category: {restState?.categoryId}</li>
-                    <li>Cuisine: {restState?.cuisineId}</li>
+                    <li>Average cost: {restState?.avarageCoast}</li>
+                    <li>Category: {restState?.category}</li>
+                    <li>Cuisine: {restState?.cuisine}</li>
                     <li>City: {restState["Adress.city"]}</li>
                     <li>Street: {restState["Adress.street"]}</li>
                     <li>Building: {restState["Adress.building"]}</li>
-                    <li>Cuisine: {restState?.cuisineId}</li>
                   </ul>
                   <button
                     className={classes.btn__edit} onClick={() => {
@@ -303,7 +296,11 @@ function PageAdmin() {
                   <p>building</p>
                   <input onChange={changeHandler} placeholder='building' name="building" value={dataRest?.building} type='text' />
                 </div>
+
                 <button onClick={editRest}>Save changes</button>
+
+              
+
 
               </div>
             </div>
