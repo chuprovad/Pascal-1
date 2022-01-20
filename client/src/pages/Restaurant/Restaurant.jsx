@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 
 export default function Restaurant() {
   const dispatch = useDispatch();
+    const user = useSelector(state => state.userInfo)
 
   // Получаем ID ресторана из параметров URL
   const params = useParams();
@@ -35,9 +36,11 @@ export default function Restaurant() {
   return (
     <div className={classes.container}>
         <RestaurantCard restaurantDataFromState={restaurantDataFromState}/>
-
+        {user && (
         <ButtonCreate type="button" onClick={()=> setModal(true)}>Book a table</ButtonCreate>
-        
+
+        )}
+
         <BookingModal visible={modal} setVisible={setModal}>
           <RestaurantForm bookTableHandler={bookTableHandler} restaurantId={restaurantId}/>
         </BookingModal>
