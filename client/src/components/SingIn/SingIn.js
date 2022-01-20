@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import { signIn } from "../../redux/actions/userinfo.action"
+import MyModel from "../MyModel/MyModel"
+import classes from './Singin.module.css'
 
 function SingIn() {
 const allState = useSelector(state => state)
@@ -26,15 +28,24 @@ const allState = useSelector(state => state)
       dispatch(signIn(payload, navigate))
     }
   }
-
+  const [modal, setModal] = useState(true)
   return (
-    <div>
-      <input onChange={changeHandler} name="email" value={inputValue.email} placeholder='email' type="email" />
-      <br />
-      <input onChange={changeHandler} name="password" value={inputValue.password} placeholder='password' type='password' />
-      <br />
-      <button onClick={submitHandler}>войти</button>
-    </div>
+
+   <div>
+   <MyModel visible={modal} setVisible={setModal}>
+      <div className={classes.form}>
+        <h1 className={classes.form__title}>Sign in</h1>
+        <div className={classes.form__box}>
+          <input onChange={changeHandler} name="email" value={inputValue.email} placeholder='email' type="email" />
+          <input onChange={changeHandler} name="password" value={inputValue.password} placeholder='password' type='password' />
+        </div>
+        <button className={classes.form__btn} onClick={submitHandler}>Sign in</button>
+      </div>
+
+    </MyModel>
+
+
+   </div>
   )
 }
 

@@ -49,13 +49,18 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
   })
   if (response.status === 200) {
     const user = await response.json()
-    console.log(user);
+    console.log('saasdasdasd',user.isAdmin);
     // if (user.isAdmin) {
     //   dispatch(getAdmin(user))
     // } else {
+    if (user.isAdmin) {
+      dispatch(getUserInfo(user))
+      navigate(`/admin/${user.id}`)
+    } else {
 
-    dispatch(getUserInfo(user))
-    navigate(`/users/${user.id}`)
+      dispatch(getUserInfo(user))
+      navigate(`/users/${user.id}`)
+    }
   } else {
     navigate('/signup')
   }

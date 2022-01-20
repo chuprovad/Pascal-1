@@ -22,20 +22,21 @@ export default function StarRating({ restaurantRating }) {
 
   return (
     <div className={classes.stars}>
+      
+
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (
-          <button
-            type="button"
+          <div
             key={index}
             style={{ backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer' }}
-            className={index <= (hover || restaurantRating) ? classes.on : classes.off}
+            className={index <= (hover || restaurantRating) ? classes.on : classes.off }
             onClick={() => setRatingHandler(index)}
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(restaurantRating)}
           >
             <span className={classes.star}>&#9733;</span>
-          </button>
+          </div>
         );
       })}
     </div>

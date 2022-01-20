@@ -10,15 +10,19 @@ import {
 } from "../../redux/actions/reservation.action";
 import {v4 as uuidv4} from "uuid";
 import classes from "../../pages/UserProfile/UserProfile.module.css";
+import { ToastContainer, toast } from 'react-toastify';
 
 const UserCard = ({userDataFromState}) => {
     const reservation = useSelector(state => state.reservation)
 
     const dispatch = useDispatch()
 
+    const notify = () => toast.info("Reservation canceled!");  
+
     const deleteReservationHandler = (e ,id) => {
         e.preventDefault()
         dispatch(THUNK_deleteReservationInfoFromDB(id))
+        setTimeout(() => notify(), 1500)
     }
 
     return (
@@ -41,6 +45,15 @@ const UserCard = ({userDataFromState}) => {
                         <button type="button" onClick={ (e) => deleteReservationHandler(e, el.id)}>Cancel your reservation</button>
                     </li> )}
             </ul>
+            <ToastContainer position="top-right"
+              theme="dark"
+              autoClose={5000}
+              hideProgressBar={true}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover/>
         </div>
     );
 };

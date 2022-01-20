@@ -54,10 +54,24 @@ export const THUNK_minusReservationToDB = (payload) => async (dispatch) => {
 
 
 
+export const THUNK_addReservationToDBAdmin = (payload) => async (dispatch) => {
+  const { restaurantId } = payload;
+  console.log('PPPPP',payload);
+  console.log('PPPPP2',restaurantId);
+  const response = await axios.put(`${process.env.REACT_APP_API_URL}/restaurants/${Number(restaurantId)}/reservation`)
+  // const response = await axios.put(`${process.env.REACT_APP_API_URL}/restaurants/${Number(restaurantId)}/newReservation`,
+  //     {},
+  //     {
+  //       withCredentials: true
+  //     })
+  const updatedBookedTablesFromDB = response.data;
+  dispatch(addReservation(updatedBookedTablesFromDB));
+}
+
 export const THUNK_addReservationToDB = (payload) => async (dispatch) => {
   const { restaurantId } = payload;
-  console.log(payload);
-  console.log(restaurantId);
+  console.log('PPPPP',payload);
+  console.log('PPPPP2',restaurantId);
   // const response = await axios.put(`${process.env.REACT_APP_API_URL}/restaurants/${Number(restaurantId)}/reservation`)
   const response = await axios.put(`${process.env.REACT_APP_API_URL}/restaurants/${Number(restaurantId)}/newReservation`,
       {},
