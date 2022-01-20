@@ -71,9 +71,9 @@ const signOut = async (req, res) => {
 }
 
 const signUpAdmin = async (req, res) => {
-  const { name, email, password, title, categoryId, cuisineId, avarageCoast, capacity, city, street, building, image } = req.body
+  const { name, email, password, title, categoryId, cuisineId, avarageCoast, capacity, city, street, building } = req.body
   console.log('lol');
-  console.log(name, email, password, title, categoryId, cuisineId, avarageCoast, capacity, city, street, building, image);
+  console.log(name, email, password, title, categoryId, cuisineId, avarageCoast, capacity, city, street, building);
   if (name && email && password) {
     try {
       const newRest = await Restaurant.create({
@@ -97,10 +97,6 @@ const signUpAdmin = async (req, res) => {
       })
       
       
-      const newImage = await Picture.create({
-        path: image,
-        restaurantId: newRest.id
-      })
       
       // console.log(newImage);
       
