@@ -16,19 +16,12 @@ const NavBar = () => {
   const [rests, setRests] = useState()
 
   const [options, setOptions] = useState('')
-
-
   const [searchQuery, setSearchQuery] = useState('')
 
   const filterRestsHandle = (value) => {
     console.log(value)
     setOptions(value)
-    // setSelectedSort(value)
-    // setSearchQuery('')
-    // console.log({searchQuery,selectedSort})
-    //      setRests([...rests].filter(el => {
-    //        return  el.location = 'Novikov'
-    // }))
+
   }
   function deleteUser() {
     dispatch(signOut())
@@ -36,17 +29,13 @@ const NavBar = () => {
 
   }
 
-
-
   return (
-
-
     <div className={classes["navbar"]}>
 
       <Link className={classes["home-link"]} to={'/'}>Pascal</Link>
 
-
       <Selector
+        className={classes['navbar__select']}
         value={options}
         onChange={filterRestsHandle}
         defaultValue={"Choose category"}
@@ -62,10 +51,8 @@ const NavBar = () => {
       <Search
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
-
       />
       {user && (
-
         <>
           {user.isAdmin && (
             <Link className={classes["other-link"]} to={`/admin/${user.id}`}>Admin Profile</Link>
@@ -77,13 +64,10 @@ const NavBar = () => {
           )}
           <Link onClick={deleteUser} className={classes["other-link"]} to={'/'}>Sign out</Link>
         </>
-
-
       )}
 
       {!user && (
         <>
-
           <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
           <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
 
@@ -97,9 +81,3 @@ const NavBar = () => {
 // add /auth inside to in the begining
 
 export default NavBar;
-
-// <button onClick={getAllRests}  ></button>
-// <div>
-//     {rests && rests.map(rest => <OneRest id={rest.id} title={rest.title} />
-//     )}
-// </div>

@@ -8,9 +8,6 @@ const Main = () => {
 
   const [modal, setModal] = useState(true)
 
-
-
-
   return (
     <div className="main-page__container">
       <RestsList />

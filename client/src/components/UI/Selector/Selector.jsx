@@ -21,7 +21,7 @@ const dispatch = useDispatch()
                     className={classes["selector"]}
             onChange={onChange}
             >
-                <option disabled value={defaultValue}>{defaultValue}</option>
+                <option selected value={defaultValue}>{defaultValue}</option>
                 {options.map(option =>
                 <option key={option.value} value={option.value}>{option.name}</option>
                     )}
