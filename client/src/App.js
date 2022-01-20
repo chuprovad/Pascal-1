@@ -20,7 +20,6 @@ import PageAdmin from './components/PageAdmin/PageAdmin';
 import { THUNK_getAllRestaurantsFromDB } from './redux/actions/rests.action';
 import MyModel from './components/MyModel/MyModel';
 
-
 function App() {
 
   function RequireAuthUser({ children, redirectTo }) {
@@ -39,8 +38,6 @@ function App() {
     // ****** Получение всех ресторанов ******
     dispatch(THUNK_getAllRestaurantsFromDB())
   }, [])
-
-
 
   return (
     <div className='App'>
