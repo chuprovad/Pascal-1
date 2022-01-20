@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useRef, useState } from "react"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { signUpAdmin } from "../../redux/actions/userinfo.action";
@@ -6,6 +6,8 @@ import classes from './Admin.module.css'
 import Selector from "../UI/Selector/Selector";
 
 function Admin() {
+
+  const upload = useRef()
 
   const [options, setOptions] = useState([
     { value: '1', name: 'Bar' },
@@ -30,26 +32,33 @@ function Admin() {
     email: '',
     password: '',
     title: '',
-    category: '',
-    cuisine: '',
+    categoryId: "1",
+    cuisineId: "1",
     avarageCoast: '',
     capacity: '',
     city: '',
     street: '',
-    building: '',
-    image: '',
+    building: ''
   })
-// console.log(userAdminSignUp);
   const changeHandler = (e) => {
+    console.log('gdr')
     setUserAdminSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
+
+
+
+
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
 
   const submitHandler = (e) => {
+
     e.preventDefault()
+
     let payload = Object.entries(userAdminSignUp).filter((el) => el[1] ? el[1].trim() : el[1])
+    console.log(userAdminSignUp)
+    console.log(payload)
     if (payload.length) {
       payload = Object.fromEntries(payload)
       dispatch(signUpAdmin(payload, navigate))
@@ -68,7 +77,7 @@ function Admin() {
       <div className={classes.form__row}>
         <div className={classes.form__col}>
           <input onChange={changeHandler} placeholder='title' name="title" value={userAdminSignUp.title} type="text" />
-          {/*<input onChange={changeHandler} placeholder='category' name="categoryId" value={userAdminSignUp.categoryId} type='text' />*/}
+          {/*<input onChange={changeHandler} placeholder='category' name="categoryI" value={userAdminSignUp.categoryId} type='text' />*/}
 
           {/*<input onChange={changeHandler} placeholder='cuisine' name="cuisineId" value={userAdminSignUp.cuisineId} type='text' />*/}
           <select value={userAdminSignUp.categoryId ? userAdminSignUp.categoryId : 1}
@@ -90,19 +99,12 @@ function Admin() {
           <input onChange={changeHandler} placeholder='average cost' name="avarageCoast" value={userAdminSignUp.avarageCoast} type='number' />
         </div>
         <div className={classes.form__col}>
-          <input onChange={changeHandler} placeholder='capacity' name="capacity" value={userAdminSignUp.capacity} type='text' />
+          <input onChange={changeHandler} placeholder='capacity' name="capacity" value={userAdminSignUp.capaciti} type='text' />
           <input onChange={changeHandler} placeholder='city' name="city" value={userAdminSignUp.city} type='text' />
           <input onChange={changeHandler} placeholder='street' name="street" value={userAdminSignUp.street} type='text' />
           <input onChange={changeHandler} placeholder='building' name="building" value={userAdminSignUp.building} type='text' />
         </div>
-        <div className={classes.form__col}>
-          <form>
-            <div className={classes.form__group}>
-              <label htmlFor="uploadInput">File uploading</label>
-              <input type="file" onChange={changeHandler} className="form-control-file" name="image" value={userAdminSignUp.image} id="uploadInput" />
-            </div>
-          </form>
-        </div>
+
       </div>
 
       <div className={classes.form__btn_wrapper}>

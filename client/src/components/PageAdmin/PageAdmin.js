@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
+import { ToastContainer, toast } from 'react-toastify';
 import { THUNK_addReservationToDB, THUNK_addReservationToDBAdmin, THUNK_editRestaurant, THUNK_getRestaurantFromDB, THUNK_minusReservationToDB } from "../../redux/actions/restaurant.action";
+import { addNewIncident, getIncidents } from "../../redux/actions/upload.action";
 import { checkAuth } from "../../redux/actions/userinfo.action";
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
 import PicturesGallery from "../UI/PicturesGallery/PicturesGallery";
@@ -64,7 +66,7 @@ function PageAdmin() {
   // useEffect(()=>{
 
   // }, [])
-
+  console.log('lol', restState);
   console.log('---->', allState);
 
   const getProgressBarColor = (percantage) => {
@@ -83,13 +85,10 @@ function PageAdmin() {
 
   function editRest(e) {
     e.preventDefault()
-    let payload = Object.entries(dataRest).filter((el) => el[1] ? el[1].trim() : el[1])
-    if (payload.length) {
-      payload = Object.fromEntries(payload)
-      dispatch(THUNK_editRestaurant(payload, userState.restaurantId))
+    dispatch(THUNK_editRestaurant (dataRest, userState.restaurantId))
       setEdit(false)
     }
-  }
+
   console.log(edit);
 
   function clickChange() {
@@ -101,24 +100,23 @@ function PageAdmin() {
   // для изменения брони
   console.log(restState?.bookedTables);
   const ratingArr = restState?.rating;
-  let restaurantRating = 0;
-  if (ratingArr?.length > 0) {
-    restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
-  }
+  const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
 
-
+  const notify1 = () => toast.warn("Reservation canceled!");
 
   function minus() {
     let restaurantId = userState.restaurantId
     dispatch(THUNK_minusReservationToDB({ restaurantId }))
+    notify1()
   }
 
+  const notify = () => toast.success("Add new reservation");
 
   function onePlus() {
     let restaurantId = userState.restaurantId
     console.log(restaurantId);
     dispatch(THUNK_addReservationToDBAdmin({ restaurantId }))
-
+    notify()
   }
 
   function editD() {
@@ -133,6 +131,33 @@ function PageAdmin() {
       building: restState['Adress.building']
     })
   }
+
+
+  const upload = useRef()
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newIncident = {
+      // userId: id.id,
+      restaurantId: restState.id,
+      img: upload.current.value,
+    };
+    dispatch(addNewIncident(newIncident, upload.current.files[0]));
+    dispatch(getIncidents());
+  }
+
+  const [image, setImage] = useState(null);
+  const [reader] = useState(new FileReader());
+
+
+  function imageHandler() {
+    reader.readAsDataURL(upload.current.files[0]);
+    reader.addEventListener("load", function () {
+      setImage(reader.result);
+    });
+  }
+
+  console.log('sadasd', allState.incident);
 
 
 
@@ -165,6 +190,9 @@ function PageAdmin() {
                     <li>Average cost: {restState?.avarageCoast}</li>
                     <li>Category: {restState?.category}</li>
                     <li>Cuisine: {restState?.cuisine}</li>
+                    <li>City: {restState["Adress.city"]}</li>
+                    <li>Street: {restState["Adress.street"]}</li>
+                    <li>Building: {restState["Adress.building"]}</li>
                   </ul>
                   <button
                     className={classes.btn__edit} onClick={() => {
@@ -174,27 +202,60 @@ function PageAdmin() {
                   >
                     Edit
                   </button>
-
                 </div>
-
-
+                <ToastContainer position="top-right"
+                  theme="colored"
+                  autoClose={5000}
+                  hideProgressBar={true}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover/>
                 <div className={classes.order__info} >
-                  <div className={classes.foto__info}>
-                    <PicturesGallery restaurantDataFromState={restState} />
-                  </div>
-                  <div>Booked Tables: {restState?.bookedTables}</div>
-                  <button className={classes.btn__count} onClick={minus} >Remove</button>
+
+                  <div>BookedTables: {restState?.bookedTables}</div>
+                  <button className={classes.btn__count} onClick={minus} >Cancel</button>
                   <button className={classes.btn__count} onClick={onePlus} >Add</button>
                   {/* <input type="checkbox" onClick={clickChange} />
                   <label >Check me out</label> */}
                   {newInput && (
                     <>
                       <input />
-                      <button>Edit</button>
+                      <button> Edit</button>
                     </>
                   )}
                 </div>
+                <div >
+                  {allState.incident.length === 1 && (
+                    <>
+                      <img className={classes.img__rest} src={`http://localhost:3002/uploads/${allState.incident[0]?.path}`} />
+
+                    </>
+                  )}
+
+                </div>
+
               </div>
+              {/*  */}
+              <div>
+                <form onSubmit={handleSubmit} >
+                  <h2>Тема</h2>
+                  <label htmlFor="file">Добавить фото</label>
+                  <input
+                    type="file"
+                    name="file"
+                    id="file"
+                    ref={upload}
+                    onChange={imageHandler}
+                  />
+                  <button type="submit">
+                    Отправить
+                  </button>
+                </form>
+              </div>
+
+              {/*  */}
             </div>
 
           )}
@@ -235,7 +296,7 @@ function PageAdmin() {
                   <p>building</p>
                   <input onChange={changeHandler} placeholder='building' name="building" value={dataRest?.building} type='text' />
                 </div>
-              <button  onClick={editRest}>Save changes</button>
+                <button onClick={editRest}>Save changes</button>
 
               </div>
             </div>

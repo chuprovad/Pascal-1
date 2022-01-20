@@ -18,26 +18,28 @@ const NavBar = () => {
   const [options, setOptions] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
 
-  // const filterRestsHandle = (value) => {
-  //   console.log(value)
-  //   setOptions(value)
-  //
-  // }
+  const filterRestsHandle = (value) => {
+    console.log(value)
+    setOptions(value)
+    // setSelectedSort(value)
+    // setSearchQuery('')
+    // console.log({searchQuery,selectedSort})
+    //      setRests([...rests].filter(el => {
+    //        return  el.location = 'Novikov'
+    // }))
+  }
   function deleteUser() {
     dispatch(signOut())
     // navigate('/')
 
   }
 
-  // const changeCategory = () => {
-  //     console.log(options)
-  // }
-
   return (
     <div className={classes["navbar"]}>
 
       <Link className={classes["home-link"]} to={'/'}>Pascal</Link>
 
+      <div className={classes.wrapper_filters}>
       <Selector
         className={classes['navbar__select']}
         value={options}
@@ -53,12 +55,15 @@ const NavBar = () => {
         ]}
       />
 
-      <Search
-        value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
-      />
+        <Search
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+        />
+      </div>
+
+
       {user && (
-        <>
+        <div className={classes.wrapper_sign}>
           {user.isAdmin && (
             <Link className={classes["other-link"]} to={`/admin/${user.id}`}>Admin Profile</Link>
 
@@ -68,15 +73,15 @@ const NavBar = () => {
 
           )}
           <Link onClick={deleteUser} className={classes["other-link"]} to={'/'}>Sign out</Link>
-        </>
+        </div>
       )}
 
       {!user && (
-        <>
+        <div className={classes.wrapper_sign}>
           <Link className={classes["other-link"]} to={'/signin'}>Sign in</Link>
           <Link className={classes["other-link"]} to={'/signup'}>Sign up</Link>
 
-        </>
+        </div>
       )}
     </div>
 
