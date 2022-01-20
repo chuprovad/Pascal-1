@@ -79,6 +79,7 @@ export const signIn = (payload, navigate, from) => async (dispatch) => {
 
 
 export const signUpAdmin = (payload, navigate) => async (dispatch) => {
+  console.log(payload)
   const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/admin`, {
     method: "POST",
     headers: {
@@ -86,6 +87,7 @@ export const signUpAdmin = (payload, navigate) => async (dispatch) => {
     },
     credentials: 'include',
     body: JSON.stringify(payload)
+
   })
   if (response.status === 200) {
     const user = await response.json()
