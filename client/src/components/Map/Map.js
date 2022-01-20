@@ -55,8 +55,8 @@ const Map = () => {
   }
 
   return (
-    <div>
-      <div style={{ width: '500px', height: '500px' }} id="map" />
+    <div className="main__map">
+      <div style={{ width: '600px', height: '600px' }} id="map" />
     </div>
   )
 }
