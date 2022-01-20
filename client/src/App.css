@@ -1,3 +1,4 @@
+/* CHECKKKKKKKKK */
 /* ------- Обнуление стилей -------- */
 
 * {
@@ -17,6 +18,24 @@ ul, li {
   list-style: none; /* Убираем оформление списков */
 }
 
+
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: inherit;
+}
+
+.App {
+  overflow: hidden;
+}
+
+.main-back {
+  background:
+    url(https://cdn.pixabay.com/photo/2016/07/30/20/52/vintage-1557993_1280.jpg);
+    min-height: 813px;
+}
 
 /* ------- main-page -------- */
 
@@ -45,7 +64,18 @@ input{
   border: 0;
   border-bottom: 1px solid #333;
 }
-/* ------- XXX page -------- */
+
+/* ------- RESTS LIST -------- */
+.rest-card {
+  border: 2px solid rgb(255, 173, 126);
+  border-radius: 7px;
+  margin-bottom: 10px;
+  padding: 5px;
+  color: white;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
 
 
 .main__map {
@@ -59,9 +89,3 @@ input{
   -webkit-filter: grayscale(1); */
 }
 
-
-/* ------- XXX something -------- */
-
-
-
-/* ------- XXX something -------- */

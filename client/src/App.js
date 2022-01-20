@@ -20,7 +20,6 @@ import PageAdmin from './components/PageAdmin/PageAdmin';
 import { THUNK_getAllRestaurantsFromDB } from './redux/actions/rests.action';
 import MyModel from './components/MyModel/MyModel';
 
-
 function App() {
 
   function RequireAuthUser({ children, redirectTo }) {
@@ -40,8 +39,6 @@ function App() {
     dispatch(THUNK_getAllRestaurantsFromDB())
   }, [])
 
-
-
   return (
 
 
@@ -50,16 +47,17 @@ function App() {
     <div>
       <NavBar />
 
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/restaurants/:id' element={<Restaurant />} />
-        <Route path='/users/:id' element={<UserProfile />} />
-        <Route path='/signin' element={<SingIn />} />
-        <Route path='/signup' element={<Reg />} />
-        <Route path='/signout' element={<SignOut />} />
-        <Route path='/admin/:id' element={<PageAdmin/>} />
-        
-      </Routes>
+        <div className='main-back'>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/restaurants/:id' element={<Restaurant />} />
+            <Route path='/users/:id' element={<UserProfile />} />
+            <Route path='/signin' element={<SingIn />} />
+            <Route path='/signup' element={<Reg />} />
+            <Route path='/signout' element={<SignOut />} />
+            <Route path='/admin/:id' element={<PageAdmin/>} />
+          </Routes>
+        </div>
     </div>
   );
 }
