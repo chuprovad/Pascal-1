@@ -3,6 +3,7 @@ import InputText from "../UI/InputText/InputText";
 import ButtonCreate from "../UI/ButtonCreate/ButtonCreate";
 import { useDispatch } from "react-redux";
 import { THUNK_addReservationToDB } from "../../redux/actions/restaurant.action";
+import classes from './RestaurantForm.module.css'
 
 export default function RestaurantForm({ bookTableHandler, restaurantId }) {
   const dispatch = useDispatch();
@@ -48,7 +49,15 @@ export default function RestaurantForm({ bookTableHandler, restaurantId }) {
         type="text"
         placeholder="Guests quantity"
       />
-      <ButtonCreate onClick={createNewbooking}>Complete reservation</ButtonCreate>
+
+      <div className={classes.form__button}>
+        <ButtonCreate
+          onClick={createNewbooking}
+          btnColor={'#ff9800'}
+        >
+          Complete reservation
+        </ButtonCreate>
+      </div>
     </>
   );
 }

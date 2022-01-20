@@ -37,14 +37,14 @@ function Inputuser({ who }) {
       {who === false && (
         <>
 
-          <h1 className={classes.form__title}>Регистрация</h1>
+          <h1 className={classes.form__title}>Registration</h1>
           <div className={classes.form__box}> 
             <input onChange={changeHandler} name="name" value={userSignUp.name} placeholder='name' type="text" />
             <input onChange={changeHandler} name="email" value={userSignUp.email} placeholder='email' type="email" />
             <input onChange={changeHandler} name="password" value={userSignUp.password} placeholder='password' type='password' />
           </div>
         
-          <button className={classes.form__btn} onClick={submitHandler}>Зарегистрироваться</button>
+          <button className={classes.form__btn} onClick={submitHandler}>Sign up</button>
         </>
       )}
     </div>

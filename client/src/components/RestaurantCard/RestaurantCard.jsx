@@ -1,6 +1,6 @@
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
 import StarRating from "../UI/StarRating/StarRating";
-// import classes from "./RestaurantCard.module.css";
+import classes from "./RestaurantCard.module.css";
 
 const getProgressBarColor = (percantage) => {
   let bgcolor = '';
@@ -29,11 +29,11 @@ export default function RestaurantCard({ restaurantDataFromState }) {
 
   return (
     <div>
-      <h1>
+      <h1 className={classes.restaurant__title}>
         {restaurantDataFromState?.title}
       </h1>
       
-      <ul>
+      <ul className={classes.restaurant__list}>
         <li>
          Booked tables:
           <CapacityProgressBar bgcolor={getProgressBarColor(capactityPercantage)} completed={capactityPercantage} />
@@ -41,6 +41,7 @@ export default function RestaurantCard({ restaurantDataFromState }) {
         <li><StarRating restaurantRating={Math.round(restaurantRating)} /></li> 
         <li>Rating: {restaurantRating}</li> 
         <li>Category: {restaurantDataFromState?.category}</li>
+          <li>Average cost: {restaurantDataFromState?.avarageCoast}</li>
         <li>Address: {restaurantDataFromState?.address}</li>
         <li>Cuisine: {restaurantDataFromState?.cuisine}</li>
       </ul>
