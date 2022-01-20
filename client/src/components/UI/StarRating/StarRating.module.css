@@ -1,15 +1,21 @@
 .on {
   color: rgb(236, 3, 3);
+  margin-right: 10px;
 }
+.on:last-child, .off:last-child {
+  margin-right: 0;
+}
+
 .off {
   color: #ccc;
+  margin-right: 10px;
 }
 
 .star {
   font-size: 24px;
 }
 
-.stars{
+.stars {
   width: 200px;
   display: flex;
   justify-content: flex-start;

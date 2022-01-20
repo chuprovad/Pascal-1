@@ -6,19 +6,33 @@
   /* border-box говорит браузеру учитывать любые границы и внутренние отступы
   в значениях, которые вы указываете в ширине и высоте элемента */
   box-sizing: border-box;
+  color: #fff;
 }
+
 p {
   margin-bottom: 0;
 }
+
 a {
   text-decoration: none; /* Убираем подчеркивание у ссылок */
 }
+
 ul, li {
   list-style: none; /* Убираем оформление списков */
 }
 
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: inherit;
+}
+
 .App {
-  background-image: url(https://cdn.pixabay.com/photo/2016/07/30/20/52/vintage-1557993_1280.jpg);
+  background-image:
+    url(https://cdn.pixabay.com/photo/2016/07/30/20/52/vintage-1557993_1280.jpg);
+  height: inherit;
 }
 
 /* ------- main-page -------- */
@@ -30,16 +44,16 @@ ul, li {
   justify-content: space-around;
 }
 
-button{
-  min-width: 20px;
+button {
+  min-width: 120px;
   width: 100%;
   outline: 0;
   /* border: 2px solid teal; */
   border: 0;
   border-radius: 5px;
-  background-color: rgb(116, 173, 173);
+  background-color: #ffe5b4;
   padding: 5px 5px;
-  color: #fff; 
+  color: black; 
 }
 
 input{
