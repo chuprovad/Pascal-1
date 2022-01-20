@@ -22,7 +22,7 @@ const UserCard = ({userDataFromState}) => {
     const deleteReservationHandler = (e ,id) => {
         e.preventDefault()
         dispatch(THUNK_deleteReservationInfoFromDB(id))
-        setTimeout(() => notify(), 1500)
+        setTimeout(() => notify(), 1000)
     }
 
     return (
@@ -46,7 +46,7 @@ const UserCard = ({userDataFromState}) => {
                     </li> )}
             </ul>
             <ToastContainer position="top-right"
-              theme="dark"
+              theme="colored"
               autoClose={5000}
               hideProgressBar={true}
               newestOnTop={false}

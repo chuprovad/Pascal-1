@@ -6,6 +6,7 @@ import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
 import PicturesGallery from "../UI/PicturesGallery/PicturesGallery";
 import StarRating from "../UI/StarRating/StarRating";
 import classes from './PageAdmin.module.css'
+import { ToastContainer, toast } from 'react-toastify';
 
 function PageAdmin() {
 
@@ -46,11 +47,6 @@ function PageAdmin() {
     setDataRest(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-
-
-  // console.log(allState);
-  console.log("====>", { restState, userState });
-  // console.log(userState.restaurantId);
   const dispatch = useDispatch()
   useEffect(() => {
 
@@ -60,12 +56,6 @@ function PageAdmin() {
 
     }
   }, [userState])
-
-  // useEffect(()=>{
-
-  // }, [])
-
-  console.log('---->', allState);
 
   const getProgressBarColor = (percantage) => {
     let bgcolor = '';
@@ -99,21 +89,26 @@ function PageAdmin() {
 
   const capactityPercantage = Math.round((restState?.bookedTables / restState?.capacity * 100));
   // для изменения брони
-  console.log(restState?.bookedTables);
   const ratingArr = restState?.rating;
   const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
 
-
+  //уведомления
+  
+  const notify1 = () => toast.warn("Reservation canceled!");  
+  
   function minus() {
     let restaurantId = userState.restaurantId
     dispatch(THUNK_minusReservationToDB({ restaurantId }))
+    notify1()
   }
-
-
+  
+  const notify = () => toast.success("Add new reservation");  
+  
   function onePlus() {
     let restaurantId = userState.restaurantId
     console.log(restaurantId);
     dispatch(THUNK_addReservationToDBAdmin({ restaurantId }))
+    notify() 
 
   }
 
@@ -172,6 +167,15 @@ function PageAdmin() {
                   </button>
 
                 </div>
+                <ToastContainer position="top-right"
+                  theme="colored"
+                  autoClose={5000}
+                  hideProgressBar={true}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover/>
 
 
                 <div className={classes.order__info} >

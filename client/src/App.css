@@ -82,8 +82,11 @@ input{
 
 #map {
   border: 3px solid rgb(253, 173, 0);
-  border-radius: 7px;
+  /* border-radius: 7px;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(1); */
 }
+
 
 /* ------- XXX something -------- */
 

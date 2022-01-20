@@ -54,6 +54,7 @@ export default function Restaurant() {
           <RestaurantForm bookTableHandler={bookTableHandler} restaurantId={restaurantId}/>
         </BookingModal>
         <ToastContainer position="top-right"
+        theme="colored"
         autoClose={5000}
         hideProgressBar={true}
         newestOnTop={false}
