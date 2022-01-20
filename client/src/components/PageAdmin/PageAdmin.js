@@ -84,12 +84,8 @@ function PageAdmin() {
 
   function editRest(e) {
     e.preventDefault()
-    let payload = Object.entries(dataRest).filter((el) => el[1] ? el[1].trim() : el[1])
-    if (payload.length) {
-      payload = Object.fromEntries(payload)
-      dispatch(THUNK_editRestaurant(payload, userState.restaurantId))
+    dispatch(THUNK_editRestaurant (dataRest, userState.restaurantId))
       setEdit(false)
-    }
   }
   console.log(edit);
 
