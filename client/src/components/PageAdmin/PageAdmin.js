@@ -163,7 +163,7 @@ function PageAdmin() {
 
   return (
 
-    <div>
+    <div className={classes.back__v}>
       {/* //   {!loader && ( */}
       {/* //     <h1>MINYTY</h1> */}
       {/* //   )} */}
@@ -296,7 +296,11 @@ function PageAdmin() {
                   <p>building</p>
                   <input onChange={changeHandler} placeholder='building' name="building" value={dataRest?.building} type='text' />
                 </div>
+
                 <button onClick={editRest}>Save changes</button>
+
+              
+
 
               </div>
             </div>
