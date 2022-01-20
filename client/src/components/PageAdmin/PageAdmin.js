@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { ToastContainer, toast } from 'react-toastify';
 import { THUNK_addReservationToDB, THUNK_addReservationToDBAdmin, THUNK_editRestaurant, THUNK_getRestaurantFromDB, THUNK_minusReservationToDB } from "../../redux/actions/restaurant.action";
+import { addNewIncident, getIncidents } from "../../redux/actions/upload.action";
 import { checkAuth } from "../../redux/actions/userinfo.action";
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
 import PicturesGallery from "../UI/PicturesGallery/PicturesGallery";
@@ -65,7 +66,7 @@ function PageAdmin() {
   // useEffect(()=>{
 
   // }, [])
-
+  console.log('lol', restState);
   console.log('---->', allState);
 
   const getProgressBarColor = (percantage) => {
@@ -131,10 +132,45 @@ function PageAdmin() {
   }
 
 
+  const upload = useRef()
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newIncident = {
+      // userId: id.id,
+      restaurantId: restState.id,
+      img: upload.current.value,
+    };
+    dispatch(addNewIncident(newIncident, upload.current.files[0]));
+    dispatch(getIncidents());
+  }
+
+  const [image, setImage] = useState(null);
+  const [reader] = useState(new FileReader());
+
+
+  function imageHandler() {
+    reader.readAsDataURL(upload.current.files[0]);
+    reader.addEventListener("load", function () {
+      setImage(reader.result);
+    });
+  }
+
+  console.log('sadasd', allState.incident);
+
+
 
   return (
 
     <div>
+
+
+
+
+
+
+
+
       {/* //   {!loader && ( */}
       {/* //     <h1>MINYTY</h1> */}
       {/* //   )} */}
@@ -144,6 +180,7 @@ function PageAdmin() {
         <>
           {edit === false && (
             <div className={classes.form}>
+
               <h1 className={classes.form__title}>
                 {restState?.title}
               </h1>
@@ -158,6 +195,10 @@ function PageAdmin() {
                     <li>Rating: {restaurantRating}</li>
                     <li>avarageCoast: {restState?.avarageCoast}</li>
                     <li>Category: {restState?.categoryId}</li>
+                    <li>Cuisine: {restState?.cuisineId}</li>
+                    <li>City: {restState["Adress.city"]}</li>
+                    <li>Street: {restState["Adress.street"]}</li>
+                    <li>Building: {restState["Adress.building"]}</li>
                     <li>Cuisine: {restState?.cuisineId}</li>
                   </ul>
                   <button
@@ -179,9 +220,7 @@ function PageAdmin() {
                   draggable
                   pauseOnHover/>
                 <div className={classes.order__info} >
-                  <div className={classes.foto__info}>
-                    <PicturesGallery restaurantDataFromState={restState} />
-                  </div>
+
                   <div>BookedTables: {restState?.bookedTables}</div>
                   <button className={classes.btn__count} onClick={minus} >Cancel</button>
                   <button className={classes.btn__count} onClick={onePlus} >Add</button>
@@ -194,7 +233,36 @@ function PageAdmin() {
                     </>
                   )}
                 </div>
+                <div >
+                  {allState.incident.length === 1 && (
+                    <>
+                      <img className={classes.img__rest} src={`http://localhost:3002/uploads/${allState.incident[0]?.path}`} />
+
+                    </>
+                  )}
+
+                </div>
+
               </div>
+              {/*  */}
+              <div>
+                <form onSubmit={handleSubmit} >
+                  <h2>Тема</h2>
+                  <label htmlFor="file">Добавить фото</label>
+                  <input
+                    type="file"
+                    name="file"
+                    id="file"
+                    ref={upload}
+                    onChange={imageHandler}
+                  />
+                  <button type="submit">
+                    Отправить
+                  </button>
+                </form>
+              </div>
+
+              {/*  */}
             </div>
 
           )}
@@ -235,7 +303,7 @@ function PageAdmin() {
                   <p>building</p>
                   <input onChange={changeHandler} placeholder='building' name="building" value={dataRest?.building} type='text' />
                 </div>
-              <button  onClick={editRest}>Save changes</button>
+                <button onClick={editRest}>Save changes</button>
 
               </div>
             </div>

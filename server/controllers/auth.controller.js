@@ -85,6 +85,8 @@ const signUpAdmin = async (req, res) => {
         bookedTables: 0
       })
 
+
+
       console.log('kek');
       const hashPassword = await bcrypt.hash(password, 11)
       const newUser = await Admin.create({
@@ -162,11 +164,41 @@ const checkAuth = async (req, res) => {
   }
 }
 
+const upload = async (req, res) => {
+  const sampleFile = req.files.file;
+  const fileName = sampleFile.name.split(" ").join("");
+  const fullname = `${new Date().getTime()}_${fileName}`;
+  const uploadPath = `${process.env.PWD}/public/uploads/`;
+  sampleFile.mv(`${uploadPath}/${fullname}`, async (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send(err);
+    } else {
+      let { restaurantId} = req.body;
+      console.log(restaurantId);
+      const newInc = await Picture.create({
+        path: fullname,
+        restaurantId: restaurantId 
+      });
+      console.log("newInc", newInc);
+      return res.status(200).json(newInc);
+    }
+  });
+
+
+
+
+
+}
+
+
+
 
 module.exports = {
   signIn,
   signOut,
   signUp,
   signUpAdmin,
-  checkAuth
+  checkAuth,
+  upload
 }
