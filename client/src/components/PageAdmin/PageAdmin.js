@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
+import { ToastContainer, toast } from 'react-toastify';
 import { THUNK_addReservationToDB, THUNK_addReservationToDBAdmin, THUNK_editRestaurant, THUNK_getRestaurantFromDB, THUNK_minusReservationToDB } from "../../redux/actions/restaurant.action";
 import { checkAuth } from "../../redux/actions/userinfo.action";
 import CapacityProgressBar from "../UI/CapacityProgressBar/CapacityProgressBar";
@@ -103,18 +104,21 @@ function PageAdmin() {
   const ratingArr = restState?.rating;
   const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
 
-
+  const notify1 = () => toast.warn("Reservation canceled!");  
+  
   function minus() {
     let restaurantId = userState.restaurantId
     dispatch(THUNK_minusReservationToDB({ restaurantId }))
+    notify1()
   }
-
-
+  
+  const notify = () => toast.success("Add new reservation");  
+  
   function onePlus() {
     let restaurantId = userState.restaurantId
     console.log(restaurantId);
     dispatch(THUNK_addReservationToDBAdmin({ restaurantId }))
-
+    notify() 
   }
 
   function editD() {
@@ -148,8 +152,6 @@ function PageAdmin() {
                 {restState?.title}
               </h1>
               <div className={classes.rest__info}>
-
-
                 <div className={classes.order__info}>
                   <ul className={classes.ul__info}>
                     <li>
@@ -170,10 +172,16 @@ function PageAdmin() {
                   >
                     Edit
                   </button>
-
                 </div>
-
-
+                <ToastContainer position="top-right"
+                  theme="colored"
+                  autoClose={5000}
+                  hideProgressBar={true}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover/>
                 <div className={classes.order__info} >
                   <div className={classes.foto__info}>
                     <PicturesGallery restaurantDataFromState={restState} />
