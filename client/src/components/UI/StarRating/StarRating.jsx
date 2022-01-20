@@ -27,7 +27,8 @@ export default function StarRating({ restaurantRating }) {
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (
-          <div
+          <button
+            type="button"
             key={index}
             style={{ backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer' }}
             className={index <= (hover || restaurantRating) ? classes.on : classes.off }
@@ -36,7 +37,7 @@ export default function StarRating({ restaurantRating }) {
             onMouseLeave={() => setHover(restaurantRating)}
           >
             <span className={classes.star}>&#9733;</span>
-          </div>
+          </button>
         );
       })}
     </div>

@@ -63,7 +63,7 @@ function Admin() {
         <div className={classes.form__col}>
           <form>
             <div className={classes.form__group}>
-              <label htmlFor="uploadInput">File uploading</label>
+              <label htmlFor="uploadInput">Загрузка файлов</label>
               <input type="file" onChange={changeHandler} className="form-control-file" name="image" value={userAdminSignUp.image} id="uploadInput" />
             </div>
           </form>
@@ -71,7 +71,7 @@ function Admin() {
       </div>
 
       <div className={classes.form__btn_wrapper}>
-        <button onClick={submitHandler} >Sign up</button>
+        <button onClick={submitHandler} >Зарегистрироваться</button>
       </div>
     </div>
   )

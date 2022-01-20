@@ -28,7 +28,7 @@ function Reg() {
       <div>
         <div className={classes.form__wrapper}>
           <input className={classes.form__check} type="checkbox" onClick={clickChange} />
-          <label className={classes.form__subheader} >As owner*</label>
+          <label className={classes.form__subheader} >Как юр. лицо*</label>
         </div>
         <Inputuser who={who} />
         {who === true && (

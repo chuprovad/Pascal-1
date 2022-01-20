@@ -1,6 +1,5 @@
 import CapacityProgressBar from '../../UI/CapacityProgressBar/CapacityProgressBar';
 import StarRating from '../../UI/StarRating/StarRating';
-import classes from './OneRest.module.css'
 
 const getProgressBarColor = (percantage) => {
   let bgcolor = '';
@@ -25,8 +24,8 @@ const OneRest = ({ rest}) => {
   }
 
   return (
-    <div className='rest-card'>
-      <h2 className={classes.cardTitle}>
+    <div>
+      <h2>
         {rest?.title}
       </h2>
 

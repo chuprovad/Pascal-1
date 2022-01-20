@@ -1,14 +1,6 @@
-.restaurant__container {
+.container {
   width: 1100px; /* огранчиваем содержимое по ширине */
-  margin: 0 auto 0 40px; /* выравниваем контейнер по середине */
+  margin: 0 auto; /* выравниваем контейнер по середине */
   padding: 0 15px;
 }
 
-.restaurant__button {
-  max-width: 300px;
-} 
-
-.gallery__title {
-  margin-top: 20px;
-  color: white;
-}

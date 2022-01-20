@@ -34,12 +34,12 @@ const allState = useSelector(state => state)
    <div>
    <MyModel visible={modal} setVisible={setModal}>
       <div className={classes.form}>
-        <h1 className={classes.form__title}>Sign in</h1>
+        <h1 className={classes.form__title}>Регистрация</h1>
         <div className={classes.form__box}>
           <input onChange={changeHandler} name="email" value={inputValue.email} placeholder='email' type="email" />
           <input onChange={changeHandler} name="password" value={inputValue.password} placeholder='password' type='password' />
         </div>
-        <button className={classes.form__btn} onClick={submitHandler}>Sign in</button>
+        <button className={classes.form__btn} onClick={submitHandler}>войти</button>
       </div>
 
     </MyModel>

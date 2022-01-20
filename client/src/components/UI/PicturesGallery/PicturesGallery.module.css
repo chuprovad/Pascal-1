@@ -5,7 +5,6 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  padding-left: 0;
 }
 
 .gallery__item {
