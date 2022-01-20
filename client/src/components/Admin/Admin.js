@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { signUpAdmin } from "../../redux/actions/userinfo.action";
 import classes from './Admin.module.css'
 
 function Admin() {
+
+  const upload = useRef()
 
   const [userAdminSignUp, setUserAdminSignUp] = useState({
     name: '',
@@ -20,10 +22,14 @@ function Admin() {
     building: '',
     image: '',
   })
-// console.log(userAdminSignUp);
+  console.log(userAdminSignUp.image.files);
   const changeHandler = (e) => {
     setUserAdminSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
+
+
+
+  
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
@@ -36,6 +42,9 @@ function Admin() {
       dispatch(signUpAdmin(payload, navigate))
     }
   }
+
+
+
 
   return (
     <div className={classes.form}>
@@ -64,7 +73,7 @@ function Admin() {
           <form>
             <div className={classes.form__group}>
               <label htmlFor="uploadInput">File uploading</label>
-              <input type="file" onChange={changeHandler} className="form-control-file" name="image" value={userAdminSignUp.image} id="uploadInput" />
+              <input type="file" onChange={changeHandler} className="form-control-file" name="image" ref={upload} value={userAdminSignUp.image}  id="uploadInput" />
             </div>
           </form>
         </div>
