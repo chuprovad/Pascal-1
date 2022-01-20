@@ -19,10 +19,8 @@ function Admin() {
     capacity: '',
     city: '',
     street: '',
-    building: '',
-    image: '',
+    building: ''
   })
-  console.log(userAdminSignUp.image.files);
   const changeHandler = (e) => {
     setUserAdminSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
@@ -69,14 +67,7 @@ function Admin() {
           <input onChange={changeHandler} placeholder='street' name="street" value={userAdminSignUp.street} type='text' />
           <input onChange={changeHandler} placeholder='building' name="building" value={userAdminSignUp.building} type='text' />
         </div>
-        <div className={classes.form__col}>
-          <form>
-            <div className={classes.form__group}>
-              <label htmlFor="uploadInput">File uploading</label>
-              <input type="file" onChange={changeHandler} className="form-control-file" name="image" ref={upload} value={userAdminSignUp.image}  id="uploadInput" />
-            </div>
-          </form>
-        </div>
+        
       </div>
 
       <div className={classes.form__btn_wrapper}>
