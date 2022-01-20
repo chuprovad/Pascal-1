@@ -46,16 +46,17 @@ function App() {
     <div className='App'>
       <NavBar />
 
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/restaurants/:id' element={<Restaurant />} />
-        <Route path='/users/:id' element={<UserProfile />} />
-        <Route path='/signin' element={<SingIn />} />
-        <Route path='/signup' element={<Reg />} />
-        <Route path='/signout' element={<SignOut />} />
-        <Route path='/admin/:id' element={<PageAdmin/>} />
-        
-      </Routes>
+        <div className='main-back'>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/restaurants/:id' element={<Restaurant />} />
+            <Route path='/users/:id' element={<UserProfile />} />
+            <Route path='/signin' element={<SingIn />} />
+            <Route path='/signup' element={<Reg />} />
+            <Route path='/signout' element={<SignOut />} />
+            <Route path='/admin/:id' element={<PageAdmin/>} />
+          </Routes>
+        </div>
     </div>
   );
 }
