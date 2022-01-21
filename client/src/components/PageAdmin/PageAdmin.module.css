@@ -7,7 +7,7 @@
   text-transform: uppercase;
   font-weight: 300;
   margin-bottom: 50px;
-
+  color: white;
 }
 
 
@@ -37,6 +37,7 @@
 
 .ul__info{
   padding: 0;
+  color: white;
 }
 
 .btn__count{
@@ -46,11 +47,11 @@
 }
 
 .edit__form{
-display: flex;
-flex-direction: column;
-max-width: 300px;
-margin: 0 auto;
-gap: 15px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+  gap: 15px;
 }
 
 .edit{
@@ -61,13 +62,15 @@ gap: 15px;
 .edit__col{
   display: flex;
   align-items: center;
+  /* justify-content: center; */
 
-  gap: 30px;
-  justify-content: center;
+  color: white;
 }
 
 .edit__title{
   text-align: center;
+  color: white;
+  margin-bottom: 15px;
 }
 
 
@@ -75,7 +78,33 @@ gap: 15px;
   width: 300px;
 }
 
-
-.back__v{
-  background-color: red ;
+.booked__tables {
+  color: white
 }
+
+.img__label {
+  color: white
+}
+
+.img__input {
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.edit__col p {
+  width: 130px;
+}
+
+.edit__col input {
+  width: 130px;
+  /* border-bottom: none; */
+}
+
+.send__btn {
+  max-width: 200px;
+}
+
+/* .back__v{
+  
+} */

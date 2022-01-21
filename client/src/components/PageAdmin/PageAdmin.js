@@ -214,7 +214,7 @@ function PageAdmin() {
                   pauseOnHover/>
                 <div className={classes.order__info} >
 
-                  <div>BookedTables: {restState?.bookedTables}</div>
+                  <div className={classes.booked__tables}>BookedTables: {restState?.bookedTables}</div>
                   <button className={classes.btn__count} onClick={minus} >Cancel</button>
                   <button className={classes.btn__count} onClick={onePlus} >Add</button>
                   {/* <input type="checkbox" onClick={clickChange} />
@@ -240,18 +240,20 @@ function PageAdmin() {
               {/*  */}
               <div>
                 <form onSubmit={handleSubmit} >
-                  <h2>Тheme???</h2>
-                  <label htmlFor="file">Add photo</label>
+                  <label className={classes.img__label} htmlFor="file">Add photo</label>
                   <input
+                    className={classes.img__input}
                     type="file"
                     name="file"
                     id="file"
                     ref={upload}
                     onChange={imageHandler}
                   />
-                  <button type="submit">
-                    Send
-                  </button>
+                  <div className={classes.send__btn}>
+                    <button type="submit">
+                      Send
+                    </button>
+                  </div>
                 </form>
               </div>
 
