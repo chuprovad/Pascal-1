@@ -97,10 +97,13 @@ function PageAdmin() {
   }
 
   const capactityPercantage = Math.round((restState?.bookedTables / restState?.capacity * 100));
-  // для изменения брони
-  console.log(restState?.bookedTables);
+ 
+
   const ratingArr = restState?.rating;
-  const restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+  let restaurantRating = 0;
+  if (ratingArr?.length > 0) {
+    restaurantRating = (ratingArr?.reduce((sum, current) => sum + current, 0) / ratingArr?.length).toFixed(1)
+  }
 
   const notify1 = () => toast.warn("Reservation canceled!");
 
