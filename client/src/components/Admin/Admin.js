@@ -78,14 +78,16 @@ function Admin() {
 
           {/*<input onChange={changeHandler} placeholder='cuisine' name="cuisineId" value={userAdminSignUp.cuisineId} type='text' />*/}
           <select value={userAdminSignUp.categoryId ? userAdminSignUp.categoryId : 1}
-
+                  className={classes.form__select}
                   onChange={changeHandler} placeholder='category' name="categoryId"
           >
             {options.map(option =>
                 <option key={option.value} value={option.value}>{option.name}</option>
             )}
           </select>
-          <select value={userAdminSignUp.cuisineId ? userAdminSignUp.cuisineId : 1}
+          <select 
+                  className={classes.form__select}
+                  value={userAdminSignUp.cuisineId ? userAdminSignUp.cuisineId : 1}
 
                   onChange={changeHandler} placeholder='cuisine' name="cuisineId"
           >
