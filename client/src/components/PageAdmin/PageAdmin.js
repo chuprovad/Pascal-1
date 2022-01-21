@@ -30,9 +30,9 @@ function PageAdmin() {
   const userState = useSelector(state => state.userInfo)
   const allState = useSelector(state => state)
   const restState = useSelector(state => state.restaurant)
-  console.log(';', restState);
-  const [edit, setEdit] = useState(false)
 
+  const [edit, setEdit] = useState(false)
+  const [visible, setVisible] = useState(true)
   const [dataRest, setDataRest] = useState({
     title: '',
     categoryId: '',
@@ -48,26 +48,14 @@ function PageAdmin() {
     setDataRest(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-
-
-  // console.log(allState);
-  console.log("====>", { restState, userState });
-  // console.log(userState.restaurantId);
   const dispatch = useDispatch()
   useEffect(() => {
 
     if (userState && userState.restaurantId) {
-      console.log('useeffect')
       dispatch(THUNK_getRestaurantFromDB(userState.restaurantId))
 
     }
   }, [userState])
-
-  // useEffect(()=>{
-
-  // }, [])
-  console.log('lol', restState);
-  console.log('---->', allState);
 
   const getProgressBarColor = (percantage) => {
     let bgcolor = '';
@@ -89,7 +77,6 @@ function PageAdmin() {
       setEdit(false)
     }
 
-  console.log(edit);
 
   function clickChange() {
 
@@ -166,19 +153,21 @@ function PageAdmin() {
 
   return (
 
-    <div className={classes.back__v}>
+    <div className={classes.wrapper}>
       {/* //   {!loader && ( */}
       {/* //     <h1>MINYTY</h1> */}
       {/* //   )} */}
 
       {loader && (
 
-        <>
+        <div className={classes.form__wrapper}>
           {edit === false && (
-            <div className={classes.form}>
-              <h1 className={classes.form__title}>
+            <>
+            <h1 className={classes.form__title}>
                 {restState?.title}
-              </h1>
+            </h1>
+            <div className={classes.form}>
+   
               <div className={classes.rest__info}>
 
 
@@ -215,53 +204,45 @@ function PageAdmin() {
                   pauseOnFocusLoss
                   draggable
                   pauseOnHover/>
-                <div className={classes.order__info} >
-
-                  <div className={classes.booked__tables}>BookedTables: {restState?.bookedTables}</div>
-                  <button className={classes.btn__count} onClick={minus} >Cancel</button>
-                  <button className={classes.btn__count} onClick={onePlus} >Add</button>
-                  {/* <input type="checkbox" onClick={clickChange} />
-                  <label >Check me out</label> */}
-                  {newInput && (
-                    <>
-                      <input />
-                      <button> Edit</button>
-                    </>
-                  )}
-                </div>
-                <div >
-                  {allState.incident.length === 1 && (
-                    <>
-                      <img className={classes.img__rest} src={`http://localhost:3002/uploads/${allState.incident[0]?.path}`} />
-
-                    </>
-                  )}
-
-                </div>
 
               </div>
               {/*  */}
-              <div>
-                <form onSubmit={handleSubmit} >
-                  <label className={classes.img__label} htmlFor="file">Add photo</label>
-                  <input
+              <div className={classes.booking_and_photo}>
+                <div className={classes.order__info} >
+                  <div className={classes.booked__tables}>Booked tables: {restState?.bookedTables}</div>
+                  <button className={classes.btn__count} onClick={minus} >Cancel</button>
+                  <button className={classes.btn__count} onClick={onePlus} >Add</button>
+                </div>
+                  <form className={classes.order__info_form} onSubmit={handleSubmit} >
+                    <label className={visible ? `${classes.img__label} ${classes.active}` :  `${classes.img__label} ${classes.non_active}`} htmlFor="file">Add photo</label>
+                  <input 
                     className={classes.img__input}
                     type="file"
                     name="file"
                     id="file"
                     ref={upload}
                     onChange={imageHandler}
+                    onClick ={()=>setVisible(false)}
                   />
                   <div className={classes.send__btn}>
-                    <button type="submit">
+                      <button className={classes.send__btn1} type="submit">
                       Send
                     </button>
                   </div>
                 </form>
               </div>
 
-              {/*  */}
+              <div className={classes.img__wrap}>
+                {allState.incident.length === 1 && (
+                  <>
+                    <img className={classes.img__rest} src={`http://localhost:3002/uploads/${allState.incident[0]?.path}`} />
+
+                  </>
+                )}
+              </div>
+              
             </div>
+            </>
 
           )}
 
@@ -310,7 +291,7 @@ function PageAdmin() {
               </div>
             </div>
           )}
-        </>
+        </div>
 
 
 
