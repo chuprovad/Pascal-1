@@ -226,7 +226,7 @@ function PageAdmin() {
                   />
                   <div className={classes.send__btn}>
                       <button className={classes.send__btn1} type="submit">
-                      Send
+                      Upload photo
                     </button>
                   </div>
                 </form>
@@ -248,15 +248,15 @@ function PageAdmin() {
 
           {edit && (
             <div className={classes.edit}>
-              <h1 className={classes.edit__title}>Edit Rest</h1>
+              <h1 className={classes.edit__title}>Edit rest info</h1>
               <div className={classes.edit__form}>
                 <div className={classes.edit__col}>
                   <p>title</p>
                   <input onChange={changeHandler} name="title" value={dataRest?.title} placeholder='title' type="text" />
                 </div>
                 <div className={classes.edit__col}>
-                  <p>avarageCoast</p>
-                  <input onChange={changeHandler} name="avarageCoast" value={dataRest?.avarageCoast} placeholder='avarageCoast' type="text" />
+                  <p>average cost</p>
+                  <input onChange={changeHandler} name="avarageCoast" value={dataRest?.avarageCoast} placeholder='average cost' type="text" />
                 </div>
                 <div className={classes.edit__col}>
                   <p>category</p>

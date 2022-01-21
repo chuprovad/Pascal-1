@@ -5,11 +5,14 @@
 }
 
 .form__title{
-  text-align: center;
+  text-align: end;
   text-transform: uppercase;
   font-weight: 300;
   margin-bottom: 50px;
   color: white;
+  padding-right: 152px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
 }
 
 .rest__info{
@@ -82,7 +85,9 @@
 }
 
 .img__rest{
-  width: 80%;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .booked__tables {
@@ -120,7 +125,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+  margin-bottom: -8px;
 }
 
 
@@ -167,4 +172,11 @@
 .send__btn1{
   width: 250px;
   height: 38px;
+}
+.form__wrapper{
+  border: 2px solid rgb(255, 173, 126);
+  padding: 70px 70px 70px 70px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+
 }
