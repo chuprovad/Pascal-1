@@ -20,7 +20,6 @@ import PageAdmin from './components/PageAdmin/PageAdmin';
 import { THUNK_getAllRestaurantsFromDB } from './redux/actions/rests.action';
 import MyModel from './components/MyModel/MyModel';
 
-
 function App() {
 
   function RequireAuthUser({ children, redirectTo }) {
@@ -40,11 +39,11 @@ function App() {
     dispatch(THUNK_getAllRestaurantsFromDB())
   }, [])
 
-
-
   return (
     <div className='App'>
-      <NavBar />
+      <div className='background__navbar'>
+        <NavBar />
+      </div>
 
         <div className='main-back'>
           <Routes>
