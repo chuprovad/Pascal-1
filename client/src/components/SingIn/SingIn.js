@@ -7,7 +7,6 @@ import classes from './Singin.module.css'
 
 function SingIn() {
 const allState = useSelector(state => state)
-// console.log(allState);
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',

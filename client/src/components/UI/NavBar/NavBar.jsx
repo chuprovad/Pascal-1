@@ -19,18 +19,10 @@ const NavBar = () => {
   const [searchQuery, setSearchQuery] = useState('')
 
   const filterRestsHandle = (value) => {
-    console.log(value)
     setOptions(value)
-    // setSelectedSort(value)
-    // setSearchQuery('')
-    // console.log({searchQuery,selectedSort})
-    //      setRests([...rests].filter(el => {
-    //        return  el.location = 'Novikov'
-    // }))
   }
   function deleteUser() {
     dispatch(signOut())
-    // navigate('/')
 
   }
 
@@ -87,7 +79,5 @@ const NavBar = () => {
 
   );
 };
-
-// add /auth inside to in the begining
 
 export default NavBar;

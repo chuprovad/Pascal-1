@@ -7,7 +7,6 @@ import classes from './Inputuser.module.css'
 function Inputuser({ who }) {
 
   const all = useSelector(state => state)
-  console.log(all);
   let navigate = useNavigate()
 
   const [userSignUp, setUserSignUp] = useState({

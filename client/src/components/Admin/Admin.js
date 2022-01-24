@@ -41,7 +41,6 @@ function Admin() {
     building: ''
   })
   const changeHandler = (e) => {
-    console.log('gdr')
     setUserAdminSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
@@ -54,8 +53,6 @@ function Admin() {
     e.preventDefault()
 
     let payload = Object.entries(userAdminSignUp).filter((el) => el[1] ? el[1].trim() : el[1])
-    console.log(userAdminSignUp)
-    console.log(payload)
     if (payload.length) {
       payload = Object.fromEntries(payload)
       dispatch(signUpAdmin(payload, navigate))
@@ -74,9 +71,6 @@ function Admin() {
       <div className={classes.form__row}>
         <div className={classes.form__col}>
           <input onChange={changeHandler} placeholder='title' name="title" value={userAdminSignUp.title} type="text" />
-          {/*<input onChange={changeHandler} placeholder='category' name="categoryI" value={userAdminSignUp.categoryId} type='text' />*/}
-
-          {/*<input onChange={changeHandler} placeholder='cuisine' name="cuisineId" value={userAdminSignUp.cuisineId} type='text' />*/}
           <select value={userAdminSignUp.categoryId ? userAdminSignUp.categoryId : 1}
                   className={classes.form__select}
                   onChange={changeHandler} placeholder='category' name="categoryId"
