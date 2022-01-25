@@ -5,9 +5,9 @@
 monitoring the occupancy of nearby places and online table reservations
 
 ## Project Screenshots
-![plot](./screens/Main-page.jpg)
-![plot](./screens/Table-reservation.jpg)
-![plot](./screens/Userpage.jpg)
+![plot](./Main-page.jpg)
+![plot](./Table-reservation.jpg)
+![plot](./Userpage.jpg)
 
 ## Available Scripts
 
